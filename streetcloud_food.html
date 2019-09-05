@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="streetcloud.css" rel="stylesheet" type="text/css">
+<link href="streetcloud_food.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!-- Header -->
@@ -14,17 +14,35 @@
 alt="Fork_and_Knife" width="100" height="100" class="center">
 
 <h2>What are you looking for?</h2>
+<table>
 <form action="action_page.php">
-  <input type="radio" name="fast" value="Fast"> Fast
-  <input type="radio" name="free" value="Free"> Free
-  <input type="radio" name="nearby" value="Nearby"> Nearby<br>
-  <input type="radio" name="choice1" value="Choice"> Choice
-  <input type="radio" name="choice2" value="Choice"> Choice
-  <input type="radio" name="choice3" value="Choice"> Choice<br> 
-  <input type="radio" name="choice4" value="Choice"> Choice
-  <input type="radio" name="choice5" value="Choice"> Choice
-  <input type="radio" name="choice6" value="Choice"> Choice<br> 
+  <tr>
+    <td><h3>When?</h3></td>
+    <td><h3>Distance</h3></td>
+    <td><h3>Price</h3></td>
+  </tr>
+  <tr>
+    <td> <input type="radio" name="time" value="Fast"> Fast </td>
+    <td> <input type="radio" name="distance" value="Nearby"> Nearby </td>
+    <td> <input type="radio" name="price" value="Free"> Free </td>
+  </tr>
+  <tr>
+    <td> <input type="radio" name="time" value="soon"> Soon </td>
+    <td> <input type="radio" name="distance" value="Walking Distance"> Walking Distance </td>
+    <td> <input type="radio" name="price" value="inexpensive"> $ </td>
+  </tr>
+  <tr>
+    <td> <input type="radio" name="time" value="one hour"> In one hour </td>
+    <td> <input type="radio" name="distance" value="distant"> Distant </td>
+    <td> <input type="radio" name="price" value="medium"> $$ </td>
+  </tr>
+  <tr>
+    <td> <input type="radio" name="time" value="other"> Other </td>
+    <td> <input type="radio" name="distance" value="far"> Far </td>
+    <td> <input type="radio" name="price" value="expensive"> $$$ </td>
+  </tr>
 </form>
+</table>
 <br>
 <!-- Other-->
 <img src= "https://upload.wikimedia.org/wikipedia/commons/0/00/Noun_project_Search_icon_151781_000000.svg" 
@@ -33,9 +51,28 @@ alt="Search" width="100" height="100" class="center">
 <a href="#" id="clear-button" class="clear-button">Clear Search</a>
 <!-- Search Database" -->
 <p class="left_search_response">1.</p>
-<img src= "https://upload.wikimedia.org/wikipedia/commons/f/fe/McDonald%27s_logo_Targ%C3%B3wek.JPG" 
-alt="data" width="120" height="120"class="left_search_response"><p class="left_search_response">Title, Location, Hours Open, $ </p>
+<img src= "https://upload.wikimedia.org/wikipedia/commons/f/fe/McDonald%27s_logo_Targ%C3%B3wek.JPG"
+alt="data" width="120" height="120">
 <br>
+<table>
+  <tr>
+    <td><p>Restaurant</p></td>
+    <td><p>McDonald</p></td>
+  </tr>
+  <tr>
+    <td><p>Open</p></td>
+    <td><p>9:00 a.m. - 10:00 p.m.</p></td>
+  </tr>
+    <tr>
+    <td><p>Address</p></td>
+    <td><p>242 St. Monte Street, Portland, Oregon 97320</p></td>
+  </tr>
+    <tr>
+    <td><p>Price</p></td>
+    <td><p>$</p></td>
+  </tr>
+  <price>
+</table>
 <p class="left_search_response">2.</p>
 <img src= "https://upload.wikimedia.org/wikipedia/commons/f/fe/McDonald%27s_logo_Targ%C3%B3wek.JPG" 
 alt="data" width="120" height="120"class="left_search_response"><p class="left_search_response">Title, Location, Hours Open, $$$ </p>
