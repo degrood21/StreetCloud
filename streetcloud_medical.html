@@ -1,4 +1,7 @@
-<!-- Alli Jacobs -->
+<!-- Alli Jacobs 
+     Modified by: Paul Patrick Bellosillo
+     vers. September 5, 2019
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,18 +17,57 @@
 alt="House" width="100" height="100" class="center">
 
 <h2>What are you looking for?</h2>
+<table>
 <form action="action_page.php">
-  <input type="radio" name="overnight" value="Overnight"> Emergency
-  <input type="radio" name="free" value="Free"> Walk-ins
-  <input type="radio" name="nearby" value="Nearby"> Checkups<br>
-  <input type="radio" name="choice1" value="Choice"> Choice
-  <input type="radio" name="choice2" value="Choice"> Choice
-  <input type="radio" name="choice3" value="Choice"> Choice<br> 
-  <input type="radio" name="choice4" value="Choice"> Choice
-  <input type="radio" name="choice5" value="Choice"> Choice
-  <input type="radio" name="choice6" value="Choice"> Choice<br> 
+  <tr>
+    <td><h3>When?</h3></td>
+    <td><h3>Distance</h3></td>
+  </tr>
+  <tr>
+    <td> <input type="radio" name="urgency" value="Emergency"> Emergency </td>
+    <td> <input type="radio" name="distance" value="Nearby"> Nearby </td>
+  </tr>
+  <tr>
+    <td> <input type="radio" name="urgency" value="soon"> Soon </td>
+    <td> <input type="radio" name="distance" value="Walking Distance"> Walking Distance </td>
+  </tr>
+  <tr>
+    <td> <input type="radio" name="time" value="one hour"> In one hour </td>
+    <td> <input type="radio" name="distance" value="distant"> Distant </td>
+  </tr>
+  <tr>
+    <td> <input type="radio" name="time" value="other"> Other </td>
+    <td> <input type="radio" name="distance" value="far"> Far </td>
+  </tr>
 </form>
+</table>
 <br>
+<br>
+<table>
+  <tr>
+    <td><img src= "https://upload.wikimedia.org/wikipedia/commons/0/07/Augsburg_Josefium_26_April_2003.jpg"
+     alt="data" width="120" height="120"></td>
+    <td><table>
+          <tr>
+            <td><p>Restaurant</p></td>
+            <td><p>McDonald</p></td>
+          </tr>
+          <tr>
+            <td><p>Open</p></td>
+            <td><p>9:00 a.m. - 10:00 p.m.</p></td>
+          </tr>
+          <tr>
+            <td><p>Address</p></td>
+            <td><p>242 St. Monte Street, Portland, Oregon 97320</p></td>
+          </tr>
+          <tr>
+            <td><p>Price</p></td>
+            <td><p>$</p></td>
+          </tr>
+         </table>
+    </td>
+  </tr>
+</table>
 <!-- Other-->
 <img src= "https://upload.wikimedia.org/wikipedia/commons/0/00/Noun_project_Search_icon_151781_000000.svg" 
 alt="Search" width="100" height="100" class="center">
