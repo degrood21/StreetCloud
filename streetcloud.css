@@ -1,12 +1,19 @@
-/*Alli Jacobs*/
+/*Alli Jacobs
+  Modified by Paul Patrick Bellosillo, Dylan DeGrood
+  vers. September 5, 2019
+*/
 
 body{
-	background-color: rgb(200,166,247);
+	background-color: black;
 	text-align:center;
+	border: 10px;
+	border-color: yellow;
+	border-style: dotted;
 	
 }
 h1{
-	color:rgb(115,113,245);
+	background-color: yellow;
+	color: black;
 	font-family:tahoma;
 }
 h2{
@@ -26,6 +33,7 @@ p{
 img{
 	border: 2px solid #ddd;
 	padding: 3px;
+	text-align: left;
 }
 .left{
 	display: block;
@@ -57,4 +65,14 @@ img{
 	text-align:center;
 }
 
+table {
+	background-color: rgb(105, 105, 105);
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+}
 
+td {
+	color: yellow;
+	margin-left: 10px;
+}
