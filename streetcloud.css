@@ -49,7 +49,6 @@ img{
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
-	width: 25%;
 }
 .centergif{
 	display:block;
@@ -75,4 +74,8 @@ table {
 td {
 	color: yellow;
 	margin-left: 10px;
+}
+
+.searchbar{
+	width: 350px;
 }
