@@ -35,6 +35,13 @@ img{
 	padding: 3px;
 	text-align: left;
 }
+.image2{
+	border: 2px solid #ddd;
+	padding: 3px;
+	text-align: center;
+	width: 150px;
+	height: 100px;
+}
 .left{
 	display: block;
 	margin-right:auto;
