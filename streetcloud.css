@@ -1,6 +1,6 @@
 /*Alli Jacobs
-  Modified by Paul Patrick Bellosillo, Dylan DeGrood
-  vers. September 5, 2019
+  Modified by Paul Patrick Bellosillo, Dylan DeGrood, Dylan Pascua 
+  vers. September 18, 2019
 */
 
 body{
@@ -79,3 +79,19 @@ td {
 .searchbar{
 	width: 350px;
 }
+
+button{
+	background-color:yellow; 
+	border: none;
+	color: black;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 50px;
+	cursor: pointer;
+	opacity: 0.8;
+	width: 100%;
+	border: 5px solid black;
+}
+/* when a cursur is hovering over the button it lights up */ 
+button:hover {opacity:1;}
