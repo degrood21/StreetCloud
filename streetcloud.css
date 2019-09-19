@@ -77,5 +77,26 @@ td {
 }
 
 .searchbar{
-	width: 350px;
+	width: auto;
+}
+
+a {
+	color: white;
+}
+
+.admin_choice {
+	text-align: center;
+}
+
+.admin_home{
+	display: inline;
+	position: relative;
+	left: 250px;
+	background-color: rgb(247, 231, 231);
+}
+
+.logout {
+	display: inline;
+	position: relative;
+	left: 250px;
 }
