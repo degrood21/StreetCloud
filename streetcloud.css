@@ -25,11 +25,27 @@ h3{
 	color:white;
 	font-family:courier;
 }
+
+h6{
+	color: white;
+	font-family: courier;
+}
+
 p{
 	color:white;
 	font-size: 20px;
 	font-family:courier;
 }
+
+#aboutmessage {
+	color: white;
+	font-size: 20px;
+	padding-left: 25%;
+	padding-right: 25%;
+	width: 50%;
+	text-align: center;
+}
+
 img{
 	border: 2px solid #ddd;
 	padding: 3px;
