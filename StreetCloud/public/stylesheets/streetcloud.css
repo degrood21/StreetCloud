@@ -135,3 +135,13 @@ a {
 	position: relative;
 	left: 250px;
 }
+
+.job_options_formatting{
+	padding-left: 20px;  
+	padding-right: 20px;
+}
+
+.job_options_formatting2{
+	padding-left: 10px; 
+	padding-right: 20px;
+}
