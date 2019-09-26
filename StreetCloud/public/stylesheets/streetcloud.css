@@ -1,0 +1,147 @@
+/*Alli Jacobs
+  Modified by Paul Patrick Bellosillo, Dylan DeGrood, Dylan Pascua 
+  vers. September 18, 2019
+*/
+
+body{
+	background-color: black;
+	text-align:center;
+	border: 10px;
+	border-color: yellow;
+	border-style: dotted;
+	
+}
+h1{
+	background-color: yellow;
+	color: black;
+	font-family:tahoma;
+}
+h2{
+	color:rgb(245,243,113);
+	font-family:courier;
+	font-size:25px;
+}
+h3{
+	color:white;
+	font-family:courier;
+}
+
+h6{
+	color: white;
+	font-family: courier;
+}
+
+p{
+	color:white;
+	font-size: 20px;
+	font-family:courier;
+}
+
+#aboutmessage {
+	color: white;
+	font-size: 20px;
+	padding-left: 25%;
+	padding-right: 25%;
+	width: 50%;
+	text-align: center;
+}
+
+img{
+	border: 2px solid #ddd;
+	padding: 3px;
+	text-align: left;
+}
+.left{
+	display: block;
+	margin-right:auto;
+	text-align:left;
+}
+.right{
+	display:block;
+	margin-left:auto;
+	text-align:right;
+}
+.center{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+.centergif{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+.footer{
+	left:0;
+	bottom:0;
+	width:100%;
+	background-color: rgb(157,161,170);
+	color:white;
+	text-align:center;
+}
+
+table {
+	background-color: rgb(105, 105, 105);
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+}
+
+td {
+	color: yellow;
+	margin-left: 10px;
+}
+
+.searchbar{
+	width: 350px;
+}
+
+button{
+	background-color:yellow; 
+	border: none;
+	color: black;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 50px;
+	cursor: pointer;
+	opacity: 0.8;
+	width: 100%;
+	border: 5px solid black;
+}
+/* when a cursur is hovering over the button it lights up */ 
+button:hover {
+	opacity:1;
+	width: auto;
+}
+
+a {
+	color: white;
+}
+
+.admin_choice {
+	text-align: center;
+}
+
+.admin_home{
+	display: inline;
+	position: relative;
+	left: 250px;
+	background-color: rgb(247, 231, 231);
+}
+
+.logout {
+	display: inline;
+	position: relative;
+	left: 250px;
+}
+
+.job_options_formatting{
+	padding-left: 20px;  
+	padding-right: 20px;
+}
+
+.job_options_formatting2{
+	padding-left: 10px; 
+	padding-right: 20px;
+}
