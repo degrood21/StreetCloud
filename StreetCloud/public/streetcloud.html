@@ -2,47 +2,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="stylesheets/streetcloud_food.css" rel="stylesheet" type="text/css">
+<link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!-- Header -->
 <h1>StreetCloud</h1>
 <!-- Second Header -->
 <h2>What are you looking for?</h2>
-<!-- Food -->
+<!-- Search Bar -->
 <div class= "search-container">
-  <form action="/action_page.php">
-  <input type="text" placeholder="Search..." name="search">
-  <button type="submit"><i class=" fa fa-search">
-  </i></button>
-  </form>
+  <table id="searchTable">
+    <tr>
+      <td>
+        <input type="text" placeholder="Search..." name="search">
+      </td>
+      <td>
+        <button type="submit" id="homeSearch">Search</button>
+      </td>
+    </tr>
+  </table>
 </div>
+<!-- Food -->
 <table>
   <tr>
     <td>
-      <img src= "https://upload.wikimedia.org/wikipedia/commons/0/09/Rpb_food_icon.svg" 
-      alt="Fork_and_Knife" width="100" height="100" class="left">
-      <p class="left">Food</p>
+      <button type="submit" class="homeButtons" id="foodButton">
+        <img class="homeImages" src= "https://upload.wikimedia.org/wikipedia/commons/0/09/Rpb_food_icon.svg" alt="Fork_and_Knife">
+      </button>
+      <p id="centerText">Food</p>
     </td>
     <td>
       <!-- Shelter-->
-      <img src= "https://upload.wikimedia.org/wikipedia/commons/5/59/Noun_Project_house_icon_475319_cc.svg" 
-      alt="House" width="100" height="100" class="right">
-      <p class="right">Shelter</p>
+      <button type="submit" class="homeButtons" id="shelterButton">
+        <img class="homeImages" src= "https://upload.wikimedia.org/wikipedia/commons/5/59/Noun_Project_house_icon_475319_cc.svg" alt="House">
+      </button> 
+      <p id="centerText">Shelter</p>
     </td>
   </tr>
   <tr>
     <td> 
       <!-- Medical-->
-      <img src= "https://upload.wikimedia.org/wikipedia/commons/a/a6/Hospital_ico.png" 
-      alt="Hospital" width="100" height="100" class="left">
-      <p class="left">Medical</p>
+      <button type="submit" class="homeButtons" id="medicalButton">
+        <img class="homeImages" src= "https://upload.wikimedia.org/wikipedia/commons/a/a6/Hospital_ico.png" alt="Hospital">
+      </button>
+      <p id="centerText">Medical</p>
     </td>
     <td>
       <!-- Other-->
-      <img src= "https://upload.wikimedia.org/wikipedia/commons/0/00/Noun_project_Search_icon_151781_000000.svg" 
-      alt="Search" width="100" height="100" class="right">
-      <p class="right">Search</p>
+      <button type="submit" class="homeButtons" id="otherButton">
+        <img class="homeImages" src= "https://upload.wikimedia.org/wikipedia/commons/0/00/Noun_project_Search_icon_151781_000000.svg" alt="Search">
+      </button>
+      <p id="centerText">Search</p>
     </td>
   </tr>
 </table>
@@ -69,6 +79,10 @@
 <p>Volunteer</p>
 <p>Partnerships</p>
 </div>
+
+<script
+   src="javascripts/streetcloudHome.js">
+</script>
 
 </body>
 </html>

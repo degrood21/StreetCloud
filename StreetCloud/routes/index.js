@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.sendfile('streetcloud.html', { root: __dirname + "/../public"});
+  res.sendFile('streetcloud.html', { root: __dirname + "/../public"});
 });
 
 module.exports = router;

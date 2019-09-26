@@ -112,7 +112,7 @@ button{
 /* when a cursur is hovering over the button it lights up */ 
 button:hover {
 	opacity:1;
-	width: auto;
+	width: 100%;
 }
 
 a {
@@ -144,4 +144,45 @@ a {
 .job_options_formatting2{
 	padding-left: 10px; 
 	padding-right: 20px;
+}
+
+.homeButtons{
+	background-color: transparent;
+	background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+	outline: none;
+	padding: 5px 10px 2px 5px;
+	/* width: 150px;
+	height: 150px; */
+}
+
+#centerText {
+	display: block;
+	text-align: center;
+}
+
+.homeImages {
+	padding: 4x;
+	width: 100px;
+	height: 100px;
+}
+
+#homeSearch {
+	background-color: rgb(168, 168, 168); 
+	border: none;
+	color: none;
+	padding: 2px 3px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 10px;
+	cursor: pointer;
+	opacity: 100%;
+	width: auto;
+	border: 5px solid black;
+}
+
+#searchTable {
+	background-color: transparent;
 }
