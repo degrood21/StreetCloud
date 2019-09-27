@@ -186,3 +186,15 @@ a {
 #searchTable {
 	background-color: transparent;
 }
+
+#aboutUs, #registerForm{
+	cursor: pointer;
+}
+
+#foodButton, #medicalButton, #shelterButton, #otherButton, #homeButton{
+	cursor: pointer;
+}
+
+#headerButton{
+	cursor: pointer;
+}
