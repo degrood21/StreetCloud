@@ -92,8 +92,12 @@ td {
 	margin-left: 10px;
 }
 
+.search {
+	max-width: 100%;
+}
+
 .searchbar{
-	width: 350px;
+	max-width: 250%;
 }
 
 button{
@@ -167,6 +171,11 @@ a {
 	padding: 4x;
 	width: 100px;
 	height: 100px;
+}
+
+.menu {
+	max-width: 100%;
+	max-height: 100%;
 }
 
 #homeSearch {
