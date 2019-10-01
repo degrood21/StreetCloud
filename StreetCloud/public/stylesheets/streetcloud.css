@@ -176,6 +176,7 @@ a {
 .menu {
 	max-width: 100%;
 	max-height: 100%;
+	overflow-x: auto;
 }
 
 #homeSearch {
@@ -206,4 +207,8 @@ a {
 
 #headerButton{
 	cursor: pointer;
+}
+
+.filters {
+	overflow-x: hidden;
 }
