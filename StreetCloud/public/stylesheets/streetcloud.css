@@ -207,17 +207,51 @@ a {
 	overflow-x: hidden;
 }
 
+.filters_mobile{
+	display: none;
+}
+
+.filters_b{
+	width: 50px;
+	height: 50x;
+}
+
+#positionFilters {
+	display: none;
+	overflow-y: auto;
+}
+
+#educationFilters{
+	display: none;
+	overflow-y: auto;
+}
+
+#distanceFilters{
+	display: none;
+	overflow-y: auto;
+}
+
 @media screen and (max-width: 374px) and (min-width: 0px){
 	.menu_b {
 		width: 37px;
 		height: 37px;
 	}
-	.filters h3{
-		font-size: 12px;
+
+	.filters_b{
+		width: 25px;
+		height: 25px;
 	}
 
-	.filters td{
-		font-size: 10px;
+	.filters{
+		display: none;
+	}
+
+	.filters_mobile {
+		display: block;
+	}
+
+	.dropdown{
+		display: none;
 	}
 }
 
@@ -227,12 +261,21 @@ a {
 		height: 50px;
 	}
 
-	.filters h3{
-		font-size: 15px;
+	.filters_b{
+		width: 40px;
+		height: 40px;
 	}
 
-	.filters td{
-		font-size: 12px;
+	.filters{
+		display: none;
+	}
+
+	.filters_mobile {
+		display: block;
+	}
+
+	.dropdown{
+		display: none;
 	}
 }
 
@@ -241,4 +284,9 @@ a {
 		width: 100px;
 		height: 100px;
 	}
+	
+	.dropdown{
+		display: none;
+	}
 }
+
