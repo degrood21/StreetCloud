@@ -2,6 +2,12 @@
 /*Helps to wait to run functions once the document fully loads*/
 
 document.getElementById("headerButton").onclick = function() {
+    $.post("/searchData", function(orders){
+        var currentOrders = JSON.parse(orders);
+        
+        //Setting the corresponding html attributed to newly acquired info
+        alert(""+currentOrders.ordersData[0].quantity);
+     });
     location.href = "/../streetcloud.html";
 };
 document.getElementById("medicalButton").onclick = function() {
