@@ -90,6 +90,7 @@ table {
 td {
 	color: yellow;
 	margin-left: 10px;
+	padding: 3px;
 }
 
 .search {
@@ -100,6 +101,7 @@ td {
 	max-width: 250%;
 }
 
+/* the buttons on the others page */
 button{
 	background-color:yellow; 
 	border: none;
@@ -193,6 +195,17 @@ a {
 
 #aboutUs, #registerForm{
 	cursor: pointer;
+}
+
+.menu_b,.filters_b,.homeImages{
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+.menu_b:hover, .filters_b:hover,.homeImages:hover{
+	cursor: pointer;
+	background-color: white; 
+	opacity: 1;
 }
 
 #foodButton, #medicalButton, #shelterButton, #otherButton, #homeButton{
