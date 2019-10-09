@@ -9,34 +9,34 @@ function hidefilters(){
 }
 
 function showEducation(){
-    if (document.getElementById("educationFilters").style.display == "inline"){
+    if (document.getElementById("educationFilters").style.display == "inline-block"){
         hidefilters();
     }
     else{
         hidefilters();
         document.getElementById("educationButton").style.backgroundColor = "yellow";
-        document.getElementById("educationFilters").style.display = "inline";
+        document.getElementById("educationFilters").style.display = "inline-block";
     }
 }
 
 function showPosition(){
-    if (document.getElementById("positionFilters").style.display == "inline"){
+    if (document.getElementById("positionFilters").style.display == "inline-block"){
         hidefilters();
     }
     else{
         hidefilters();
         document.getElementById("positionButton").style.backgroundColor = "yellow";
-        document.getElementById("positionFilters").style.display = "inline";
+        document.getElementById("positionFilters").style.display = "inline-block";
     }
 }
 
 function showDistance(){
-    if (document.getElementById("distanceFilters").style.display == "inline"){
+    if (document.getElementById("distanceFilters").style.display == "inline-block"){
         hidefilters();
     }
     else{
         hidefilters();
         document.getElementById("distanceButton").style.backgroundColor = "yellow";
-        document.getElementById("distanceFilters").style.display = "inline";
+        document.getElementById("distanceFilters").style.display = "inline-block";
     }
 }
