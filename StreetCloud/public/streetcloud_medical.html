@@ -7,10 +7,10 @@
 <head>
 <meta name="viewport" content="width=device-width", initial-scale=1>
 <link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
+<script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="javascripts/streetcloud_filters.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-<body>
+<body onload="medicalFunction()">
 <!-- Header -->
 <h1 id="headerButton">StreetCloud</h1>
 <!-- Second Header -->
@@ -133,24 +133,9 @@
   <tr>
     <td><img src= "https://upload.wikimedia.org/wikipedia/commons/0/07/Augsburg_Josefium_26_April_2003.jpg"
      alt="data" width="120" height="120"></td>
-    <td><table>
-          <tr>
-            <td><p>Restaurant</p></td>
-            <td><p>McDonald</p></td>
-          </tr>
-          <tr>
-            <td><p>Open</p></td>
-            <td><p>9:00 a.m. - 10:00 p.m.</p></td>
-          </tr>
-          <tr>
-            <td><p>Address</p></td>
-            <td><p>242 St. Monte Street, Portland, Oregon 97320</p></td>
-          </tr>
-          <tr>
-            <td><p>Price</p></td>
-            <td><p>$</p></td>
-          </tr>
-         </table>
+    <td><table id="medicalResults">
+      <!-- medicalFunction fills this out-->
+   </table>
     </td>
   </tr>
 </table>
