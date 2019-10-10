@@ -5,7 +5,6 @@ function hidefilters(){
     document.getElementById("cat1Button").style.backgroundColor = "#696969"; 
     document.getElementById("cat3Button").style.backgroundColor = "#696969"; 
     document.getElementById("cat2Button").style.backgroundColor = "#696969"; 
-
 }
 
 function showCat1Filters(){
