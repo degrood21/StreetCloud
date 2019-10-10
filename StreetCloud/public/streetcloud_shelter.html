@@ -54,17 +54,17 @@
       <td><h3>Food Included: </h3></td>
     </tr>
     <tr>
-      <td> <input type="radio" name="urgency" value="No High School" checked> Male Only </td>
+      <td> <input type="radio" name="gender_pref" value="Male" checked> Male Only </td>
       <td> <input type="radio" name="distance" value="2m" checked> 2 Miles </td>
-      <td> <input type="radio" name="health" value="part time" checked> Yes </td>
+      <td> <input type="radio" name="food_included" value="included" checked> Yes </td>
     </tr>
     <tr>
-      <td> <input type="radio" name="urgency" value="Some High School"> Female Only </td>
+      <td> <input type="radio" name="gender_pref" value="Female"> Female Only </td>
       <td> <input type="radio" name="distance" value="5m"> 5 Miles </td>
-      <td> <input type="radio" name="health" value="Full Time"> No </td>
+      <td> <input type="radio" name="food_included" value="not included"> No </td>
     </tr>
     <tr>
-      <td> <input type="radio" name="urgency" value="High School Diploma"> Male and Female </td>
+      <td> <input type="radio" name="gender_pref" value="Both"> Male and Female </td>
       <td> <input type="radio" name="distance" value="10m"> 10 Miles </td>
     </tr>
     
@@ -77,11 +77,11 @@
   <table>
   <tr>
     <td><p> Filters </p></td>
-    <td><img src= "https://image.flaticon.com/icons/png/512/130/130304.png" 
+    <td><img src= "https://image.flaticon.com/icons/png/512/28/28591.png" 
       alt="Education" class="filters_b" id="cat1Button" onclick="showCat1Filters()"></td>
     <td><img src= "https://c7.uihere.com/icons/227/999/759/distance-e865a41ae62cfcfbd99c58f73e321757.png" 
       alt="Distance" class="filters_b" id="cat2Button" onclick="showCat2Filters()"></td>
-    <td><img src= "https://image.flaticon.com/icons/svg/66/66163.svg" 
+    <td><img src= "https://library.kissclipart.com/20180829/tce/kissclipart-much-money-do-you-save-eating-clipart-eating-dish-d496feeb45f8d9cf.png" 
       alt="Position" class="filters_b" id="cat3Button" onclick="showCat3Filters()"></td>
   </tr>
   </table>
@@ -91,14 +91,9 @@
   <div id="cat1Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="no_hs_m" type="radio" class="no_hs" name="education" value="No High School" checked> 
-          No High School </td> </tr>
-        <tr> <td> <input id="s_hs_m" type="radio" class="s_hs" name="education" value="Some High School"> 
-          Some High School </td> </tr>
-        <tr> <td> <input id="hs_d_m" type="radio" class="hs_d" name="education" value="High School Diploma">
-           High School Degree </td> </tr>
-        <tr> <td> <input id="c_d_m" type="radio" class="c_d" name="education" value="College Degree"> 
-          College Degree </td> </tr>
+        <tr> <td> <input type="radio" name="gender_pref" value="Male" checked> Male Only </td> </tr>
+        <tr> <td> <input type="radio" name="gender_pref" value="Female"> Female Only </td> </tr>
+        <tr> <td> <input type="radio" name="gender_pref" value="Both"> Male and Female </td> </tr>
       </table>
     </div>
   </div>
@@ -119,12 +114,11 @@
   <div id="cat3Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="p_time_m" type="radio" class="p_time" name="position" value="Part Time"checked> Part Time </td> </tr>
-        <tr> <td> <input id="f_time_m" type="radio" class="f_time" name="position" value="Full Time"> Full Time </td> </tr>
+        <tr> <td> <input type="radio" name="food_included" value="included" checked> Food Included </td> </tr>
+        <tr> <td> <input type="radio" name="food_included" value="not included"> Food Not Included </td> </tr>
       </table>
     </div>
   </div>
-<p class="left_search_response">1.</p>
 <br>
 
 <!-- Search Database" -->
@@ -153,15 +147,6 @@
     </td>
   </tr>
 </table>
-
-<p class="left_search_response">2.</p>
-<img src= "https://upload.wikimedia.org/wikipedia/commons/8/82/Marriott_Plaza_Hotel_Buenos_Aires%2C_Argentina_-_exterior.JPG" 
-alt="data" width="120" height="120"class="left_search_response"><p class="left_search_response">Shelter, Location, Hours Open, $$$ </p>
-<br>
-<p class="left_search_response">3.</p>
-<img src= "https://upload.wikimedia.org/wikipedia/commons/8/82/Marriott_Plaza_Hotel_Buenos_Aires%2C_Argentina_-_exterior.JPG" 
-alt="data" width="120" height="120"class="left_search_response"><p class="left_search_response">Shelter, Location, Hours Open, $$ </p>
-</br>
 </br>
 </br>
 </br>
