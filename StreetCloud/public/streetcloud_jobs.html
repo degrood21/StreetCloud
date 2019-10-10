@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
 <link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
 <script src="javascripts/streetcloud_filters.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 <!-- Header -->
@@ -46,54 +47,59 @@
     <td><input type="button" id="search" onclick="" value="Search"></input></td>
   </tr>
 </table>
+</div>
+
 
 <!--Mobile Filters Button-->
-</div>
 <br>
 <div class="filters_mobile">
   <table>
   <tr>
     <td><p> Filters </p></td>
     <td><img src= "https://image.flaticon.com/icons/png/512/130/130304.png" 
-      alt="Education" class="filters_b" id="educationButton" onclick="showEducation()"></td>
+      alt="Education" class="filters_b" id="cat1Button" onclick="showCat1Filters()"></td>
     <td><img src= "https://c7.uihere.com/icons/227/999/759/distance-e865a41ae62cfcfbd99c58f73e321757.png" 
-      alt="Distance" class="filters_b" id="distanceButton" onclick="showDistance()"></td>
+      alt="Distance" class="filters_b" id="cat2Button" onclick="showCat2Filters()"></td>
     <td><img src= "https://image.flaticon.com/icons/svg/66/66163.svg" 
-      alt="Position" class="filters_b" id="positionButton" onclick="showPosition()"></td>
+      alt="Position" class="filters_b" id="cat3Button" onclick="showCat3Filters()"></td>
   </tr>
   </table>
 </div>
 
   <!-- Mobile Education Filter dropdown -->
-  <div id="educationFilters" class="dropdown">
+  <div id="cat1Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="no_hs_m" type="radio" name="education" value="No High School" checked> No High School </td> </tr>
-        <tr> <td> <input id="s_hs_m" type="radio" name="education" value="Some High School"> Some High School </td> </tr>
-        <tr> <td> <input id="hs_d_m" type="radio" name="education" value="High School Diploma"> High School Degree </td> </tr>
-        <tr> <td> <input id="c_d_m" type="radio" name="education" value="College Degree"> College Degree </td> </tr>
+        <tr> <td> <input id="no_hs_m" type="radio" class="no_hs" name="education" value="No High School" checked> 
+          No High School </td> </tr>
+        <tr> <td> <input id="s_hs_m" type="radio" class="s_hs" name="education" value="Some High School"> 
+          Some High School </td> </tr>
+        <tr> <td> <input id="hs_d_m" type="radio" class="hs_d" name="education" value="High School Diploma">
+           High School Degree </td> </tr>
+        <tr> <td> <input id="c_d_m" type="radio" class="c_d" name="education" value="College Degree"> 
+          College Degree </td> </tr>
       </table>
     </div>
   </div>
 
-  <!-- Mobile Education Filter dropdown -->
-  <div id="distanceFilters" class="dropdown">
+  <!-- Mobile Distance Filter dropdown -->
+  <div id="cat2Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="close_m" type="radio" name="distance" value="2m"> 2 Miles </td> </tr>
-        <tr> <td> <input id="r_close_m" type="radio" name="distance" value="5m"> 5 Miles </td> </tr>
-        <tr> <td> <input id="r_far_m" type="radio" name="distance" value="10m"> 10 Miles </td> </tr>
-        <tr> <td> <input id="far_m" type="radio" name="distance" value="15m"> 15+ Miles </td> </tr>
+        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m"> 2 Miles </td> </tr>
+        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m"> 5 Miles </td> </tr>
+        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m"> 10 Miles </td> </tr>
+        <tr> <td> <input id="far_m" type="radio" class="far" name="distance" value="15m"> 15+ Miles </td> </tr>
       </table>
     </div>
   </div>
 
   <!-- Mobile Postion Filter dropdown -->
-  <div id="positionFilters" class="dropdown">
+  <div id="cat3Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="p_time_m" type="radio" name="position" value="Part Time"> Part Time </td> </tr>
-        <tr> <td> <input id="f_time_m" type="radio" name="position" value="Full Time"> Full Time </td> </tr>
+        <tr> <td> <input id="p_time_m" type="radio" class="p_time" name="position" value="Part Time"> Part Time </td> </tr>
+        <tr> <td> <input id="f_time_m" type="radio" class="f_time" name="position" value="Full Time"> Full Time </td> </tr>
       </table>
     </div>
   </div>
@@ -109,22 +115,22 @@
       <td><h3>Position: </h3></td>
     </tr>
     <tr>
-      <td> <input id="no_hs" type="radio" name="education" value="No High School"> No High School </td>
-      <td> <input id="close" type="radio" name="distance" value="2m"> 2 Miles </td>
-      <td> <input id="p_time" type="radio" name="position" value="part time"> Part Time </td>
+      <td> <input id="no_hs" type="radio" class="no_hs" name="education" value="No High School"> No High School </td>
+      <td> <input id="close" type="radio" class="close" name="distance" value="2m"> 2 Miles </td>
+      <td> <input id="p_time" type="radio" class="p_time" name="position" value="part time"> Part Time </td>
     </tr>
     <tr>
-      <td> <input id="hs" type="radio" name="education" value="Some High School"> Some High School </td>
-      <td> <input id="r_close" type="radio" name="distance" value="5m"> 5 Miles </td>
-      <td> <input id="f_time" type="radio" name="position" value="Full Time"> Full Time </td>
+      <td> <input id="hs" type="radio" class="s_hs" name="education" value="Some High School"> Some High School </td>
+      <td> <input id="r_close" type="radio" class="r_close" name="distance" value="5m"> 5 Miles </td>
+      <td> <input id="f_time" type="radio" class="f_time" name="position" value="Full Time"> Full Time </td>
     </tr>
     <tr>
-      <td> <input id="hs_d" type="radio" name="education" value="High School Diploma"> High School Degree </td>
-      <td> <input id="r_far" type="radio" name="distance" value="10m"> 10 Miles </td>
+      <td> <input id="hs_d" type="radio" class="hs_d" name="education" value="High School Diploma"> High School Degree </td>
+      <td> <input id="r_far" type="radio" class="r_far" name="distance" value="10m"> 10 Miles </td>
     </tr>
     <tr>
-      <td> <input id="c_d" type="radio" name="education" value="College Degree"> College Degree </td>
-      <td> <input id="far" type="radio" name="distance" value="15m"> 15+ Miles </td>
+      <td> <input id="c_d" type="radio" class="c_d" name="education" value="College Degree"> College Degree </td>
+      <td> <input id="far" type="radio" class="far" name="distance" value="15m"> 15+ Miles </td>
     </tr>
   </form>
   </table>

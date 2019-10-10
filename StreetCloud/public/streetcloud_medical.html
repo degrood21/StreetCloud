@@ -7,6 +7,8 @@
 <head>
 <meta name="viewport" content="width=device-width", initial-scale=1>
 <link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
+<script src="javascripts/streetcloud_filters.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 <!-- Header -->
@@ -74,6 +76,59 @@
 </form>
 </table>
 <br>
+
+<!--Mobile Filters Button-->
+<br>
+<div class="filters_mobile">
+  <table>
+  <tr>
+    <td><p> Filters </p></td>
+    <td><img src= "https://image.flaticon.com/icons/png/512/1292/1292888.png" 
+      alt="Rushed CLock" class="filters_b" id="cat1Button" onclick="showCat1Filters()"></td>
+    <td><img src= "https://c7.uihere.com/icons/227/999/759/distance-e865a41ae62cfcfbd99c58f73e321757.png" 
+      alt="Distance" class="filters_b" id="cat2Button" onclick="showCat2Filters()"></td>
+    <td><img src= "http://icons.iconarchive.com/icons/icons8/windows-8/512/Healthcare-Stethoscope-icon.png" 
+      alt="Doctor" class="filters_b" id="cat3Button" onclick="showCat3Filters()"></td>
+  </tr>
+  </table>
+</div>
+
+  <!-- Mobile Urgency Filter dropdown -->
+  <div id="cat1Filters" class="dropdown">
+    <div class="dropdown-content">
+      <table>
+        <tr> <td> <input type="radio" name="urgency" value="emergency"> Emergency </td> </tr>
+        <tr> <td> <input type="radio" name="urgency" value="weekly"> Weekly </td> </tr>
+        <tr> <td> <input type="radio" name="urgency" value="monthly"> Monthly </td> </tr>
+        <tr> <td> <input type="radio" name="urgency" value="annually"> Annually </td> </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mobile Distance Filter dropdown -->
+  <div id="cat2Filters" class="dropdown">
+    <div class="dropdown-content">
+      <table>
+        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m"> 2 Miles </td> </tr>
+        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m"> 5 Miles </td> </tr>
+        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m"> 10 Miles </td> </tr>
+        <tr> <td> <input id="far_m" type="radio" class="far" name="distance" value="15m"> 15+ Miles </td> </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mobile Health Care Type Filter dropdown -->
+  <div id="cat3Filters" class="dropdown">
+    <div class="dropdown-content">
+      <table>
+        <tr> <td> <input type="radio" name="health" value="general"> General Health Care </td> </tr>
+        <tr> <td> <input type="radio" name="health" value="dentist"> Dentist </td> </tr>
+        <tr> <td> <input type="radio" name="health" value="optometrist"> Optometrist </td> </tr>
+        <tr> <td> <input type="radio" name="health" value="therapist"> Therapist </td> </tr>
+      </table>
+    </div>
+  </div>
+
 <br>
 <table>
   <tr>
