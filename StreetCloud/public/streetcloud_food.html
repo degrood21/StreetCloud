@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width", initial-scale=1>
 <link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="javascripts/streetcloud_filters.js"></script>
 </head>
 <body>
 <!-- Header -->
@@ -18,13 +19,13 @@
       <td> <img src= "https://www.freeiconspng.com/uploads/cloud-outline-icon-9.png" 
         alt="Cloud" class="menu_b" id="homeButton">
       </td>
-      <td> <img src= "https://upload.wikimedia.org/wikipedia/commons/0/09/Rpb_food_icon.svg" 
+      <td> <img src= "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Sinnbild_Autobahngasthaus.svg/768px-Sinnbild_Autobahngasthaus.svg.png" 
         alt="Fork_and_Knife" class="menu_b" id="foodButton" style="background-color: yellow">
       </td>
       <td> <img src= "https://upload.wikimedia.org/wikipedia/commons/5/59/Noun_Project_house_icon_475319_cc.svg" 
         alt="House" class="menu_b" id="shelterButton">
       </td>
-      <td> <img src= "https://upload.wikimedia.org/wikipedia/commons/a/a6/Hospital_ico.png" 
+      <td> <img src= "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Medical_Clipboard_-_The_Noun_Project.svg/1000px-Medical_Clipboard_-_The_Noun_Project.svg.png" 
         alt="Hospital" class="menu_b" id="medicalButton">
       </td>
       <td> <img src= "https://icon-library.net/images/icon-other/icon-other-26.jpg" 
@@ -35,7 +36,68 @@
 </div>
 
 <h2>What are you looking for?</h2>
-<table>
+
+<br>
+<table class="search">
+  <tr>
+    <td><input type="text" class="searchbar"></input></td>
+    <td><input type="button" id="search" onclick="" value="Search"></input></td>
+  </tr>
+</table>
+<br>
+
+<!--Mobile Filters Button-->
+<div class="filters_mobile">
+  <table>
+  <tr>
+    <td><p> Filters </p></td>
+    <td><img src= "https://cdn.iconscout.com/icon/free/png-512/food-time-1605628-1360977.png" 
+      alt="Education" class="filters_b" id="cat1Button" onclick="showCat1Filters()"></td>
+    <td><img src= "https://c7.uihere.com/icons/227/999/759/distance-e865a41ae62cfcfbd99c58f73e321757.png" 
+      alt="Distance" class="filters_b" id="cat2Button" onclick="showCat2Filters()"></td>
+    <td><img src= "https://icon-library.net/images/costly-icon/costly-icon-22.jpg" 
+      alt="Position" class="filters_b" id="cat3Button" onclick="showCat3Filters()"></td>
+  </tr>
+  </table>
+</div>
+
+  <!-- Mobile Time Filter dropdown -->
+  <div id="cat1Filters" class="dropdown">
+    <div class="dropdown-content">
+      <table>
+        <tr> <td> <input type="radio" name="time" value="Fast" checked> Fast </td> </tr>
+        <tr> <td> <input type="radio" name="time" value="Soon"> Soon </td> </tr>
+        <tr> <td> <input type="radio" name="time" value="One hour"> One hour </td> </tr>
+        <tr> <td> <input type="radio" name="time" value="Other"> Other </td> </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mobile Distance Filter dropdown -->
+  <div id="cat2Filters" class="dropdown">
+    <div class="dropdown-content">
+      <table>
+        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m"checked> 2 Miles </td> </tr>
+        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m"> 5 Miles </td> </tr>
+        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m"> 10 Miles </td> </tr>
+        <tr> <td> <input id="far_m" type="radio" class="far" name="distance" value="15m"> 15+ Miles </td> </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mobile Price Filter dropdown -->
+  <div id="cat3Filters" class="dropdown">
+    <div class="dropdown-content">
+      <table>
+        <tr> <td> <input type="radio" name="price" value="Free" checked> Free </td> </tr>
+        <tr> <td> <input type="radio" name="price" value="inexpensive"> $ </td> </tr>
+        <tr> <td> <input type="radio" name="price" value="medium"> $$ </td> </tr>
+        <tr> <td> <input type="radio" name="price" value="expensive"> $$$ </td> </tr>
+      </table>
+    </div>
+  </div>
+
+<table class="filters">
 <form action="action_page.php">
   <tr>
     <td><h3>When?</h3></td>
@@ -43,35 +105,28 @@
     <td><h3>Price</h3></td>
   </tr>
   <tr>
-    <td> <input type="radio" name="time" value="Fast"> Fast </td>
-    <td> <input type="radio" name="distance" value="Nearby"> Nearby </td>
-    <td> <input type="radio" name="price" value="Free"> Free </td>
+    <td> <input type="radio" name="time" value="Fast" checked> Fast </td>
+    <td> <input type="radio" name="distance" value="2m" checked> 2 Miles </td>
+    <td> <input type="radio" name="price" value="Free" checked> Free </td>
   </tr>
   <tr>
     <td> <input type="radio" name="time" value="soon"> Soon </td>
-    <td> <input type="radio" name="distance" value="Walking Distance"> Walking Distance </td>
+    <td> <input type="radio" name="distance" value="5m"> 5 Miles </td>
     <td> <input type="radio" name="price" value="inexpensive"> $ </td>
   </tr>
   <tr>
     <td> <input type="radio" name="time" value="one hour"> In one hour </td>
-    <td> <input type="radio" name="distance" value="distant"> Distant </td>
+    <td> <input type="radio" name="distance" value="10m"> 10 Miles </td>
     <td> <input type="radio" name="price" value="medium"> $$ </td>
   </tr>
   <tr>
     <td> <input type="radio" name="time" value="other"> Other </td>
-    <td> <input type="radio" name="distance" value="far"> Far </td>
+    <td> <input type="radio" name="distance" value="15m"> 15+ Miles </td>
     <td> <input type="radio" name="price" value="expensive"> $$$ </td>
   </tr>
 </form>
 </table>
 <br>
-<!-- Other-->
-<img src= "https://upload.wikimedia.org/wikipedia/commons/0/00/Noun_project_Search_icon_151781_000000.svg" 
-alt="Search" width="100" height="100" class="center">
-<p class="center">Search</p>
-<a href="#" id="clear-button" class="clear-button">Clear Search</a>
-<!-- Search Database" -->
-<p class="left_search_response">1.</p>
 
 <br>
 <table>
@@ -99,14 +154,6 @@ alt="Search" width="100" height="100" class="center">
     </td>
   </tr>
 </table>
-<p class="left_search_response">2.</p>
-<img src= "https://upload.wikimedia.org/wikipedia/commons/f/fe/McDonald%27s_logo_Targ%C3%B3wek.JPG" 
-alt="data" width="120" height="120"class="left_search_response"><p class="left_search_response">Title, Location, Hours Open, $$$ </p>
-<br>
-<p class="left_search_response">3.</p>
-<img src= "https://upload.wikimedia.org/wikipedia/commons/f/fe/McDonald%27s_logo_Targ%C3%B3wek.JPG" 
-alt="data" width="120" height="120"class="left_search_response"><p class="left_search_response">Title, Location, Hours Open, $$ </p>
-</br>
 </br>
 </br>
 </br>

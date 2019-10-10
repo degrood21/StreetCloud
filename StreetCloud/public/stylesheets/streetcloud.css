@@ -229,17 +229,21 @@ a {
 	height: 50x;
 }
 
-#positionFilters {
+.dropdown {
+	position: relative;
+}
+
+#cat1Filters {
 	display: none;
 	overflow-y: auto;
 }
 
-#educationFilters{
+#cat2Filters{
 	display: none;
 	overflow-y: auto;
 }
 
-#distanceFilters{
+#cat3Filters{
 	display: none;
 	overflow-y: auto;
 }
@@ -263,9 +267,10 @@ a {
 		display: block;
 	}
 
-	.dropdown{
+	#cat1filters{
 		display: none;
 	}
+	
 	p {
 		font-size: 12px;
 	}
@@ -294,6 +299,7 @@ a {
 	.dropdown{
 		display: none;
 	}
+
 	p {
 		font-size: 15px;
 	}
