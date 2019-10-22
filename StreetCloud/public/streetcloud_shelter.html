@@ -7,7 +7,7 @@
 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="javascripts/streetcloud_filters.js"></script>
 </head>
-<body>
+<body onload="shelterFunction()">
 <!-- Header -->
 <h1 id="headerButton">StreetCloud</h1>
 <!-- Second Header -->
@@ -127,23 +127,8 @@
   <tr>
     <td><img src= "https://upload.wikimedia.org/wikipedia/commons/8/82/Marriott_Plaza_Hotel_Buenos_Aires%2C_Argentina_-_exterior.JPG"
      alt="data" width="120" height="120"></td>
-    <td><table>
-          <tr>
-            <td><p>Shelter</p></td>
-            <td><p>Burnside</p></td>
-          </tr>
-          <tr>
-            <td><p>Open</p></td>
-            <td><p>9:00 a.m. - 10:00 p.m.</p></td>
-          </tr>
-          <tr>
-            <td><p>Address</p></td>
-            <td><p>111 W Burnside St, Portland, OR 97209</p></td>
-          </tr>
-          <tr>
-            <td><p>Price</p></td>
-            <td><p>Free</p></td>
-          </tr>
+    <td><table id="shelterResults">
+          <!--shelter function fills this out-->
          </table>
     </td>
   </tr>
@@ -162,6 +147,7 @@
 </br>
 </br>
 <div class="footer">
+<p id="homeFooterButton">StreetCloud</p>
 <p id="aboutUs">About Us</p>
 <p>Contact Us</p>
 <p>Volunteer</p>
