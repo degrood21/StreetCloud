@@ -1,6 +1,3 @@
-//Dylan DeGrood
-/*Helps to wait to run functions once the document fully loads*/
-
 document.getElementById("headerButton").onclick = function() {
     location.href = "/../streetcloud.html";
 };
@@ -21,9 +18,6 @@ document.getElementById("homeButton").onclick = function() {
 };
 document.getElementById("homeFooterButton").onclick = function() {
     location.href = "/../streetcloud.html";
-};
-document.getElementById("jobsButton").onclick = function() {
-    location.href = "/../streetcloud_jobs.html";
 };
 document.getElementById("aboutUs").onclick = function() {
     location.href = "/../streetcloud_about.html";

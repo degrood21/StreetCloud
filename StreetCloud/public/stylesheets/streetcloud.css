@@ -208,7 +208,8 @@ a {
 	opacity: 1;
 }
 
-#foodButton, #medicalButton, #shelterButton, #otherButton, #homeButton{
+/* this just adds a pointer to buttons*/
+#foodButton, #medicalButton, #shelterButton, #otherButton, #homeButton, #homeFooterButton{
 	cursor: pointer;
 }
 

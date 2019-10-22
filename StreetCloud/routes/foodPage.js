@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 var dbms = require('./dbms.js');
 
-// POST method route
+
 router.post('/',function(req,res){
-    dbms.dbquery("SELECT * FROM medical", parseData);
+    dbms.dbquery("SELECT * FROM food", parseData);
 
     function parseData(row,result){
      if(row == false){
