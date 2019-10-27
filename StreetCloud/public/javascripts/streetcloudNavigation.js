@@ -73,11 +73,17 @@ function search(){
     location.href = "/../streetcloud_gen_search.html";
 
     $(document).ready(function(){
-        $.post('/searchEngine',
+        $.post('/searchEngine', function(data, status)
         {
-            inquiry: searchFor,
-        },
-        function(data){
+            //inquiry: searchFor,
+            /*
+            for(var i = 0; i < data.length;i++){
+                var search = data[i];
+
+            }
+            */
+        
         });
     });
+    
 }
