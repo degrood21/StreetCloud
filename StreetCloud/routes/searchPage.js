@@ -7,9 +7,7 @@ router.post('/',function(req,res){
     var query = body.inquiry;
     
     var searchCatergories = ["food", "shelter", "medical"];
-    var searchResultsArray = {
-        "": 
-    };
+    var searchResultsArray = [""];
 
     for (var index = 0; index < searchCatergories.length; index++){
     
