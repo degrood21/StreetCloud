@@ -32,7 +32,15 @@ document.getElementById("homeButton").onclick = function() {
 };
 });
 document.getElementById("searchButton").onclick = function() {
+    var searchFor = $("#searchText").val();
+    console.log("Search for: " + searchFor);
     location.href = "/../streetcloud_gen_search.html";
+    $.post('/searchPage',
+     {
+        inquiry: searchFor
+    },
+    function(data){
+    });
 }
 
 //these fucntions prints the data from the database 
@@ -74,21 +82,4 @@ function shelterFunction(){
             }
         });
     });
-}
-
-// Searches for results from database with the same name
-function search(){
-    var searchFor = document.getElementById("searchText").innerHTML;
-    console.log("Searching for" + searchFor);
-    location.href = "/../streetcloud_gen_search.html";
-
-    $(document).ready(function(){
-        $.post('/searchPage',
-        {
-            inquiry: searchFor
-        },
-        function(data){
-        });
-    });
-    
 }
