@@ -41,10 +41,32 @@ function showCat3Filters(){
 }
 
 $(document).ready(function(){
+    // $("#spHours").click(function(){
+    //     console.log("Read");
+    //     var x = "." + $(this).attr("className");
+    //     $("#spHours").attr("checked", false); 
+    //     $(x).attr("checked", true);
+    // });
+
+    // $("#distance").click(function(){
+    //     console.log("Read");
+    //     var x = "." + $(this).attr("className");
+    //     $("#distance").attr("checked", false); 
+    //     $(x).attr("checked", true);
+    // });
+
+    // $("#health").click(function(){
+    //     console.log("Read");
+    //     var x = "." + $(this).attr("className");
+    //     $("#health").attr("checked", false); 
+    //     $(x).attr("checked", true);
+    // });
+
     $("input").click(function(){
         console.log("Read");
         var x = "." + $(this).attr("className");
-        $("input").attr("checked", false);
+        $("input").attr("checked", false); 
         $(x).attr("checked", true);
     });
+
 });
