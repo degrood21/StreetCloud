@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 var medicalRouter = require('./routes/medicalPage');
 var foodRouter = require('./routes/foodPage');
 var shelterRouter = require('./routes/shelterPage');
-var searchRouter = require('./routes/searchPage.js');
+var searchRouter = require('./routes/searchPage');
 
 var app = express();
 

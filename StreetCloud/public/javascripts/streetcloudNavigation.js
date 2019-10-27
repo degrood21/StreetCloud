@@ -31,6 +31,9 @@ document.getElementById("homeButton").onclick = function() {
     location.href = "/../streetcloud.html";
 };
 });
+document.getElementById("searchButton").onclick = function() {
+    location.href = "/../streetcloud_gen_search.html";
+}
 
 //these fucntions prints the data from the database 
 function medicalFunction(){

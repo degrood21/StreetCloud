@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var dbms = require('./dbms.js');
+var dbms = require('./dbms');
 
 
 router.post('/',function(req,res){
@@ -11,7 +11,7 @@ router.post('/',function(req,res){
     var searchResultsArray;
 
     for (var index = 0; index < searchCatergories.length; index++){
-    
+        console.log("INDEX: " + index);
         dbms.dbquery("SELECT * FROM" + searchCatergories[index] +
             "WHERE NAME LIKE '%"+ query +"%'", parseData);
         
