@@ -66,3 +66,18 @@ function shelterFunction(){
         });
     });
 }
+
+// Searches for results from database with the same name
+function search(){
+    var searchFor = document.getElementById("searchText").innerHTML;
+    location.href = "/../streetcloud_gen_search.html";
+
+    $(document).ready(function(){
+        $.post('/searchEngine',
+        {
+            inquiry: searchFor,
+        },
+        function(data){
+        });
+    });
+}
