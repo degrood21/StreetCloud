@@ -4,8 +4,9 @@ var dbms = require('./dbms.js');
 
 
 router.post('/',function(req,res){
-    var query = body.inquiry;
     console.log("Search Post!");
+    var query = body.inquiry;
+    
     var searchCatergories = ["food", "shelter", "medical"];
     var searchResultsArray;
 
