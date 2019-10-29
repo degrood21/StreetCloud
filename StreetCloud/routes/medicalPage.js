@@ -4,6 +4,8 @@ var dbms = require('./dbms.js');
 
 // POST method route
 router.post('/',function(req,res){
+
+
     dbms.dbquery("SELECT * FROM medical", parseData);
 
     function parseData(row,result){

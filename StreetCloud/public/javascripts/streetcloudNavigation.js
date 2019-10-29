@@ -43,6 +43,31 @@ document.getElementById("searchButton").onclick = function() {
     });
 }
 
+document.getElementById("searchButton").onclick = function() {
+    var searchFor = $("#searchText").val();
+    console.log("Searching for: " + searchFor);
+    var async = require('async');
+    location.href = "/../streetcloud_gen_search.html";
+
+    async.waterfall([
+        $(document).ready(function(){
+            $.post('/searchPage',
+            {
+                inquiry: searchFor
+            },
+            function(data){
+                $(document).ready(function(){
+                for (i = 1; i < data.length; i++){
+                    $("#genResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
+                    $("#genResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
+                    $("#genResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
+                }
+                });
+            });
+        });
+
+}
+
 //these fucntions prints the data from the database 
 function medicalFunction(){
     $(document).ready(function(){
@@ -83,3 +108,40 @@ function shelterFunction(){
         });
     });
 }
+
+/* Searches for results from database with the same name
+function search(){
+    location.href = "/../streetcloud_gen_search.html";
+}
+
+var searchFor = document.getElementById("searchText").innerHTML;
+console.log("Searching for" + searchFor);
+location.href = "/../streetcloud_gen_search.html";
+
+$(document).ready(function(){
+    $.post('/foodPage',
+    {
+        inquiry: searchFor
+    },
+    function(data){
+    });
+});
+
+$(document).ready(function(){
+    $.post('/medicalPage',
+    {
+        inquiry: searchFor
+    },
+    function(data){
+    });
+});
+
+$(document).ready(function(){
+    $.post('/shelterPage',
+    {
+        inquiry: searchFor
+    },
+    function(data){
+    });
+});
+*/
