@@ -21,8 +21,8 @@ router.post('/',function(req,res){
              var dataString = JSON.stringify(result);
              var dataObj = JSON.parse(dataString);
              
-             searchResultsArray.unshift(JSON.stringify(dataObj));
-             res.send(searchResultsArray);
+             searchResultsArray.push(JSON.stringify(dataObj));
+             //res.send(searchResultsArray);
              console.log("SEARCH RESULT ARRAY1: " + searchResultsArray);
          }
         //  console.log(dataObj);
@@ -47,7 +47,7 @@ console.log(dataObj);
          //var sendToPerson = JSON.stringify(dataObj);
          console.log("SEARCH RESULTS ARRAY2:" + searchResultsArray);
          console.log("REAL RESULT: " + searchResultsArray[2]);
-         res.send(searchResultsArray);
+         res.send(dataObj);
     /*
     var relatedSearchResultsArray;
     for (var index = 0; index < searchResultsArray.length; index++){
