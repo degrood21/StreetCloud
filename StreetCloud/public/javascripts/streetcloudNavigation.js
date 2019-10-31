@@ -43,7 +43,8 @@ document.getElementById("searchButton").onclick = function() {
     });
 }
 
-document.getElementById("searchButton").onclick = function() {
+document.getElementById("searchButton").onclick = function() 
+{
     var searchFor = $("#searchText").val();
     console.log("Searching for: " + searchFor);
     var async = require('async');
@@ -64,9 +65,8 @@ document.getElementById("searchButton").onclick = function() {
                 }
                 });
             });
-        });
-
-}
+        }),
+    
 
 //these fucntions prints the data from the database 
 function medicalFunction(){
@@ -81,7 +81,7 @@ function medicalFunction(){
             }
         });
     });
-}
+},
 function foodFunction(){
     $(document).ready(function(){
         $.post('/foodPage',function(data){
@@ -94,7 +94,7 @@ function foodFunction(){
             }
         });
     });
-}
+},
 function shelterFunction(){
     $(document).ready(function(){
         $.post('/shelterPage',function(data){
@@ -108,6 +108,8 @@ function shelterFunction(){
         });
     });
 }
+],
+)};
 
 /* Searches for results from database with the same name
 function search(){
