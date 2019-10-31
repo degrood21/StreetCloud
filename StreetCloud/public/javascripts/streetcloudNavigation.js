@@ -50,66 +50,84 @@ document.getElementById("searchButton").onclick = function()
     var async = require('async');
     location.href = "/../streetcloud_gen_search.html";
 
-    async.waterfall([
-        $(document).ready(function(){
-            $.post('/searchPage',
-            {
-                inquiry: searchFor
-            },
-            function(data){
-                $(document).ready(function(){
-                for (i = 1; i < data.length; i++){
-                    $("#genResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
-                    $("#genResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
-                    $("#genResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
-                }
-                });
-            });
-        }),
     
 
-//these fucntions prints the data from the database 
-function medicalFunction(){
-    $(document).ready(function(){
-        $.post('/medicalPage',function(data){
-            //this should be in a for loop if there is more data 
-            for (i = 1; i < data.length; i++){
-                $("#medicalResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
-                $("#medicalResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
-                $("#medicalResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
-                $("#medicalResults").append("<tr><td><p>Type: "+data[i].TYPE+"</p></td>");
+    
+    $(document).ready(function()
+    {
+        $.post('/searchPage',
+        {
+            inquiry: searchFor
+        },
+        function(data)
+        {
+            $(document).ready(function()
+            {
+            for (i = 1; i < data.length; i++)
+            {
+                $("#genResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
+                $("#genResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
+                $("#genResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
             }
+            });
         });
     });
-},
-function foodFunction(){
-    $(document).ready(function(){
-        $.post('/foodPage',function(data){
-            //this should be in a for loop if there is more data 
-            for (i = 1; i < data.length; i++){
-                $("#foodResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
-                $("#foodResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
-                $("#foodResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
-                $("#foodResults").append("<tr><td><p>Price: "+data[i].PRICE+"</p></td> <br>");
-            }
+    
+
+    //these fucntions prints the data from the database 
+    function medicalFunction()
+    {
+        $(document).ready(function()
+        {
+            $.post('/medicalPage',function(data)
+            {
+                //this should be in a for loop if there is more data 
+                for (i = 1; i < data.length; i++)
+                {
+                    $("#medicalResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
+                    $("#medicalResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
+                    $("#medicalResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
+                    $("#medicalResults").append("<tr><td><p>Type: "+data[i].TYPE+"</p></td>");
+                }
+            });
         });
-    });
-},
-function shelterFunction(){
-    $(document).ready(function(){
-        $.post('/shelterPage',function(data){
-            for (i = 1; i < data.length; i++){
-            //this should be in a for loop if there is more data 
-                $("#shelterResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
-                $("#shelterResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
-                $("#shelterResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
-                $("#shelterResults").append("<tr><td><p>Type:"+data[i].TYPE+"</p></td>");
-            }
+    }
+    function foodFunction()
+    {
+        $(document).ready(function()
+        {
+            $.post('/foodPage',function(data)
+            {
+                //this should be in a for loop if there is more data 
+                for (i = 1; i < data.length; i++)
+                {
+                    $("#foodResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
+                    $("#foodResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
+                    $("#foodResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
+                    $("#foodResults").append("<tr><td><p>Price: "+data[i].PRICE+"</p></td> <br>");
+                }
+            });
         });
-    });
-}
-],
-)};
+    }
+    function shelterFunction()
+    {
+        $(document).ready(function()
+        {
+            $.post('/shelterPage',function(data)
+            {
+                for (i = 1; i < data.length; i++)
+                {
+                //this should be in a for loop if there is more data 
+                    $("#shelterResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
+                    $("#shelterResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
+                    $("#shelterResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
+                    $("#shelterResults").append("<tr><td><p>Type:"+data[i].TYPE+"</p></td>");
+                }
+            });
+        });
+    };
+
+};
 
 /* Searches for results from database with the same name
 function search(){
