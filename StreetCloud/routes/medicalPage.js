@@ -4,11 +4,10 @@ var dbms = require('./dbms.js');
 
 // POST method route
 router.post('/',function(req,res){
-    var when = req.body.when; 
-    var distance = req.body.distance;
-    var type = req.body.type; 
-    console.log(type); //used for testing
-    dbms.dbquery("SELECT * FROM medical WHERE TYPE LIKE '%"+type+"%'", parseData);
+    var hoursQuerry = req.body.hours; 
+    var distanceQuerry = req.body.distance;
+    var typeQuerry = req.body.type; 
+    dbms.dbquery("SELECT * FROM medical WHERE DISTANCE "+distanceQuerry+" AND (TYPE LIKE'"+typeQuerry+"') AND ("+hoursQuerry+")", parseData);
 
     function parseData(row,result){
      if(row == false){
@@ -19,7 +18,7 @@ router.post('/',function(req,res){
         res.send(dataObj);
     }
 
-
 });
+ 
 
 module.exports = router; 

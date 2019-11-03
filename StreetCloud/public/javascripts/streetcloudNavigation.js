@@ -34,67 +34,76 @@ document.getElementById("homeButton").onclick = function() {
 
 //these fucntions prints the data from the database 
 function medicalFunction(){
-    var when,distance,type; 
+    var hours,distance,type; 
 
-    //seting the variables based on what filter is selected 
-    //when filters
-    if(document.getElementById("weekly").checked == true){
-        when = document.getElementById("weekly").value;
+    //seting the SQL querries based on what filter is selected 
+    //special hours filters
+    if(document.getElementById("weekends").checked == true){
+        hours = "WEEKENDS = 'Yes'";
     }
-    else if(document.getElementById("monthly").checked == true){
-        when = document.getElementById("monthly").value;
-    }
-    else if(document.getElementById("annually").checked == true){
-        when = document.getElementById("annually").value;
+    else if(document.getElementById("24HR").checked == true){
+        hours = "ALLDAY = 'Yes'";
     }
     else{
-        when = document.getElementById("emergency").value;
+        hours = "ALLDAY = 'Yes' OR ALLDAY = 'No'";
     }
     //distance 
     if(document.getElementById("5m").checked == true){
-        distance = document.getElementById("5m").value;
+        distance = "BETWEEN 0 AND 5";
     }
     else if(document.getElementById("10m").checked == true){
-        distance = document.getElementById("10m").value;
+        distance = "BETWEEN 0 AND 10";
     }
     else if(document.getElementById("15m+").checked == true){
-        distance = document.getElementById("15m+").value;
+        distance = "BETWEEN 0 AND 20";
     }
     else{
-        distance = document.getElementById("2m").value;
+        distance = "BETWEEN 0 AND 2";
     }
     //type
     if(document.getElementById("dentist").checked == true){
-        type = document.getElementById("dentist").value;
+        type = "%Dental%";
     }
     else if(document.getElementById("optometrist").checked == true){
-        type = document.getElementById("optometrist").value;
+        type = "%Optometry%";
     }
     else if(document.getElementById("therapist").checked == true){
-        type = document.getElementById("therapist").value;
+        type = "%Therapy%";
     }
     else{
-        type = "clinic%' OR TYPE LIKE '%hospital"; //the % is used for SQL querries  
+        type = "%clinic%' OR TYPE LIKE '%hospital%";  
     } 
-
 
     $(document).ready(function(){
         $.post('/medicalPage',
         {
-            when: when, 
+            hours: hours, 
             distance: distance,
             type: type, 
         },
         function(data){
-            for(i=0;i<data.length;i++){
+            $("#medicalResults").empty();
+            for(i=0; i < data.length; i++){
             $("#medicalResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
             $("#medicalResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
-            $("#medicalResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
+            $("#medicalResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+" Miles</p></td>");
             $("#medicalResults").append("<tr><td><p>Type: "+data[i].TYPE+"</p></td>");
+            $("#medicalResults").append("<tr><td><p>Hours: "+data[i].HOURS+"</p></td>");
+            $("#medicalResults").append("<tr><td><p>Open Allday: "+data[i].ALLDAY+"</p></td>");
+            $("#medicalResults").append("<tr><td><p>Open Weekends: "+data[i].WEEKENDS+"</p></td>");
+            $("#medicalResults").append("<br>");
             }
         });
     });
+   
 }
+
+/*
+External Citation:
+I didnt know how to clear a table so i used .empty() as showed 
+https://stackoverflow.com/questions/4982846/jquery-clear-empty-all-contents-of-tbody-element
+Date Accessed: 10/31/19
+*/
 
 function foodFunction(){
     $(document).ready(function(){
