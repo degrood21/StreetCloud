@@ -31,48 +31,64 @@ document.getElementById("homeButton").onclick = function() {
     location.href = "/../streetcloud.html";
 };
 });
-document.getElementById("searchButton").onclick = function() {
+
+$("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
-    console.log("Search for: " + searchFor);
+    localStorage.setItem("query", searchFor);
     location.href = "/../streetcloud_gen_search.html";
-    $.post('/searchPage',
-     {
-        inquiry: searchFor
-    },
-    function(data){
-    });
-}
-
-document.getElementById("searchButton").onclick = function() 
-{
-    var searchFor = $("#searchText").val();
-    console.log("Searching for: " + searchFor);
-    var async = require('async');
-    location.href = "/../streetcloud_gen_search.html";
-
-    
-
-    
-    $(document).ready(function()
-    {
-        $.post('/searchPage',
-        {
-            inquiry: searchFor
-        },
-        function(data)
-        {
-            $(document).ready(function()
+        searchFor = localStorage.getItem("query");
+        $(document).ready(function () {
+            $.post('/searchPage',
             {
-            for (i = 1; i < data.length; i++)
-            {
-                $("#genResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
-                $("#genResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
-                $("#genResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
-            }
+                inquiry: searchFor
+            },
+            function(data){
+                $(document).ready(function(){
+                    for (i = 1; i < data.length; i++){
+                        $("#genResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
+                        $("#genResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
+                        $("#genResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
+                    }
+                });
             });
         });
-    });
     
+    // var async = require('async');
+
+    // async.waterfall([
+    //     function (done){
+    //         var searchFor = $("#searchText").val();
+    //         done(searchFor);
+    //     },
+    //     function (lastResult, done){
+    //         location.href = "/../streetcloud_gen_search.html";
+    //         done(searchFor);
+    //     },
+    //     function (lastResult, done){
+    //         $(document).ready(function(){
+    //             $.post('/searchPage',
+    //             {
+    //                 inquiry: searchFor
+    //             },
+    //             function(data){
+    //                 $(document).ready(function(){
+    //                     for (i = 1; i < data.length; i++){
+    //                         $("#genResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
+    //                         $("#genResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
+    //                         $("#genResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
+    //                     }
+    //                 });
+    //             });
+    //         });
+    //         done(null);
+    //     }
+    // ],
+    // function (err){
+    //     if (err){
+    //         throw new Error(err);
+    //     }
+    // });
+});
 
     //these fucntions prints the data from the database 
     function medicalFunction()
@@ -127,7 +143,6 @@ document.getElementById("searchButton").onclick = function()
         });
     };
 
-};
 
 /* Searches for results from database with the same name
 function search(){

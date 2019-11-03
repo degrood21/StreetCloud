@@ -15,7 +15,7 @@ router.post('/',function(req,res){
         if (index != 0){
             statement = statement + "UNION ";
         }
-        statement = statement + "SELECT * FROM " + searchCategories[index] + " ";
+        statement = statement + "SELECT Name, Address, Distance FROM " + searchCategories[index] + " ";
     }
 
         console.log("" + statement);
@@ -26,6 +26,7 @@ router.post('/',function(req,res){
         function parseData(row,result){
                  var dataString = JSON.stringify(result);
                  var dataObj = JSON.parse(dataString);
+                 console.log(dataObj);
                  res.send(dataObj);
         }
     
