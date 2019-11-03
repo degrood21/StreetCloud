@@ -32,30 +32,63 @@ document.getElementById("homeButton").onclick = function() {
 };
 });
 
-document.getElementById("searchButton").onclick = function() {
+$("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
-    console.log("Searching for: " + searchFor);
-    var async = require('async');
+    localStorage.setItem("query", searchFor);
     location.href = "/../streetcloud_gen_search.html";
-
-    async.waterfall([
-        $(document).ready(function(){
+        searchFor = localStorage.getItem("query");
+        $(document).ready(function () {
             $.post('/searchPage',
             {
                 inquiry: searchFor
             },
             function(data){
                 $(document).ready(function(){
-                for (i = 1; i < data.length; i++){
-                    $("#genResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
-                    $("#genResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
-                    $("#genResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
-                }
+                    for (i = 1; i < data.length; i++){
+                        $("#genResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
+                        $("#genResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
+                        $("#genResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
+                    }
                 });
             });
         });
-    ]
-}
+    
+    // var async = require('async');
+
+    // async.waterfall([
+    //     function (done){
+    //         var searchFor = $("#searchText").val();
+    //         done(searchFor);
+    //     },
+    //     function (lastResult, done){
+    //         location.href = "/../streetcloud_gen_search.html";
+    //         done(searchFor);
+    //     },
+    //     function (lastResult, done){
+    //         $(document).ready(function(){
+    //             $.post('/searchPage',
+    //             {
+    //                 inquiry: searchFor
+    //             },
+    //             function(data){
+    //                 $(document).ready(function(){
+    //                     for (i = 1; i < data.length; i++){
+    //                         $("#genResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
+    //                         $("#genResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
+    //                         $("#genResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
+    //                     }
+    //                 });
+    //             });
+    //         });
+    //         done(null);
+    //     }
+    // ],
+    // function (err){
+    //     if (err){
+    //         throw new Error(err);
+    //     }
+    // });
+});
 
 //these fucntions prints the data from the database 
 function medicalFunction(){
