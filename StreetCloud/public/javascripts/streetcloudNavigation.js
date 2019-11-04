@@ -36,22 +36,6 @@ $("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
     localStorage.setItem("query", searchFor);
     location.href = "/../streetcloud_gen_search.html";
-        searchFor = localStorage.getItem("query");
-        $(document).ready(function () {
-            $.post('/searchPage',
-            {
-                inquiry: searchFor
-            },
-            function(data){
-                $(document).ready(function(){
-                    for (i = 1; i < data.length; i++){
-                        $("#genResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
-                        $("#genResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
-                        $("#genResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
-                    }
-                });
-            });
-        });
     
     // var async = require('async');
 
@@ -73,9 +57,9 @@ $("#searchButton").click(function() {
     //             function(data){
     //                 $(document).ready(function(){
     //                     for (i = 1; i < data.length; i++){
-    //                         $("#genResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
-    //                         $("#genResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
-    //                         $("#genResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
+    //                         ("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
+    //                         ("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
+    //                         ("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
     //                     }
     //                 });
     //             });
@@ -89,6 +73,25 @@ $("#searchButton").click(function() {
     //     }
     // });
 });
+
+function querySearch(){
+    $(document).ready(function(){
+        searchFor = localStorage.getItem("query");
+        $.post('/searchPage',
+        {
+            inquiry: searchFor
+        },
+        function(data){
+                for (i = 0; i < data.length; i++){
+                    $("#genResults").append("<table class='searchResult'>" +
+                    "<tr><td><p>Name: "+data[i].Name+"</p></td></tr>" +
+                    "<tr><td><p>Address: "+data[i].Address+"</p></td></tr>" +
+                    "<tr><td><p>Distance: "+data[i].Distance+"</p></td></tr>" +
+                    "</table>");
+                }
+        });
+    });
+}
 
 //these fucntions prints the data from the database 
 function medicalFunction(){

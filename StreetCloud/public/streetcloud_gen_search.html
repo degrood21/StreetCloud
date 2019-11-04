@@ -7,7 +7,7 @@
 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="javascripts/streetcloud_filters.js"></script>
 </head>
-<body>
+<body onload="querySearch()">
 <!-- Header -->
 <h1 id="headerButton">StreetCloud</h1>
 <!-- Second Header -->
@@ -48,15 +48,7 @@
 
 <!-- search data table -->
 <br>
-<table>
-  <tr>
-    <td><img src= "https://upload.wikimedia.org/wikipedia/commons/f/fe/McDonald%27s_logo_Targ%C3%B3wek.JPG"
-     alt="data" width="120" height="120"></td>
-    <td><table id="genResults">
-          <!-- Data to be appended and shown to user -->
-         </table>
-    </td>
-  </tr>
+<table id="genResults">
 </table>
 </br>
 </br>

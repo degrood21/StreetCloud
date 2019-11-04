@@ -15,7 +15,8 @@ router.post('/',function(req,res){
         if (index != 0){
             statement = statement + "UNION ";
         }
-        statement = statement + "SELECT Name, Address, Distance FROM " + searchCategories[index] + " ";
+        statement = statement + "SELECT Name, Address, Distance FROM " + searchCategories[index] + " WHERE Name " +
+            "LIKE '%" + query + "%' ";
     }
 
         console.log("" + statement);

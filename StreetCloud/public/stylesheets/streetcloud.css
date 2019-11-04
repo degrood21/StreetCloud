@@ -87,6 +87,16 @@ table {
 	text-align: left;
 }
 
+.searchResult {
+	width: 100%;
+	border-bottom: 3px dashed black;
+	border-top: 3px dashed black;
+}
+
+.searchResult:hover {
+	background-color: rgba(0, 217, 255, 0.308);
+}
+
 td {
 	color: yellow;
 	margin-left: 10px;
