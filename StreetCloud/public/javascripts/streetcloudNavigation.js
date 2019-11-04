@@ -38,36 +38,44 @@ function medicalFunction(){
 
     //seting the SQL querries based on what filter is selected 
     //special hours filters
-    if(document.getElementById("weekends").checked == true){
+    if(document.getElementById("weekends").checked == true || 
+        document.getElementById("weekends_mobile").checked == true){
         hours = "WEEKENDS = 'Yes'";
     }
-    else if(document.getElementById("24HR").checked == true){
+    else if(document.getElementById("24HR").checked == true || 
+        document.getElementById("24HR_mobile").checked == true){
         hours = "ALLDAY = 'Yes'";
     }
     else{
         hours = "ALLDAY = 'Yes' OR ALLDAY = 'No'";
     }
     //distance 
-    if(document.getElementById("5m").checked == true){
+    if(document.getElementById("5m").checked == true ||
+        document.getElementById("5m_mobile").checked == true){
         distance = "BETWEEN 0 AND 5";
     }
-    else if(document.getElementById("10m").checked == true){
+    else if(document.getElementById("10m").checked == true || 
+        document.getElementById("10m_mobile").checked == true){
         distance = "BETWEEN 0 AND 10";
     }
-    else if(document.getElementById("15m+").checked == true){
+    else if(document.getElementById("15m+").checked == true ||
+        document.getElementById("15m+_mobile").checked == true){
         distance = "BETWEEN 0 AND 20";
     }
     else{
         distance = "BETWEEN 0 AND 2";
     }
     //type
-    if(document.getElementById("dentist").checked == true){
+    if(document.getElementById("dentist").checked == true ||
+        document.getElementById("dentist_mobile").checked == true){
         type = "%Dental%";
     }
-    else if(document.getElementById("optometrist").checked == true){
+    else if(document.getElementById("optometrist").checked == true ||
+        document.getElementById("optometrist_mobile").checked == true){
         type = "%Optometry%";
     }
-    else if(document.getElementById("therapist").checked == true){
+    else if(document.getElementById("therapist").checked == true ||
+        document.getElementById("therapist_mobile").checked == true){
         type = "%Therapy%";
     }
     else{
