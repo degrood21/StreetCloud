@@ -30,6 +30,7 @@ document.getElementById("homeFooterButton").onclick = function() {
 document.getElementById("homeButton").onclick = function() {
     location.href = "/../streetcloud.html";
 };
+
 });
 
 //these fucntions prints the data from the database 
@@ -91,6 +92,10 @@ function medicalFunction(){
         },
         function(data){
             $("#medicalResults").empty();
+            if(data.length == 0){
+                $("#medicalResults").append("<tr><td><h1>No hospital 4 U</h1></td>");
+                $("#medImage").attr("src","https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png");
+            }
             for(i=0; i < data.length; i++){
             $("#medicalResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
             $("#medicalResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");

@@ -62,10 +62,10 @@ $(document).ready(function(){
     //     $(x).attr("checked", true);
     // });
 
-    $("input").click(function(){
+    $(".filters").click(function(){
         console.log("Read");
         var x = "." + $(this).attr("className");
-        $("input").attr("checked", false); 
+        $(".filters").attr("checked", false); 
         $(x).attr("checked", true);
     });
 
