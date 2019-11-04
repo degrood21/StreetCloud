@@ -96,9 +96,9 @@
   <div id="cat1Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input type="radio" name="spHours" value="none" checked> None </td> </tr>
-        <tr> <td> <input type="radio" name="spHours" value="weekends"> Weekends </td> </tr>
-        <tr> <td> <input type="radio" name="spHours" value="24hr"> 24 Hours </td> </tr>
+        <tr> <td> <input id="none" type="radio" name="spHours" value="none" onclick="medicalFunction()" checked> None </td> </tr>
+        <tr> <td> <input id="weekends" type="radio" name="spHours" value="weekends"onclick="medicalFunction()"> Weekends </td> </tr>
+        <tr> <td> <input id="24HR" type="radio" name="spHours" value="24hr" onclick="medicalFunction()"> 24 Hours </td> </tr>
         <tr> <td> </td> </tr>
       </table>
     </div>
@@ -108,10 +108,10 @@
   <div id="cat2Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" checked> 2 Miles </td> </tr>
-        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m"> 5 Miles </td> </tr>
-        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m"> 10 Miles </td> </tr>
-        <tr> <td> <input id="far_m" type="radio" class="far" name="distance" value="15m"> 15+ Miles </td> </tr>
+        <tr> <td> <input id="2m" type="radio" class="close" name="distance" value="2m" onclick="medicalFunction()" checked> 2 Miles </td> </tr>
+        <tr> <td> <input id="5m" type="radio" class="r_close" name="distance" value="5m" onclick="medicalFunction()"> 5 Miles </td> </tr>
+        <tr> <td> <input id="10m" type="radio" class="r_far" name="distance" value="10m" onclick="medicalFunction()"> 10 Miles </td> </tr>
+        <tr> <td> <input id="15m+" type="radio" class="far" name="distance" value="15m" onclick="medicalFunction()"> 15+ Miles </td> </tr>
       </table>
     </div>
   </div>
@@ -120,10 +120,10 @@
   <div id="cat3Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input type="radio"  name="health" value="general" checked> General Health Care </td> </tr>
-        <tr> <td> <input type="radio"  name="health" value="dentist"> Dentist </td> </tr>
-        <tr> <td> <input type="radio"  name="health" value="optometrist"> Optometrist </td> </tr>
-        <tr> <td> <input type="radio"  name="health" value="therapist"> Therapist </td> </tr>
+        <tr> <td> <input id="generalHealthCare" type="radio"  name="health" value="general" onclick="medicalFunction()" checked> General Health Care </td> </tr>
+        <tr> <td> <input id="dentist" type="radio"  name="health" value="dentist" onclick="medicalFunction()"> Dentist </td> </tr>
+        <tr> <td> <input id="optometrist" type="radio"  name="health" value="optometrist" onclick="medicalFunction()"> Optometrist </td> </tr>
+        <tr> <td> <input id="therapist"type="radio"  name="health" value="therapist" onclick="medicalFunction()"> Therapist </td> </tr>
       </table>
     </div>
   </div>
@@ -132,7 +132,7 @@
 <!-- search data table-->
 <table>
   <tr>
-    <td><img src= "https://upload.wikimedia.org/wikipedia/commons/0/07/Augsburg_Josefium_26_April_2003.jpg"
+    <td><img id="medImage" src= "https://upload.wikimedia.org/wikipedia/commons/0/07/Augsburg_Josefium_26_April_2003.jpg"
      alt="data" width="120" height="120"></td>
     <td><table id="medicalResults">
       <!-- medicalFunction fills this out-->
