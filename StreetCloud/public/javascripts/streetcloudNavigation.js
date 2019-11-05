@@ -47,20 +47,21 @@ $("#searchButton").click(function() {
     location.href = "/../streetcloud_gen_search.html";
 });
 
-//still in the works
-//will listen for the search button click
+//listens for the search button click
 //from all other htmls
 $("#searchButtonInd").click(function() {
     var searchFor = $("#searchText").val();
-    var pageId = $("#pageId").html();
+    var pageId = $("#pageId").html();//gets what page is calling
     pageId = pageId.toLowerCase();
 
     $(document).ready(function(){
+        //sends the post call to retrieve the data form database
         $.post('/searchIndividualPage',
         {
             inquiry: searchFor,
             source: pageId
         },
+        //creates together the table depending on which page it needs to append the results to
         function(data){
                 $(".results").text("");
                 for (i = 0; i < data.length; i++){
