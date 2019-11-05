@@ -10,7 +10,7 @@
 <!-- Header -->
 <h1 id="headerButton">StreetCloud</h1>
 <!-- Second Header -->
-<h2>Transitional Housing</h2>
+<h2 id="pageId">Transitional Housing</h2>
 <!-- Menu -->
 <div class="menu">
   <table>
@@ -36,10 +36,10 @@
 
 <h2>What are you looking for?</h2>
 
-<table>
+<table class="search">
   <tr>
-    <td><input type="text" class="searchbar"></input></td>
-    <td><input type="button" id="search" onclick="" value="Search"></input></td>
+    <td><input id="searchText" type="text" class="searchbar"></input></td>
+    <td><input id="searchButtonInd" type="button" value="Search" onclick="searchInd()"></input></td>
   </tr>
 </table>
 
