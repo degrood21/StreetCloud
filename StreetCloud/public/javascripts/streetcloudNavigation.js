@@ -1,8 +1,13 @@
-//Dylan DeGrood
-/*Helps to wait to run functions once the document fully loads*/
+//streetcloudNavigation.js
+//This is the code for the main functionality
+//for navigating through the website and displaying information
+//Created by the StreetCloud software team
 
+/*Helps to wait to run functions once the document fully loads*/
 $(document).ready(function(){
 
+//Onclick methods for the main screen
+//When one is clicked it loads up the correct html
 document.getElementById("headerButton").onclick = function() {
     location.href = "/../streetcloud.html";
 };
@@ -33,6 +38,9 @@ document.getElementById("homeButton").onclick = function() {
 
 });
 
+//Click function for the searchButton on the main page
+//Puts the item that was searched for and loads it into local storage
+//Then changes page to the search html page to show results
 $("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
     localStorage.setItem("query", searchFor);
@@ -44,6 +52,9 @@ $("#searchButtonInd").click(function() {
     var pageId = $("#").val();
 });
 
+//Using the search value from local storage
+//Will send a post request where the database
+//will be searched for a word containing the search val
 function querySearch(){
     $(document).ready(function(){
         searchFor = localStorage.getItem("query");
@@ -52,6 +63,8 @@ function querySearch(){
             inquiry: searchFor
         },
         function(data){
+                //Loops through the result array of database entries from search results
+                //creates a new table for each entry and appends it to streetcloud_gen_search.html
                 for (i = 0; i < data.length; i++){
                     $("#genResults").append( "<tr><td><img src='"+ data[i].Image + "' height="+100+" width="+100+"></img></td>" +
                     "<td><table class='searchResult'>" +
@@ -64,8 +77,12 @@ function querySearch(){
     });
 }
 
-//these fucntions prints the data from the database 
+//This function will send a post asking for data 
+//depending on what filters are checked and append the correct
+//data entries from database to streetcloud_medical.html
 function medicalFunction(){
+    //these variables will hold the string formatted for mySQL
+    //in order to search the database
     var hours,distance,type; 
 
     //seting the SQL querries based on what filter is selected 
@@ -79,9 +96,9 @@ function medicalFunction(){
         hours = "ALLDAY = 'Yes'";
     }
     else{
-        hours = "ALLDAY = 'Yes' OR ALLDAY = 'No'";
+        hours = "ALLDAY = 'Yes' OR ALLDAY = 'No'";//default search/checked
     }
-    //distance 
+    //distance filters
     if(document.getElementById("5m").checked == true ||
         document.getElementById("5m_mobile").checked == true){
         distance = "BETWEEN 0 AND 5";
@@ -95,9 +112,9 @@ function medicalFunction(){
         distance = "BETWEEN 0 AND 20";
     }
     else{
-        distance = "BETWEEN 0 AND 2";
+        distance = "BETWEEN 0 AND 2"; //default search/checked
     }
-    //type
+    //type filters
     if(document.getElementById("dentist").checked == true ||
         document.getElementById("dentist_mobile").checked == true){
         type = "%Dental%";
@@ -111,9 +128,10 @@ function medicalFunction(){
         type = "%Therapy%";
     }
     else{
-        type = "%clinic%' OR TYPE LIKE '%hospital%";  
+        type = "%clinic%' OR TYPE LIKE '%hospital%"; //default search/checked
     } 
 
+    //post function for medical page
     $(document).ready(function(){
         $.post('/medicalPage',
         {
@@ -122,11 +140,15 @@ function medicalFunction(){
             type: type, 
         },
         function(data){
-            $("#medicalResults").empty();
+            $("#medicalResults").empty();//clears the table so we can append results
+            //fail safe for if the result array comes back empty
+            //No results match filters checked
+            //displays Nothing Found with picture of red x
             if(data.length == 0){
-                $("#medicalResults").append("<tr><td><h1>No hospital 4 U</h1></td>");
+                $("#medicalResults").append("<tr><td><h1>Nothing Found</h1></td>");
                 $("#medImage").attr("src","https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png");
             }
+            //for loop to append data to medical page
             for(i=0; i < data.length; i++){
             $("#medicalResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
             $("#medicalResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
@@ -149,6 +171,8 @@ https://stackoverflow.com/questions/4982846/jquery-clear-empty-all-contents-of-t
 Date Accessed: 10/31/19
 */
 
+//still in the works
+//will hold functionality like the medical page above for getting data based on filters
 function foodFunction(){
     $(document).ready(function(){
         $.post('/foodPage',function(data){
@@ -163,6 +187,8 @@ function foodFunction(){
     });
 }
 
+//still in the works
+//will hold functionality like the medical page above for getting data based on filters
 function shelterFunction(){
     $(document).ready(function(){
         $.post('/shelterPage',function(data){
@@ -176,40 +202,3 @@ function shelterFunction(){
         });
     });
 }
-
-/* Searches for results from database with the same name
-function search(){
-    location.href = "/../streetcloud_gen_search.html";
-}
-
-var searchFor = document.getElementById("searchText").innerHTML;
-console.log("Searching for" + searchFor);
-location.href = "/../streetcloud_gen_search.html";
-
-$(document).ready(function(){
-    $.post('/foodPage',
-    {
-        inquiry: searchFor
-    },
-    function(data){
-    });
-});
-
-$(document).ready(function(){
-    $.post('/medicalPage',
-    {
-        inquiry: searchFor
-    },
-    function(data){
-    });
-});
-
-$(document).ready(function(){
-    $.post('/shelterPage',
-    {
-        inquiry: searchFor
-    },
-    function(data){
-    });
-});
-*/
