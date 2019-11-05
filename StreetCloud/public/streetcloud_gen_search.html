@@ -7,11 +7,11 @@
 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="javascripts/streetcloud_filters.js"></script>
 </head>
-<body onload="foodFunction()">
+<body onload="querySearch()">
 <!-- Header -->
 <h1 id="headerButton">StreetCloud</h1>
 <!-- Second Header -->
-<h2>Food</h2>
+<h2 id="pageId">Search Results</h2>
 <!-- Menu -->
 <div class="menu">
   <table>
@@ -20,7 +20,7 @@
         alt="Cloud" class="menu_b" id="homeButton">
       </td>
       <td> <img src= "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Sinnbild_Autobahngasthaus.svg/768px-Sinnbild_Autobahngasthaus.svg.png" 
-        alt="Fork_and_Knife" class="menu_b" id="foodButton" style="background-color: yellow">
+        alt="Fork_and_Knife" class="menu_b" id="foodButton">
       </td>
       <td> <img src= "https://upload.wikimedia.org/wikipedia/commons/5/59/Noun_Project_house_icon_475319_cc.svg" 
         alt="House" class="menu_b" id="shelterButton">
@@ -40,23 +40,15 @@
 <br>
 <table class="search">
   <tr>
-    <td><input type="text" class="searchbar"></input></td>
-    <td><input type="button" id="search" onclick="search()" value="Search"></input></td>
+    <td><input id="searchText" type="text" class="searchbar"></input></td>
+    <td><input id="searchButtonInd" type="button" value="Search" onclick="searchInd()"></input></td>
   </tr>
 </table>
 <br>
 
 <!-- search data table -->
 <br>
-<table>
-  <tr>
-    <td><img src= "https://upload.wikimedia.org/wikipedia/commons/f/fe/McDonald%27s_logo_Targ%C3%B3wek.JPG"
-     alt="data" width="120" height="120"></td>
-    <td><table id="genResults">
-          <!-- Data to be appended and shown to user -->
-         </table>
-    </td>
-  </tr>
+<table id="genResults">
 </table>
 </br>
 </br>

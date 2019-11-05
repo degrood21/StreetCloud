@@ -4,39 +4,33 @@ var dbms = require('./dbms.js');
 
 
 router.post('/',function(req,res){
-    var query = body.inquiry;
-    
-    var searchCatergories = ["food", "shelter", "medical"];
-    var searchResultsArray = {
-        "": 
-    };
+    var query = req.body.inquiry;
 
-    for (var index = 0; index < searchCatergories.length; index++){
+    console.log("Searching for: " + query);
     
-        dbms.dbquery("SELECT * FROM" + searchCatergories[index] +
-            "WHERE NAME LIKE '%"+ query +"%'", parseData);
+    var searchCategories = ["food", "shelter", "medical"];
+    var statement = "";
+
+    for (var index = 0; index < searchCategories.length; index++){
+        if (index != 0){
+            statement = statement + "UNION ";
+        }
+        statement = statement + "SELECT Name, Address, Distance, Image FROM " + searchCategories[index] + " WHERE Name " +
+            "LIKE '%" + query + "%' ";
+    }
+
+        console.log("" + statement);
+    
+        dbms.dbquery(statement, parseData);
         
 
         function parseData(row,result){
-         if(row == false){
-            searchResultsArray[index] = new Array(res);
-            for (var num = 0; num < result.length; num++)
-                 dataString = JSON.stringify(result[num]);
-                 dataObj = JSON.parse(dataString);
-                 searchResultsArray[searchResultsArray.length] = dataObj;
-            }
-
+                 var dataString = JSON.stringify(result);
+                 var dataObj = JSON.parse(dataString);
+                 console.log(dataObj);
+                 res.send(dataObj);
         }
-    }
-
-    var relatedSearchResultsArray;
-    for (var index = 0; index < searchResultsArray.length; index++){
-        if (searchResultsArray[index].NAME.contains(query)){
-            relatedSearchResultsArray[relatedSearchResultsArray.length] = searchResultsArray[index];
-        }
-    }
-
-    res.send(relatedSearchResultsArray);
+    
 
 });
 
