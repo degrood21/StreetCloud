@@ -41,7 +41,44 @@ $("#searchButton").click(function() {
 
 $("#searchButtonInd").click(function() {
     var searchFor = $("#searchText").val();
-    var pageId = $("#").val();
+    var pageId = $("#pageId").html();
+    pageId = pageId.toLowerCase();
+
+    $(document).ready(function(){
+        $.post('/searchIndividualPage',
+        {
+            inquiry: searchFor,
+            source: pageId
+        },
+        function(data){
+                $(".results").text("");
+                for (i = 0; i < data.length; i++){
+                    var toAdd = "<tr><td><img src='"+ data[i].IMAGE + "' height="+100+" width="+100+"></img></td>" +
+                    "<td><table class='searchResult'>" +
+                    "<tr><td><p>Name: "+data[i].NAME+"</p></td></tr>" +
+                    "<tr><td><p>Address: "+data[i].ADDRESS+"</p></td></tr>" +
+                    "<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td></tr>";
+
+                    if (pageId === "medical"){
+                        toAdd = toAdd + "<tr><td><p>Type: "+data[i].TYPE+"</p></td></tr>" +
+                        "<tr><td><p>Hours: "+data[i].HOURS+"</p></td></tr>" + 
+                        "<tr><td><p>Open Allday: "+data[i].ALLDAY+"</p></td></tr>" +
+                        "<tr><td><p>Open Weekends: "+data[i].WEEKENDS+"</p></td></tr>";
+                    }
+                    else if (pageId === "food"){
+                        toAdd = toAdd + "<tr><td><p>Price: "+data[i].PRICE+"</p></td></tr>";
+                    }
+                    else if (pageId === "shelter"){
+                        toAdd = toAdd + "<tr><td><p>Type:"+data[i].TYPE+"</p></td>";
+                    }
+
+                    toAdd = toAdd + "</table></td></tr>";
+
+                    $(".results").append(toAdd);
+                }
+        });
+    });
+
 });
 
 function querySearch(){
