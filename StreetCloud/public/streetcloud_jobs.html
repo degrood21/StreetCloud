@@ -14,7 +14,7 @@
 <!-- Header -->
 <h1 id="headerButton">StreetCloud</h1>
 <!-- Second Header -->
-<h2>Jobs</h2>
+<h2 id="pageId">Jobs</h2>
 
 <!-- Menu -->
 <div class="menu">
@@ -41,12 +41,12 @@
 <h2>What are you looking for?</h2>
 <br>
 <div style="max-width: 100%">
-<table class="search">
-  <tr>
-    <td><input type="text" class="searchbar"></input></td>
-    <td><input type="button" id="search" onclick="" value="Search"></input></td>
-  </tr>
-</table>
+  <table class="search">
+    <tr>
+      <td><input id="searchText" type="text" class="searchbar"></input></td>
+      <td><input id="searchButtonInd" type="button" value="Search" onclick="searchInd()"></input></td>
+    </tr>
+  </table>
 </div>
 <br>
 <!--Mobile Filters Button-->

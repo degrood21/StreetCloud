@@ -36,42 +36,11 @@ $("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
     localStorage.setItem("query", searchFor);
     location.href = "/../streetcloud_gen_search.html";
-    
-    // var async = require('async');
+});
 
-    // async.waterfall([
-    //     function (done){
-    //         var searchFor = $("#searchText").val();
-    //         done(searchFor);
-    //     },
-    //     function (lastResult, done){
-    //         location.href = "/../streetcloud_gen_search.html";
-    //         done(searchFor);
-    //     },
-    //     function (lastResult, done){
-    //         $(document).ready(function(){
-    //             $.post('/searchPage',
-    //             {
-    //                 inquiry: searchFor
-    //             },
-    //             function(data){
-    //                 $(document).ready(function(){
-    //                     for (i = 1; i < data.length; i++){
-    //                         ("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
-    //                         ("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
-    //                         ("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
-    //                     }
-    //                 });
-    //             });
-    //         });
-    //         done(null);
-    //     }
-    // ],
-    // function (err){
-    //     if (err){
-    //         throw new Error(err);
-    //     }
-    // });
+$("#searchButtonInd").click(function() {
+    var searchFor = $("#searchText").val();
+    var pageId = $("#").val();
 });
 
 function querySearch(){
@@ -83,11 +52,12 @@ function querySearch(){
         },
         function(data){
                 for (i = 0; i < data.length; i++){
-                    $("#genResults").append("<table class='searchResult'>" +
+                    $("#genResults").append( "<tr><td><img src='"+ data[i].Image + "' height="+100+" width="+100+"></img></td>" +
+                    "<td><table class='searchResult'>" +
                     "<tr><td><p>Name: "+data[i].Name+"</p></td></tr>" +
                     "<tr><td><p>Address: "+data[i].Address+"</p></td></tr>" +
                     "<tr><td><p>Distance: "+data[i].Distance+"</p></td></tr>" +
-                    "</table>");
+                    "</table></td></tr>");
                 }
         });
     });
