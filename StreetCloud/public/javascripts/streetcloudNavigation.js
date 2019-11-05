@@ -47,6 +47,9 @@ $("#searchButton").click(function() {
     location.href = "/../streetcloud_gen_search.html";
 });
 
+//still in the works
+//will listen for the search button click
+//from all other htmls
 $("#searchButtonInd").click(function() {
     var searchFor = $("#searchText").val();
     var pageId = $("#").val();
