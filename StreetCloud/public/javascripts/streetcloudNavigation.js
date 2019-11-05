@@ -37,6 +37,7 @@ $("#searchButton").click(function() {
     localStorage.setItem("query", searchFor);
     location.href = "/../streetcloud_gen_search.html";
         searchFor = localStorage.getItem("query");
+        
         $(document).ready(function () {
             $.post('/searchPage',
             {
@@ -52,6 +53,7 @@ $("#searchButton").click(function() {
                 });
             });
         });
+    
     
     // var async = require('async');
 
@@ -133,11 +135,15 @@ $("#searchButton").click(function() {
             {
                 for (i = 1; i < data.length; i++)
                 {
-                //this should be in a for loop if there is more data 
+                //this should be in a for loop if there is more data
+                    
                     $("#shelterResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
                     $("#shelterResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
                     $("#shelterResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
                     $("#shelterResults").append("<tr><td><p>Type:"+data[i].TYPE+"</p></td>");
+                    $("#shelterResults").append("<br></br>");
+                    
+
                 }
             });
         });
