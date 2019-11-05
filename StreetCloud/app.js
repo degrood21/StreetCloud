@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var medicalRouter = require('./routes/medicalPage');
 var foodRouter = require('./routes/foodPage');
 var shelterRouter = require('./routes/shelterPage');
+var searchRouter = require('./routes/searchPage');
 
 var app = express();
 
@@ -26,8 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/medicalPage', medicalRouter);
-app.use('/foodPage',foodRouter);
-app.use('/shelterPage',shelterRouter);
+app.use('/foodPage', foodRouter);
+app.use('/shelterPage', shelterRouter);
+app.use('/searchPage', searchRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
