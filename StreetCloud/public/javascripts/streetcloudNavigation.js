@@ -3,6 +3,8 @@
 //for navigating through the website and displaying information
 //Created by the StreetCloud software team
 
+const $ = require('jquery');//required for jest tests
+
 /*Helps to wait to run functions once the document fully loads*/
 $(document).ready(function(){
 
