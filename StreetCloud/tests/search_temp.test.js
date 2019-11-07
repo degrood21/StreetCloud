@@ -7,20 +7,17 @@ test('displays food html after click', () => {
     '<button id="searchButtonInd" />' +
     '<table id="foodResults" class="results"></table>';
 
-    //require('../public/javascripts/streetcloudNavigation');
-
     const $ = require('jquery');
-    //const searchIndividual = require('../routes/searchIndividual');
 
     searchIndividual.mockImplementation(cb => {
         cb({
             "data":
             [{
-            "IMAGE": "searchFor",
-            "NAME": "food",
-            "ADDRESS": "",
-            "DISTANCE": "",
-            "PRICE": ""
+            "IMAGE": ".jpg",
+            "NAME": "McDonalds",
+            "ADDRESS": "1111 5th St",
+            "DISTANCE": "0 Miles",
+            "PRICE": "$"
             }]
         });
     });
@@ -38,6 +35,5 @@ test('displays food html after click', () => {
     toAdd = toAdd + "</table></td></tr>";
     $(".results").append(toAdd);
 
-    //expect(streetcloudNavigation).toBeCalled();
-    expect($('#name').text()).toEqual('Name: food');
+    expect($('#name').text()).toEqual('Name: McDonalds');
 });
