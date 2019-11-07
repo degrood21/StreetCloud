@@ -97,6 +97,20 @@ table {
 	background-color: rgba(0, 217, 255, 0.308);
 }
 
+
+/* External Citation
+ *
+ * Problem: Didn't know how to inherit the background color from the parent element
+ * Date: November 5, 2019
+ * Resource: https://www.w3schools.com/cssref/css_inherit.asp
+ * Resolution: Used the inherit CSS function suggested in this documentation
+ */
+.searchInfo {
+	background-color: inherit;
+	width: 100%;
+	height: 25%;
+}
+
 td {
 	color: yellow;
 	margin-left: 10px;
