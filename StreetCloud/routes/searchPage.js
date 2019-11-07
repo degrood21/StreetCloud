@@ -23,7 +23,6 @@ router.post('/',function(req,res){
     
         dbms.dbquery(statement, parseData);
         
-
         function parseData(row,result){
                  var dataString = JSON.stringify(result);
                  var dataObj = JSON.parse(dataString);
