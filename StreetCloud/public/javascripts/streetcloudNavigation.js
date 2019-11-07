@@ -1,47 +1,57 @@
-//Dylan DeGrood
+//streetcloudNavigation.js
+//This is the code for the main functionality
+//for navigating through the website and displaying information
+//Created by the StreetCloud software team
+
 /*Helps to wait to run functions once the document fully loads*/
+$(document).ready(function(){
 
-$(document).ready(function () {
-
-    document.getElementById("headerButton").onclick = function () {
-        location.href = "/../streetcloud.html";
-    };
-    document.getElementById("medicalButton").onclick = function () {
-        location.href = "/../streetcloud_medical.html";
-    };
-    document.getElementById("foodButton").onclick = function () {
-        location.href = "/../streetcloud_food.html";
-    };
-    document.getElementById("shelterButton").onclick = function () {
-        location.href = "/../streetcloud_shelter.html";
-    };
-    document.getElementById("otherButton").onclick = function () {
-        location.href = "/../streetcloud_other.html";
-    };
-    document.getElementById("aboutUs").onclick = function () {
-        location.href = "/../streetcloud_about.html";
-    };
-    document.getElementById("registerForm").onclick = function () {
-        location.href = "/../streetcloud_register_form.html";
-    };
-    document.getElementById("homeFooterButton").onclick = function () {
-        location.href = "/../streetcloud.html";
-    };
-    document.getElementById("homeButton").onclick = function () {
-        location.href = "/../streetcloud.html";
-    };
+//Onclick methods for the main screen
+//When one is clicked it loads up the correct html
+document.getElementById("headerButton").onclick = function() {
+    location.href = "/../streetcloud.html";
+};
+document.getElementById("medicalButton").onclick = function() {
+    location.href = "/../streetcloud_medical.html";
+};
+document.getElementById("foodButton").onclick = function() {
+    location.href = "/../streetcloud_food.html";
+};
+document.getElementById("shelterButton").onclick = function() {
+    location.href = "/../streetcloud_shelter.html";
+};
+document.getElementById("otherButton").onclick = function() {
+    location.href = "/../streetcloud_other.html";
+};
+document.getElementById("aboutUs").onclick = function() {
+    location.href = "/../streetcloud_about.html";
+};
+document.getElementById("registerForm").onclick = function() {
+    location.href = "/../streetcloud_register_form.html";
+};
+document.getElementById("homeFooterButton").onclick = function() {
+    location.href = "/../streetcloud.html";
+};
+document.getElementById("homeButton").onclick = function() {
+    location.href = "/../streetcloud.html";
+};
 
 });
 
-$("#searchButton").click(function () {
+//Click function for the searchButton on the main page
+//Puts the item that was searched for and loads it into local storage
+//Then changes page to the search html page to show results
+$("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
     localStorage.setItem("query", searchFor);
     location.href = "/../streetcloud_gen_search.html";
 });
 
-$("#searchButtonInd").click(function () {
+//listens for the search button click
+//from all other htmls
+$("#searchButtonInd").click(function() {
     var searchFor = $("#searchText").val();
-    var pageId = $("#pageId").html();
+    var pageId = $("#pageId").html();//gets what page is calling
     pageId = pageId.toLowerCase();
 
     if (pageId === "search results") {
@@ -50,11 +60,13 @@ $("#searchButtonInd").click(function () {
     }
     else {
         $(document).ready(function () {
+            //sends the post call to retrieve the data form database
             $.post('/searchIndividualPage',
                 {
                     inquiry: searchFor,
                     source: pageId
                 },
+                //creates together the table depending on which page it needs to append the results to
                 function (data) {
                     $(".results").text("");
                     for (i = 0; i < data.length; i++) {
@@ -89,6 +101,9 @@ $("#searchButtonInd").click(function () {
 
 });
 
+//Using the search value from local storage
+//Will send a post request where the database
+//will be searched for a word containing the search val
 function querySearch() {
     $(document).ready(function () {
         searchFor = localStorage.getItem("query");
@@ -104,6 +119,8 @@ function querySearch() {
                     inquiry: searchFor
                 },
                 function (data) {
+                    //Loops through the result array of database entries from search results
+                    //creates a new table for each entry and appends it to streetcloud_gen_search.html
                     for (i = 0; i < data.length; i++) {
                         $("#genResults").append("<tr><td><table class='searchResult'><tr><td>" +
                             "<img src='" + data[i].Image + "' height=" + 100 + " width=" + 100 + "></img></td>" +
@@ -118,8 +135,12 @@ function querySearch() {
     });
 }
 
-//these fucntions prints the data from the database 
+//This function will send a post asking for data 
+//depending on what filters are checked and append the correct
+//data entries from database to streetcloud_medical.html
 function medicalFunction() {
+     //these variables will hold the string formatted for mySQL
+    //in order to search the database
     var hours, distance, type;
 
     //seting the SQL querries based on what filter is selected 
@@ -132,12 +153,12 @@ function medicalFunction() {
         document.getElementById("24HR_mobile").checked == true) {
         hours = "ALLDAY = 'Yes'";
     }
-    else {
-        hours = "ALLDAY = 'Yes' OR ALLDAY = 'No'";
+    else{
+        hours = "ALLDAY = 'Yes' OR ALLDAY = 'No'";//default search/checked
     }
-    //distance 
-    if (document.getElementById("5m").checked == true ||
-        document.getElementById("5m_mobile").checked == true) {
+    //distance filters
+    if(document.getElementById("5m").checked == true ||
+        document.getElementById("5m_mobile").checked == true){
         distance = "BETWEEN 0 AND 5";
     }
     else if (document.getElementById("10m").checked == true ||
@@ -148,12 +169,12 @@ function medicalFunction() {
         document.getElementById("15m+_mobile").checked == true) {
         distance = "BETWEEN 0 AND 20";
     }
-    else {
-        distance = "BETWEEN 0 AND 2";
+    else{
+        distance = "BETWEEN 0 AND 2"; //default search/checked
     }
-    //type
-    if (document.getElementById("dentist").checked == true ||
-        document.getElementById("dentist_mobile").checked == true) {
+    //type filters
+    if(document.getElementById("dentist").checked == true ||
+        document.getElementById("dentist_mobile").checked == true){
         type = "%Dental%";
     }
     else if (document.getElementById("optometrist").checked == true ||
@@ -208,8 +229,7 @@ Date Accessed: 10/31/19
 
 function foodFunction() {
     $(document).ready(function () {
-        $.post('/foodPage', function (data) {
-            //this should be in a for loop if there is more data 
+        $.post('/foodPage', function (data) { 
             for (i = 1; i < data.length; i++) {
                 $("#foodResults").append("<tr><td><table class='searchResult'><tr><td>" +
                     "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
