@@ -11,7 +11,7 @@
 <!-- Header -->
 <h1 id="headerButton">StreetCloud</h1>
 <!-- Second Header -->
-<h2>Shelter</h2>
+<h2 id="pageId">Shelter</h2>
 <!-- Menu -->
 <div class="menu">
   <table>
@@ -40,8 +40,8 @@
 <br>
 <table class="search">
   <tr>
-    <td><input type="text" class="searchbar"></input></td>
-    <td><input type="button" id="search" onclick="" value="Search"></input></td>
+    <td><input id="searchText" type="text" class="searchbar"></input></td>
+    <td><input id="searchButtonInd" type="button" value="Search" onclick="searchInd()"></input></td>
   </tr>
 </table>
 <br>
@@ -123,15 +123,8 @@
 <br>
 
 <!-- Search Database" -->
-
-<table class = "dumbTable">
-  <tr>
-    <td><div id="shelterResults">
-          <!--shelter function fills this out-->
-    </div>
-    </td>
-  </tr>
-</table> 
+<table id="shelterResults" class="results">
+</table>
 </br>
 </br>
 </br>

@@ -11,7 +11,7 @@
 <!-- Header -->
 <h1 id="headerButton">StreetCloud</h1>
 <!-- Second Header -->
-<h2>Food</h2>
+<h2 id="pageId">Food</h2>
 <!-- Menu -->
 <div class="menu">
   <table>
@@ -40,8 +40,8 @@
 <br>
 <table class="search">
   <tr>
-    <td><input type="text" class="searchbar"></input></td>
-    <td><input type="button" id="search" onclick="" value="Search"></input></td>
+    <td><input id="searchText" type="text" class="searchbar"></input></td>
+    <td><input id="searchButtonInd" type="button" value="Search" onclick="searchInd()"></input></td>
   </tr>
 </table>
 <br>
@@ -130,15 +130,7 @@
 
 <!-- search data table -->
 <br>
-<table>
-  <tr>
-    <td><img src= "https://upload.wikimedia.org/wikipedia/commons/f/fe/McDonald%27s_logo_Targ%C3%B3wek.JPG"
-     alt="data" width="120" height="120"></td>
-    <td><table id="foodResults">
-          <!-- foodFunction fills this out-->
-         </table>
-    </td>
-  </tr>
+<table id="foodResults" class="results">
 </table>
 </br>
 </br>

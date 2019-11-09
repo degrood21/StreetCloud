@@ -7,11 +7,11 @@
 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="javascripts/streetcloud_filters.js"></script>
 </head>
-<body onload="foodFunciton()">
+<body onload="querySearch()">
 <!-- Header -->
 <h1 id="headerButton">StreetCloud</h1>
 <!-- Second Header -->
-<h2>Search Results</h2>
+<h2 id="pageId">Search Results</h2>
 <!-- Menu -->
 <div class="menu">
   <table>
@@ -40,23 +40,15 @@
 <br>
 <table class="search">
   <tr>
-    <td><input type="text" class="searchbar"></input></td>
-    <td><input type="button" id="search" onclick="search()" value="Search"></input></td>
+    <td><input id="searchText" type="text" class="searchbar"></input></td>
+    <td><input id="searchButtonInd" type="button" value="Search" onclick="searchInd()"></input></td>
   </tr>
 </table>
 <br>
 
 <!-- search data table -->
 <br>
-<table>
-  <tr>
-    <td><img src= "https://upload.wikimedia.org/wikipedia/commons/f/fe/McDonald%27s_logo_Targ%C3%B3wek.JPG"
-     alt="data" width="120" height="120"></td>
-    <td><table id="genResults">
-          <!-- Data to be appended and shown to user -->
-         </table>
-    </td>
-  </tr>
+<table id="genResults" class="results">
 </table>
 </br>
 </br>

@@ -11,6 +11,7 @@ var medicalRouter = require('./routes/medicalPage');
 var foodRouter = require('./routes/foodPage');
 var shelterRouter = require('./routes/shelterPage');
 var searchRouter = require('./routes/searchPage');
+var searchIndRouter = require('./routes/searchIndividual');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use('/medicalPage', medicalRouter);
 app.use('/foodPage', foodRouter);
 app.use('/shelterPage', shelterRouter);
 app.use('/searchPage', searchRouter);
+app.use('/searchIndividualPage', searchIndRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
