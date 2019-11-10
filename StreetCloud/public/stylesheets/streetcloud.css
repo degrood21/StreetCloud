@@ -299,6 +299,12 @@ a {
 	p {
 		font-size: 12px;
 	}
+
+	.dumbTable{
+		border-bottom: solid;
+		border-bottom-color: aquamarine;
+	}
+	
 }
 
 /* med phone width portrait*/

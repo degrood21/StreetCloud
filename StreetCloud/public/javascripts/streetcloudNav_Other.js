@@ -25,6 +25,15 @@ document.getElementById("homeFooterButton").onclick = function() {
 document.getElementById("jobsButton").onclick = function() {
     location.href = "/../streetcloud_jobs.html";
 };
+document.getElementById("librariesButton").onclick = function() {
+    location.href = "/../streetcloud_libraries.html";
+};
+document.getElementById("daycareButton").onclick = function() {
+    location.href = "/../streetcloud_daycare.html";
+};
+document.getElementById("publicRestroomButton").onclick = function() {
+    location.href = "/../streetcloud_publicRestrooms.html";
+};
 document.getElementById("aboutUs").onclick = function() {
     location.href = "/../streetcloud_about.html";
 };

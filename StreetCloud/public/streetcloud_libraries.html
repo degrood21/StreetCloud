@@ -1,0 +1,162 @@
+<!-- David Campbell -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width", initial-scale=1>
+<link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
+<script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="javascripts/streetcloud_filters.js"></script>
+</head>
+<!--<body onload="shelterFunction()"> --> <!-- Change this to link with databse for new function, ex. shelterFunction is in streetcloudNavigation.js-->
+<!-- Header -->
+<h1 id="headerButton">StreetCloud</h1>
+<!-- Second Header -->
+<h2 id = "pageId">Libraries</h2>
+<!-- Menu -->
+<div class="menu">
+  <table>
+    <tr>
+      <td> <img src= "https://www.freeiconspng.com/uploads/cloud-outline-icon-9.png" 
+        alt="Cloud" class="menu_b" id="homeButton">
+      </td>
+      <td> <img src= "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Sinnbild_Autobahngasthaus.svg/768px-Sinnbild_Autobahngasthaus.svg.png" 
+        alt="Fork_and_Knife" class="menu_b" id="foodButton">
+      </td>
+      <td> <img src= "https://upload.wikimedia.org/wikipedia/commons/5/59/Noun_Project_house_icon_475319_cc.svg" 
+        alt="House" class="menu_b" id="shelterButton">
+      </td>
+      <td> <img src= "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Medical_Clipboard_-_The_Noun_Project.svg/1000px-Medical_Clipboard_-_The_Noun_Project.svg.png" 
+        alt="Medical" class="menu_b" id="medicalButton">
+      </td>
+      <td> <img src= "https://icon-library.net/images/icon-other/icon-other-26.jpg" 
+        alt="Other" class="menu_b" id="otherButton">
+      </td>
+    </tr>
+  </table>
+</div>
+
+<h2>What are you looking for?</h2>
+
+<br>
+<table class="search">
+  <tr>
+    <td><input type="text" class="searchbar"></input></td>
+    <td><input type="button" id="search" onclick="" value="Search"></input></td>
+  </tr>
+</table>
+<br>
+
+<table class = "filters">
+  <form action="action_page.php">
+  
+    <tr  class = "job_options_formatting">
+      <td class = "job_options_formatting2"><h3>Library Card: </h3></td>
+      <td class = "job_options_formatting2"><h3>Distance: </h3></td>
+      <td class = "job_options_formatting2"><h3>Public Restrooms: </h3></td>
+    </tr>
+    <tr>
+      <td> <input type="radio" name="gender_pref" value="Male" checked> Male Only </td>
+      <td class = "job_options_formatting2"> <input type="radio" name="distance" value="2m" checked> 2 Miles </td>
+      <td> <input type="radio" name="food_included" value="included" checked> Yes </td>
+    </tr>
+    <tr>
+      <td> <input type="radio" name="gender_pref" value="Female"> Female Only </td>
+      <td class = "job_options_formatting2"> <input type="radio" name="distance" value="5m"> 5 Miles </td>
+      <td> <input type="radio" name="food_included" value="not included"> No </td>
+    </tr>
+    <tr>
+      <td> <input type="radio" name="gender_pref" value="Both"> Male and Female </td>
+      <td class = "job_options_formatting2"> <input type="radio" name="distance" value="10m"> 10 Miles </td>
+    </tr>
+    
+  </form>
+  </table>
+
+  <!--Mobile Filters Button-->
+<br>
+<div class="filters_mobile">
+  <table>
+  <tr>
+    <td><p> Filters </p></td>
+    <td><img src= "https://image.flaticon.com/icons/png/512/28/28591.png" 
+      alt="Education" class="filters_b" id="cat1Button" onclick="showCat1Filters()"></td>
+    <td><img src= "https://c7.uihere.com/icons/227/999/759/distance-e865a41ae62cfcfbd99c58f73e321757.png" 
+      alt="Distance" class="filters_b" id="cat2Button" onclick="showCat2Filters()"></td>
+    <td><img src= "https://library.kissclipart.com/20180829/tce/kissclipart-much-money-do-you-save-eating-clipart-eating-dish-d496feeb45f8d9cf.png" 
+      alt="Position" class="filters_b" id="cat3Button" onclick="showCat3Filters()"></td>
+  </tr>
+  </table>
+</div>
+
+  <!-- Mobile Education Filter dropdown -->
+  <div id="cat1Filters" class="dropdown">
+    <div class="dropdown-content">
+      <table>
+        <tr> <td> <input type="radio" name="gender_pref" value="Male" checked> Male Only </td> </tr>
+        <tr> <td> <input type="radio" name="gender_pref" value="Female"> Female Only </td> </tr>
+        <tr> <td> <input type="radio" name="gender_pref" value="Both"> Male and Female </td> </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mobile Education Filter dropdown -->
+  <div id="cat2Filters" class="dropdown">
+    <div class="dropdown-content">
+      <table>
+        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" checked> 2 Miles </td> </tr>
+        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m"> 5 Miles </td> </tr>
+        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m"> 10 Miles </td> </tr>
+        <tr> <td> <input id="far_m" type="radio" class="far" name="distance" value="15m"> 15+ Miles </td> </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mobile Postion Filter dropdown -->
+  <div id="cat3Filters" class="dropdown">
+    <div class="dropdown-content">
+      <table>
+        <tr> <td> <input type="radio" name="food_included" value="included" checked> Food Included </td> </tr>
+        <tr> <td> <input type="radio" name="food_included" value="not included"> Food Not Included </td> </tr>
+      </table>
+    </div>
+  </div>
+<br>
+
+<!-- Search Database" -->
+<table>
+  <tr>
+    <td><img src= "https://upload.wikimedia.org/wikipedia/commons/8/82/Marriott_Plaza_Hotel_Buenos_Aires%2C_Argentina_-_exterior.JPG"
+     alt="data" width="120" height="120"></td>
+    <td><table id="shelterResults">
+          <!--shelter function fills this out-->
+         </table>
+    </td>
+  </tr>
+</table>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<div class="footer">
+<p id="homeFooterButton">StreetCloud</p>
+<p id="aboutUs">About Us</p>
+<p>Contact Us</p>
+<p>Volunteer</p>
+<p id ="registerForm">Partnerships</p>
+</div>
+
+<script
+   src="javascripts/streetcloudNavigation.js">
+</script>
+
+</body>
+</html>

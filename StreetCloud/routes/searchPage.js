@@ -4,7 +4,7 @@
 //main page this post method will be called
 var express = require('express');
 var router = express.Router();
-var dbms = require('./dbms.js');
+var dbms = require('./dbms');
 
 
 router.post('/',function(req,res){
