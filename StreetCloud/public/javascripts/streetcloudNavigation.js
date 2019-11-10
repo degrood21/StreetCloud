@@ -105,6 +105,10 @@ $("#searchButtonInd").click(function() {
 //Will send a post request where the database
 //will be searched for a word containing the search val
 function querySearch() {
+    function init() {
+        init.searched = true;
+    }
+    init();
     $(document).ready(function () {
         searchFor = localStorage.getItem("query");
 
@@ -121,7 +125,8 @@ function querySearch() {
                 function (data) {
                     //Loops through the result array of database entries from search results
                     //creates a new table for each entry and appends it to streetcloud_gen_search.html
-                    for (i = 0; i < data.length; i++) {
+                    for (i = 0; i < data.length; i++) 
+                    {
                         $("#genResults").append("<tr><td><table class='searchResult'><tr><td>" +
                             "<img src='" + data[i].Image + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                             "<td><table class='searchInfo'>" +
@@ -134,6 +139,7 @@ function querySearch() {
         }
     });
 }
+
 
 //This function will send a post asking for data 
 //depending on what filters are checked and append the correct
@@ -188,6 +194,7 @@ function medicalFunction() {
     else {
         type = "%clinic%' OR TYPE LIKE '%hospital%";
     }
+    
 
     $(document).ready(function () {
         $.post('/medicalPage',
@@ -198,11 +205,13 @@ function medicalFunction() {
             },
             function (data) {
                 $("#medicalResults").empty();
-                if (data.length == 0) {
+                if (data.length == 0) 
+                {
                     $("#medicalResults").append("<tr><td><h1>No hospital 4 U</h1></td>");
                     $("#medImage").attr("src", "https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png");
                 }
-                for (i = 0; i < data.length; i++) {
+                for (i = 0; i < data.length; i++) 
+                {
                     $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td>" +
                         "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                         "<td><table class='searchInfo'>" +
