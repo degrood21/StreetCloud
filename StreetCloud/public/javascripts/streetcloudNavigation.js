@@ -69,6 +69,9 @@ $("#searchButtonInd").click(function() {
                 //creates together the table depending on which page it needs to append the results to
                 function (data) {
                     $(".results").text("");
+                    if(data.length == 0){
+                        $(".results").append("<p>No Results Found</p>");
+                    }
                     for (i = 0; i < data.length; i++) {
                         var toAdd = "<tr><td><table class='searchResult'><tr><td>" +
                             "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
@@ -119,6 +122,9 @@ function querySearch() {
                     inquiry: searchFor
                 },
                 function (data) {
+                    if(data.length == 0){
+                        $("#genResults").append("<p>No Results Found</p>");
+                    }
                     //Loops through the result array of database entries from search results
                     //creates a new table for each entry and appends it to streetcloud_gen_search.html
                     for (i = 0; i < data.length; i++) {
@@ -139,7 +145,7 @@ function querySearch() {
 //depending on what filters are checked and append the correct
 //data entries from database to streetcloud_medical.html
 function medicalFunction() {
-     //these variables will hold the string formatted for mySQL
+    //these variables will hold the string formatted for mySQL
     //in order to search the database
     var hours, distance, type;
 
@@ -199,7 +205,7 @@ function medicalFunction() {
             function (data) {
                 $("#medicalResults").empty();
                 if (data.length == 0) {
-                    $("#medicalResults").append("<tr><td><h1>No hospital 4 U</h1></td>");
+                    $("#medicalResults").append("<p>No Results Found</p>");
                     $("#medImage").attr("src", "https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png");
                 }
                 for (i = 0; i < data.length; i++) {
