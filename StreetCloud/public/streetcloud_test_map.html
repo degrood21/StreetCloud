@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-<link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
+    <style>
+            /* Set the size of the div element that contains the map */
+            #map {
+                height: 400px;  /* The height is 400 pixels */
+                width: 100%;  /* The width is the width of the web page */
+                }
+    </style>
     
   </head>
   <body>
@@ -12,7 +18,7 @@
 // Initialize and add the map
 function initMap() {
   // The location of portland
-  var portland = {lat: 122.6750, lng: 45.5051};
+  var portland = {lat: 45.512794, lng: -122.679565};
   // The map, centered at portland
   var map = new google.maps.Map(
       document.getElementById('map'), {zoom: 4, center: portland});
