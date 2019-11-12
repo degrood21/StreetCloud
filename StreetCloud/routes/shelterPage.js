@@ -8,7 +8,7 @@ router.post('/',function(req,res){
     var distanceQuerry = req.body.distance;
     var foodQuerry = req.body.food; 
 
-
+    //COMMENTED OUT BECUASE OF DATABASE
     dbms.dbquery("SELECT * FROM shelter WHERE DISTANCE "+distanceQuerry+" AND ("+genderQuerry+") AND ("+foodQuerry+")", parseData);
 
     function parseData(row,result){

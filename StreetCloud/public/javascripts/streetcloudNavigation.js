@@ -289,7 +289,11 @@ function foodFunction() {
             type: type,
         },
         function (data) { 
-            for (i = 1; i < data.length; i++) {
+            $("#foodResults").empty();
+            if (data.length == 0) {
+               $("#foodResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
                 $("#foodResults").append("<tr><td><table class='searchResult'><tr><td>" +
                     "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                     "<td><table class='searchInfo'>" +
@@ -306,25 +310,22 @@ function foodFunction() {
 function shelterFunction() {
 
     var gender, distance, food;
-
+    console.log('im being called');
     //SQL querries 
     //gender filters 
     if(document.getElementById("maleOnly").checked == true){
-        gender = "GENDER = 'male'";
+        gender = "GENDER = 'Male'";
     }
     else if(document.getElementById("femaleOnly").checked == true){
-        gender = "GENDER = 'female'";
+        gender = "GENDER = 'Female'";
     }
     else{
-        gender = "GENDER = 'all'";
+        gender = "GENDER = 'All'";
     }
 
     //distance filters 
     if(document.getElementById("5m").checked == true){
         distance = "BETWEEN 0 AND 5";
-    }
-    else if(document.getElementById("10m").checked == true){
-        distance = "BETWEEN 0 AND 10";
     }
     else if(document.getElementById("10m+").checked == true){
         distance = "BETWEEN 0 AND 15";
@@ -334,11 +335,11 @@ function shelterFunction() {
     }
 
     //food filters 
-    if(document.getElementById("foodIncluded").checked == true){
-        food = "FOODINCLUDED = 'YES'";
+    if(document.getElementById("notIncluded").checked == true){
+        food = "FOOD = 'No'";
     }
     else{
-        food = "FOODINCLUDED = 'NO'";
+        food = "FOOD = 'Yes'";
     }
 
     $(document).ready(function () {
@@ -349,7 +350,11 @@ function shelterFunction() {
             food: food, 
         }, 
         function (data) {
-            for (i = 1; i < data.length; i++) {
+            $("#shelterResults").empty();
+            if (data.length == 0) {
+                $("#shelterResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
                 //this should be in a for loop if there is more data 
                 $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td> " +
                     "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
