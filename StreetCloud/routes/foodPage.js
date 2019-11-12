@@ -4,7 +4,11 @@ var dbms = require('./dbms.js');
 
 
 router.post('/',function(req,res){
-    dbms.dbquery("SELECT * FROM food", parseData);
+    var distanceQuerry = req.body.distance; 
+    var priceQuerry = req.body.price;
+    var typeQuerry = req.body.type;
+
+    dbms.dbquery("SELECT * FROM food WHERE DISTANCE "+distanceQuerry+" AND ("+typeQuerry+") AND ("+priceQuerry+")", parseData);
 
     function parseData(row,result){
      if(row == false){

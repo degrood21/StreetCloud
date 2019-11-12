@@ -234,9 +234,66 @@ Date Accessed: 10/31/19
 */
 
 function foodFunction() {
+
+    var distance,price,type; 
+
+    //SQL querries for each filter  
+    //the type filters 
+    if(document.getElementById("fastFood").checked == true){
+        type = "TYPE = 'Fast Food'";
+    }
+    else if(document.getElementById("restaurant").checked == true){
+        type = "TYPE = 'Restaurant'";
+    }
+    else if(document.getElementById("other").checked == true){
+        type = "TYPE = 'Other'";
+    }
+    else{
+        type = "TYPE = 'Food Pantry'";
+    }
+
+    //distance filters 
+    if(document.getElementById("5m").checked == true){
+        distance = "BETWEEN 0 AND 5";
+    }
+    else if(document.getElementById("10m").checked == true){
+        distance = "BETWEEN 0 AND 10";
+    }
+    else if(document.getElementById("10m+").checked == true){
+        distance = "BETWEEN 0 AND 15";
+    }
+    else{
+        distance = "BETWEEN 0 AND 2";
+    }
+
+    //price filters 
+    if(document.getElementById("cheap").checked == true){
+        price = "PRICE = '$'";
+    }
+    else if(document.getElementById("medium").checked == true){
+        price = "PRICE = '$$'";
+    }
+    else if(document.getElementById("expensive").checked == true){
+        price = "PRICE = '$$$'";
+    }
+    else{
+        price = "PRICE = 'Free'";
+    }
+
+
     $(document).ready(function () {
-        $.post('/foodPage', function (data) { 
-            for (i = 1; i < data.length; i++) {
+        $.post('/foodPage',
+        {
+            distance: distance,
+            price: price,
+            type: type,
+        },
+        function (data) { 
+            $("#foodResults").empty();
+            if (data.length == 0) {
+               $("#foodResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
                 $("#foodResults").append("<tr><td><table class='searchResult'><tr><td>" +
                     "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                     "<td><table class='searchInfo'>" +
@@ -251,9 +308,53 @@ function foodFunction() {
 }
 
 function shelterFunction() {
+
+    var gender, distance, food;
+    console.log('im being called');
+    //SQL querries 
+    //gender filters 
+    if(document.getElementById("maleOnly").checked == true){
+        gender = "GENDER = 'Male'";
+    }
+    else if(document.getElementById("femaleOnly").checked == true){
+        gender = "GENDER = 'Female'";
+    }
+    else{
+        gender = "GENDER = 'All'";
+    }
+
+    //distance filters 
+    if(document.getElementById("5m").checked == true){
+        distance = "BETWEEN 0 AND 5";
+    }
+    else if(document.getElementById("10m+").checked == true){
+        distance = "BETWEEN 0 AND 15";
+    }
+    else{
+        distance = "BETWEEN 0 AND 2";
+    }
+
+    //food filters 
+    if(document.getElementById("notIncluded").checked == true){
+        food = "FOOD = 'No'";
+    }
+    else{
+        food = "FOOD = 'Yes'";
+    }
+
     $(document).ready(function () {
-        $.post('/shelterPage', function (data) {
-            for (i = 1; i < data.length; i++) {
+        $.post('/shelterPage',
+        {
+            distance: distance,
+            gender: gender,
+            food: food, 
+        }, 
+        function (data) {
+            $("#shelterResults").empty();
+            if (data.length == 0) {
+                $("#shelterResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
                 //this should be in a for loop if there is more data 
                 $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td> " +
                     "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
