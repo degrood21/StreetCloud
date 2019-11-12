@@ -11,6 +11,7 @@ router.post('/',function(req,res){
     //variable holds what the user searched for
     //to be used for the dbms query
     var query = req.body.inquiry;
+    query = query.replace(/'/g,"\\\'");
 
     //used for testing to ensure correct search
     console.log("Searching for: " + query);

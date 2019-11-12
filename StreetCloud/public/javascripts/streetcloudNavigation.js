@@ -43,7 +43,7 @@ document.getElementById("homeButton").onclick = function() {
 //Then changes page to the search html page to show results
 $("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
-    localStorage.setItem("query", searchFor);
+    sessionStorage.setItem("query", searchFor);
     location.href = "/../streetcloud_gen_search.html";
 });
 
@@ -55,8 +55,12 @@ $("#searchButtonInd").click(function() {
     pageId = pageId.toLowerCase();
 
     if (pageId === "search results") {
-        localStorage.setItem("query", searchFor);
+        sessionStorage.setItem("query", searchFor);
         querySearch();
+    }
+    else if (pageId === "medical"){
+        sessionStorage.setItem("query", searchFor);
+        medicalFunction();
     }
     else {
         $(document).ready(function () {
@@ -109,7 +113,7 @@ $("#searchButtonInd").click(function() {
 //will be searched for a word containing the search val
 function querySearch() {
     $(document).ready(function () {
-        searchFor = localStorage.getItem("query");
+        searchFor = sessionStorage.getItem("query");
 
         $(".results").text("");
 
@@ -196,11 +200,17 @@ function medicalFunction() {
     }
 
     $(document).ready(function () {
+        var query = sessionStorage.getItem("query");
+        if (query == undefined){
+            query = "";
+        }
+
         $.post('/medicalPage',
             {
                 hours: hours,
                 distance: distance,
                 type: type,
+                query: query
             },
             function (data) {
                 $("#medicalResults").empty();
