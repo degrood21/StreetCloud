@@ -47,6 +47,18 @@ $("#searchButton").click(function() {
     location.href = "/../streetcloud_gen_search.html";
 });
 
+/*
+* Implements the enter button to work for the search bar.
+* event.keyCode can be equal to a range of values that accounts for
+* keyboard keys. The enter key is value 13 and if enter is pressed, it calls
+* the above click method on the selector #searchButton.
+*/
+$("#searchText").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#searchButton").click();
+    }
+});
+
 //listens for the search button click
 //from all other htmls
 $("#searchButtonInd").click(function() {
@@ -108,6 +120,10 @@ $("#searchButtonInd").click(function() {
 //Will send a post request where the database
 //will be searched for a word containing the search val
 function querySearch() {
+    function init() {
+        init.searched = true;
+    }
+    init();
     $(document).ready(function () {
         searchFor = localStorage.getItem("query");
 
@@ -127,7 +143,8 @@ function querySearch() {
                     }
                     //Loops through the result array of database entries from search results
                     //creates a new table for each entry and appends it to streetcloud_gen_search.html
-                    for (i = 0; i < data.length; i++) {
+                    for (i = 0; i < data.length; i++) 
+                    {
                         $("#genResults").append("<tr><td><table class='searchResult'><tr><td>" +
                             "<img src='" + data[i].Image + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                             "<td><table class='searchInfo'>" +
@@ -140,6 +157,7 @@ function querySearch() {
         }
     });
 }
+
 
 //This function will send a post asking for data 
 //depending on what filters are checked and append the correct
@@ -194,6 +212,7 @@ function medicalFunction() {
     else {
         type = "%clinic%' OR TYPE LIKE '%hospital%";
     }
+    
 
     $(document).ready(function () {
         $.post('/medicalPage',
@@ -208,7 +227,8 @@ function medicalFunction() {
                     $("#medicalResults").append("<p>No Results Found</p>");
                     $("#medImage").attr("src", "https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png");
                 }
-                for (i = 0; i < data.length; i++) {
+                for (i = 0; i < data.length; i++) 
+                {
                     $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td>" +
                         "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                         "<td><table class='searchInfo'>" +
