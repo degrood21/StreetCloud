@@ -47,6 +47,18 @@ $("#searchButton").click(function() {
     location.href = "/../streetcloud_gen_search.html";
 });
 
+/*
+* Implements the enter button to work for the search bar.
+* event.keyCode can be equal to a range of values that accounts for
+* keyboard keys. The enter key is value 13 and if enter is pressed, it calls
+* the above click method on the selector #searchButton.
+*/
+$("#searchText").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#searchButton").click();
+    }
+});
+
 //listens for the search button click
 //from all other htmls
 $("#searchButtonInd").click(function() {
