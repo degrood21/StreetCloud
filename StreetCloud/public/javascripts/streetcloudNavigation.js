@@ -433,7 +433,7 @@ function jobsFunction(){
     }
     else if(document.getElementById("c_d").checked == true ||
         document.getElementById("c_d_m").checked == true){
-        education = "EDUCATION = 'College Degree'";
+        education = "EDUCATION = 'College'";
     }
 
     else{
@@ -460,14 +460,14 @@ function jobsFunction(){
     //position filters 
     if(document.getElementById("f_time").checked == true ||
         document.getElementById("f_time_m").checked == true){
-        position = "FULL TIME = 'Yes'";
+        position = "FULL_TIME = 'Yes'";
     }
     else{
-        position = "PART TIME = 'Yes'";
+        position = "PART_TIME = 'Yes'";
     }
 
     $(document).ready(function () {
-        var jobQuery = sessionStorage.getItem("jobrQuery");
+        var jobQuery = sessionStorage.getItem("jobQuery");
         if (jobQuery == undefined){
             jobQuery = "";
         }
@@ -491,9 +491,9 @@ function jobsFunction(){
                     "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
                     "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
                     "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
-                    "<tr><td><p>Education Level Needed:" + data[i].EDUCATION+ "</p></td></tr>" +
-                    "<tr><td><p>Part Time:" + data[i].PART_TIME + "</p></td></tr>" +
-                    "<tr><td><p>Full Time:" + data[i].FULL_TIME + "</p></td></tr>" +
+                    "<tr><td><p>Education Level Needed: " + data[i].EDUCATION+ "</p></td></tr>" +
+                    "<tr><td><p>Part Time: " + data[i].PART_TIME + "</p></td></tr>" +
+                    "<tr><td><p>Full Time: " + data[i].FULL_TIME + "</p></td></tr>" +
                     "</table></td></tr></table></td></tr>");
             }
         });
@@ -501,7 +501,71 @@ function jobsFunction(){
 }
 
 function libraryFunction(){
+    var cost,distance, restroom; 
+    
+    //SQL querries 
+    //cost filters 
+    if(document.getElementById("notFree").checked == true ||
+        document.getElementById("notFree_m").checked == true){
+        cost = "FREE = 'No'";
+    }
+    else{
+        cost = "FREE = 'Yes'";
+    }
 
+    //distance filters 
+    if(document.getElementById("r_close").checked == true ||
+        document.getElementById("close_m").checked == true){
+        distance = "BETWEEN 0 AND 5";
+    }
+    else if(document.getElementById("far").checked == true ||
+        document.getElementById("far_m").checked == true){
+        distance = "BETWEEN 0 AND 15";
+    }
+    else{
+        distance = "BETWEEN 0 AND 2";
+    }
+
+    //restroom filters 
+    if(document.getElementById("noRestroom").checked == true ||
+        document.getElementById("noRestroom_m").checked == true){
+        restroom = "PUBLIC_RESTROOM = 'No'";
+    }
+    else{
+        restroom = "PUBLIC_RESTROOM = 'Yes'";
+    }
+
+    $(document).ready(function () {
+        var libraryQuery = sessionStorage.getItem("libraryQuery");
+        if (libraryQuery == undefined){
+            librarybQuery = "";
+        }
+        $.post('/librariesPage',
+        {
+            distance: distance,
+            cost: cost,
+            restroom: restroom, 
+            query: libraryQuery
+        }, 
+        function (data) {
+            $("#libraryResults").empty();
+            if (data.length == 0) {
+                $("#libraryResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
+                //this should be in a for loop if there is more data 
+                $("#libraryResults").append("<tr><td><table class='searchResult'><tr><td> " +
+                    "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                    "<td><table class='searchInfo'>" +
+                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
+                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
+                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
+                    "<tr><td><p>Hours: " + data[i].HOURS+ "</p></td></tr>" +
+                    "<tr><td><p>Restroom Access: " + data[i].PUBLIC_RESTROOM + "</p></td></tr>" +
+                    "</table></td></tr></table></td></tr>");
+            }
+        });
+    });
 }
 
 function daycareFunction(){
