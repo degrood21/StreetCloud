@@ -55,18 +55,18 @@
       <td class = "job_options_formatting2"><h3>Food Included: </h3></td>
     </tr>
     <tr>
-      <td> <input type="radio" name="gender_pref" value="Male" checked> Male Only </td>
-      <td class = "job_options_formatting2"> <input type="radio" name="distance" value="2m" checked> 2 Miles </td>
-      <td> <input type="radio" name="food_included" value="included" checked> Yes </td>
+      <td> <input id="maleOnly" type="radio" name="gender_pref" value="Male" onclick="shelterFunction()"> Male Only </td>
+      <td class = "job_options_formatting2"> <input id="2m" type="radio" name="distance" value="2m" onclick="shelterFunction()" checked> 2 Miles </td>
+      <td> <input id="included" type="radio" name="food_included" value="included" onclick="shelterFunction()" checked> Yes </td>
     </tr>
     <tr>
-      <td> <input type="radio" name="gender_pref" value="Female"> Female Only </td>
-      <td class = "job_options_formatting2"> <input type="radio" name="distance" value="5m"> 5 Miles </td>
-      <td> <input type="radio" name="food_included" value="not included"> No </td>
+      <td> <input id="femaleOnly" type="radio" name="gender_pref" value="Female" onclick="shelterFunction()"> Female Only </td>
+      <td class = "job_options_formatting2"> <input id="5m" type="radio" name="distance" value="5m" onclick="shelterFunction()"> 5 Miles </td>
+      <td> <input id="notIncluded" type="radio" name="food_included" value="not included" onclick="shelterFunction()"> No </td>
     </tr>
     <tr>
-      <td> <input type="radio" name="gender_pref" value="Both"> Male and Female </td>
-      <td class = "job_options_formatting2"> <input type="radio" name="distance" value="10m"> 10 Miles </td>
+      <td> <input id="maleAndFemale" type="radio" name="gender_pref" value="Both" onclick="shelterFunction()" checked> Male and Female </td>
+      <td class = "job_options_formatting2"> <input id="10m+" type="radio" name="distance" value="10m" onclick="shelterFunction()"> 10+ Miles </td>
     </tr>
     
   </form>
@@ -92,9 +92,9 @@
   <div id="cat1Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input type="radio" name="gender_pref" value="Male" checked> Male Only </td> </tr>
-        <tr> <td> <input type="radio" name="gender_pref" value="Female"> Female Only </td> </tr>
-        <tr> <td> <input type="radio" name="gender_pref" value="Both"> Male and Female </td> </tr>
+        <tr> <td> <input type="radio" name="gender_pref" value="Male" onclick="shelterFunction()" checked> Male Only </td> </tr>
+        <tr> <td> <input type="radio" name="gender_pref" value="Female" onclick="shelterFunction()"> Female Only </td> </tr>
+        <tr> <td> <input type="radio" name="gender_pref" value="Both" onclick="shelterFunction()"> Male and Female </td> </tr>
       </table>
     </div>
   </div>
@@ -103,10 +103,10 @@
   <div id="cat2Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" checked> 2 Miles </td> </tr>
-        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m"> 5 Miles </td> </tr>
-        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m"> 10 Miles </td> </tr>
-        <tr> <td> <input id="far_m" type="radio" class="far" name="distance" value="15m"> 15+ Miles </td> </tr>
+        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" onclick="shelterFunction()" checked> 2 Miles </td> </tr>
+        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m" onclick="shelterFunction()"> 5 Miles </td> </tr>
+        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m" onclick="shelterFunction()"> 10 Miles </td> </tr>
+        <tr> <td> <input id="far_m" type="radio" class="far" name="distance" value="15m" onclick="shelterFunction()"> 15+ Miles </td> </tr>
       </table>
     </div>
   </div>
@@ -115,8 +115,8 @@
   <div id="cat3Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input type="radio" name="food_included" value="included" checked> Food Included </td> </tr>
-        <tr> <td> <input type="radio" name="food_included" value="not included"> Food Not Included </td> </tr>
+        <tr> <td> <input type="radio" name="food_included" value="included" onclick="shelterFunction()" checked> Food Included </td> </tr>
+        <tr> <td> <input type="radio" name="food_included" value="not included" onclick="shelterFunction()"> Food Not Included </td> </tr>
       </table>
     </div>
   </div>

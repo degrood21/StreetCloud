@@ -97,6 +97,20 @@ table {
 	background-color: rgba(0, 217, 255, 0.308);
 }
 
+
+/* External Citation
+ *
+ * Problem: Didn't know how to inherit the background color from the parent element
+ * Date: November 5, 2019
+ * Resource: https://www.w3schools.com/cssref/css_inherit.asp
+ * Resolution: Used the inherit CSS function suggested in this documentation
+ */
+.searchInfo {
+	background-color: inherit;
+	width: 100%;
+	height: 25%;
+}
+
 td {
 	color: yellow;
 	margin-left: 10px;
@@ -285,6 +299,12 @@ a {
 	p {
 		font-size: 12px;
 	}
+
+	.dumbTable{
+		border-bottom: solid;
+		border-bottom-color: aquamarine;
+	}
+	
 }
 
 /* med phone width portrait*/
@@ -320,6 +340,18 @@ a {
 	.menu_b {
 		width: 100px;
 		height: 100px;
+	}
+	
+	.dropdown{
+		display: none;
+	}
+}
+
+/* landscape width */
+@media screen and (max-width: 4000px) and (min-width: 1921px){
+	.menu_b {
+		width: 150px;
+		height: 150px;
 	}
 	
 	.dropdown{
