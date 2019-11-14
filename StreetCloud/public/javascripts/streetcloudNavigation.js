@@ -30,6 +30,9 @@ document.getElementById("homeFooterButton").onclick = function() {
 document.getElementById("homeButton").onclick = function() {
     location.href = "/../streetcloud.html";
 };
+document.getElementById("contactUs").onclick = function(){
+    location.href = "/../streetcloud_about.html";
+};
 
 });
 

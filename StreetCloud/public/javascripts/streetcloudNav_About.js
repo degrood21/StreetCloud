@@ -22,6 +22,9 @@ document.getElementById("homeFooterButton").onclick = function() {
 document.getElementById("aboutUs").onclick = function() {
     location.href = "/../streetcloud_about.html";
 };
+document.getElementById("contactUs").onclick = function(){
+    location.href = "/../streetcloud_about.html";
+};
 document.getElementById("registerForm").onclick = function() {
     location.href = "/../streetcloud_register_form.html";
 };
