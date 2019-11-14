@@ -203,7 +203,7 @@ a {
 	background-color: transparent;
 }
 
-#aboutUs, #registerForm{
+#aboutUs, #registerForm, #contactUS, #volunteer{
 	cursor: pointer;
 }
 

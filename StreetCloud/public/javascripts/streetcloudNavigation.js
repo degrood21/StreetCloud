@@ -27,11 +27,8 @@ document.getElementById("registerForm").onclick = function() {
 document.getElementById("homeFooterButton").onclick = function() {
     location.href = "/../streetcloud.html";
 };
-document.getElementById("homeButton").onclick = function() {
-    location.href = "/../streetcloud.html";
-};
-document.getElementById("contactUs").onclick = function(){
-    location.href = "/../streetcloud_about.html";
+document.getElementById("contactUS").onclick = function(){
+    location.href = "/../streetcloud_about.html#contactheader";
 };
 document.getElementById("volunteer").onclick = function() {
     location.href = "/../streetcloud_register_form.html";
