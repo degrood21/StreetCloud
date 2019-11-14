@@ -4,7 +4,12 @@ var dbms = require('./dbms.js');
 
 
 router.post('/',function(req,res){
-    dbms.dbquery("SELECT * FROM shelter", parseData);
+    var genderQuerry = req.body.gender;
+    var distanceQuerry = req.body.distance;
+    var foodQuerry = req.body.food; 
+
+    //COMMENTED OUT BECUASE OF DATABASE
+    dbms.dbquery("SELECT * FROM shelter WHERE DISTANCE "+distanceQuerry+" AND ("+genderQuerry+") AND ("+foodQuerry+")", parseData);
 
     function parseData(row,result){
      if(row == false){

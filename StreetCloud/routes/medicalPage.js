@@ -22,11 +22,14 @@ router.post('/',function(req,res){
 
     dbms.dbquery(inquiry, parseData);
 
-    function parseData(row,result){
-     if(row == false){
+    
+    function parseData(row,result)
+    {
+     if(row == false)
+     {
              dataString = JSON.stringify(result);
              dataObj = JSON.parse(dataString);
-        }
+     }
         console.log(dataObj); // used for testing 
         res.send(dataObj);
     }
