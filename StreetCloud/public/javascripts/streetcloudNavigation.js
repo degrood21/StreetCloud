@@ -569,6 +569,76 @@ function libraryFunction(){
 }
 
 function daycareFunction(){
+    var price,distance, times; 
+    
+    //SQL querries 
+    //number of kids filters 
+    if(document.getElementById("$$").checked == true ||
+        document.getElementById("$$_m").checked == true){
+        price = "PRICE = '$$'";
+    }
+    else if(document.getElementById("$$$").checked == true ||
+        document.getElementById("$$$_m").checked == true){
+        price = "PRICE = '$$$'";
+    }
+    else{
+        price = "PRICE = '$'";
+    }
+
+    //distance filters 
+    if(document.getElementById("r_close").checked == true ||
+        document.getElementById("close_m").checked == true){
+        distance = "BETWEEN 0 AND 5";
+    }
+    else if(document.getElementById("far").checked == true ||
+        document.getElementById("far_m").checked == true){
+        distance = "BETWEEN 0 AND 15";
+    }
+    else{
+        distance = "BETWEEN 0 AND 2";
+    }
+
+    //time filters 
+    if(document.getElementById("weekends").checked == true ||
+        document.getElementById("weekends_m").checked == true){
+        times = "WEEKENDS = 'Yes'";
+    }
+    else{
+        times = "WEEKDAYS = 'Yes'";
+    }
+
+    $(document).ready(function () {
+        var daycareQuery = sessionStorage.getItem("daycareQuery");
+        if (daycareQuery == undefined){
+            daycarebQuery = "";
+        }
+        $.post('/daycarePage',
+        {
+            price: price,
+            distance: distance,
+            times: times, 
+            query: daycareQuery
+        }, 
+        function (data) {
+            $("#daycareResults").empty();
+            if (data.length == 0) {
+                $("#daycareResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
+                //this should be in a for loop if there is more data 
+                $("#daycareResults").append("<tr><td><table class='searchResult'><tr><td> " +
+                    "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                    "<td><table class='searchInfo'>" +
+                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
+                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
+                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
+                    "<tr><td><p>Weekdays: " + data[i].WEEKDAYS+ "</p></td></tr>" +
+                    "<tr><td><p>Weekends: " + data[i].WEEKENDS + "</p></td></tr>" +
+                    "<tr><td><p>Price: " + data[i].PRICE + "</p></td></tr>" +
+                    "</table></td></tr></table></td></tr>");
+            }
+        });
+    });
 
 }
 
