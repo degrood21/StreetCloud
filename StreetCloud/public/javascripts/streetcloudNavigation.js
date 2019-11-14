@@ -43,8 +43,20 @@ document.getElementById("homeButton").onclick = function() {
 //Then changes page to the search html page to show results
 $("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
-    localStorage.setItem("query", searchFor);
+    sessionStorage.setItem("query", searchFor);
     location.href = "/../streetcloud_gen_search.html";
+});
+
+/*
+* Implements the enter button to work for the search bar.
+* event.keyCode can be equal to a range of values that accounts for
+* keyboard keys. The enter key is value 13 and if enter is pressed, it calls
+* the above click method on the selector #searchButton.
+*/
+$("#searchText").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#searchButton").click();
+    }
 });
 
 //listens for the search button click
@@ -55,8 +67,20 @@ $("#searchButtonInd").click(function() {
     pageId = pageId.toLowerCase();
 
     if (pageId === "search results") {
-        localStorage.setItem("query", searchFor);
+        sessionStorage.setItem("query", searchFor);
         querySearch();
+    }
+    else if (pageId === "medical"){
+        sessionStorage.setItem("medicalQuery", searchFor);
+        medicalFunction();
+    }
+    else if (pageId === "food"){
+        sessionStorage.setItem("foodQuery", searchFor);
+        foodFunction();
+    }
+    else if (pageId === "shelter"){
+        sessionStorage.setItem("shelterQuery", searchFor);
+        shelterFunction();
     }
     else {
         $(document).ready(function () {
@@ -79,21 +103,6 @@ $("#searchButtonInd").click(function() {
                             "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
                             "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
                             "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>";
-
-                        if (pageId === "medical") {
-                            toAdd = toAdd + "<tr><td><p>Type: " + data[i].TYPE + "</p></td></tr>" +
-                                "<tr><td><p>Hours: " + data[i].HOURS + "</p></td></tr>" +
-                                "<tr><td><p>Open Allday: " + data[i].ALLDAY + "</p></td></tr>" +
-                                "<tr><td><p>Open Weekends: " + data[i].WEEKENDS + "</p></td></tr>";
-                        }
-                        else if (pageId === "food") {
-                            toAdd = toAdd + "<tr><td><p>Price: " + data[i].PRICE + "</p></td></tr>";
-                        }
-                        else if (pageId === "shelter") {
-                            toAdd = toAdd + "<tr><td><p>Gender:" + data[i].GENDER + "</p></td></tr>" +
-                                "<tr><td><p>NOTES:" + data[i].NOTES + "</p></td></tr>";
-                        }
-
                         toAdd = toAdd + "</table></td></tr></table></td></tr>";
 
                         $(".results").append(toAdd);
@@ -108,8 +117,12 @@ $("#searchButtonInd").click(function() {
 //Will send a post request where the database
 //will be searched for a word containing the search val
 function querySearch() {
+    function init() {
+        init.searched = true;
+    }
+    init();
     $(document).ready(function () {
-        searchFor = localStorage.getItem("query");
+        searchFor = sessionStorage.getItem("query");
 
         $(".results").text("");
 
@@ -127,7 +140,8 @@ function querySearch() {
                     }
                     //Loops through the result array of database entries from search results
                     //creates a new table for each entry and appends it to streetcloud_gen_search.html
-                    for (i = 0; i < data.length; i++) {
+                    for (i = 0; i < data.length; i++) 
+                    {
                         $("#genResults").append("<tr><td><table class='searchResult'><tr><td>" +
                             "<img src='" + data[i].Image + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                             "<td><table class='searchInfo'>" +
@@ -140,6 +154,7 @@ function querySearch() {
         }
     });
 }
+
 
 //This function will send a post asking for data 
 //depending on what filters are checked and append the correct
@@ -194,13 +209,20 @@ function medicalFunction() {
     else {
         type = "%clinic%' OR TYPE LIKE '%hospital%";
     }
+    
 
     $(document).ready(function () {
+        var medicalQuery = sessionStorage.getItem("medicalQuery");
+        if (medicalQuery == undefined){
+            medicalQuery = "";
+        }
+
         $.post('/medicalPage',
             {
                 hours: hours,
                 distance: distance,
                 type: type,
+                query: medicalQuery
             },
             function (data) {
                 $("#medicalResults").empty();
@@ -208,7 +230,8 @@ function medicalFunction() {
                     $("#medicalResults").append("<p>No Results Found</p>");
                     $("#medImage").attr("src", "https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png");
                 }
-                for (i = 0; i < data.length; i++) {
+                for (i = 0; i < data.length; i++) 
+                {
                     $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td>" +
                         "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                         "<td><table class='searchInfo'>" +
@@ -234,9 +257,71 @@ Date Accessed: 10/31/19
 */
 
 function foodFunction() {
+
+    var distance,price,type; 
+
+    //SQL querries for each filter  
+    //the type filters 
+    if(document.getElementById("fastFood").checked == true){
+        type = "TYPE = 'Fast Food'";
+    }
+    else if(document.getElementById("restaurant").checked == true){
+        type = "TYPE = 'Restaurant'";
+    }
+    else if(document.getElementById("other").checked == true){
+        type = "TYPE = 'Other'";
+    }
+    else{
+        type = "TYPE = 'Food Pantry'";
+    }
+
+    //distance filters 
+    if(document.getElementById("5m").checked == true){
+        distance = "BETWEEN 0 AND 5";
+    }
+    else if(document.getElementById("10m").checked == true){
+        distance = "BETWEEN 0 AND 10";
+    }
+    else if(document.getElementById("10m+").checked == true){
+        distance = "BETWEEN 0 AND 15";
+    }
+    else{
+        distance = "BETWEEN 0 AND 2";
+    }
+
+    //price filters 
+    if(document.getElementById("cheap").checked == true){
+        price = "PRICE = '$'";
+    }
+    else if(document.getElementById("medium").checked == true){
+        price = "PRICE = '$$'";
+    }
+    else if(document.getElementById("expensive").checked == true){
+        price = "PRICE = '$$$'";
+    }
+    else{
+        price = "PRICE = 'Free'";
+    }
+
+
     $(document).ready(function () {
-        $.post('/foodPage', function (data) { 
-            for (i = 1; i < data.length; i++) {
+        var foodQuery = sessionStorage.getItem("foodQuery");
+        if (foodQuery == undefined){
+            foodQuery = "";
+        }
+        $.post('/foodPage',
+        {
+            distance: distance,
+            price: price,
+            type: type,
+            query: foodQuery
+        },
+        function (data) { 
+            $("#foodResults").empty();
+            if (data.length == 0) {
+               $("#foodResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
                 $("#foodResults").append("<tr><td><table class='searchResult'><tr><td>" +
                     "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                     "<td><table class='searchInfo'>" +
@@ -251,9 +336,58 @@ function foodFunction() {
 }
 
 function shelterFunction() {
+
+    var gender, distance, food;
+    console.log('im being called');
+    //SQL querries 
+    //gender filters 
+    if(document.getElementById("maleOnly").checked == true){
+        gender = "GENDER = 'Male'";
+    }
+    else if(document.getElementById("femaleOnly").checked == true){
+        gender = "GENDER = 'Female'";
+    }
+    else{
+        gender = "GENDER = 'All'";
+    }
+
+    //distance filters 
+    if(document.getElementById("5m").checked == true){
+        distance = "BETWEEN 0 AND 5";
+    }
+    else if(document.getElementById("10m+").checked == true){
+        distance = "BETWEEN 0 AND 15";
+    }
+    else{
+        distance = "BETWEEN 0 AND 2";
+    }
+
+    //food filters 
+    if(document.getElementById("notIncluded").checked == true){
+        food = "FOOD = 'No'";
+    }
+    else{
+        food = "FOOD = 'Yes'";
+    }
+
     $(document).ready(function () {
-        $.post('/shelterPage', function (data) {
-            for (i = 1; i < data.length; i++) {
+        var shelterQuery = sessionStorage.getItem("shelterQuery");
+        if (shelterQuery == undefined){
+            shelterQuery = "";
+        }
+        $.post('/shelterPage',
+        {
+            distance: distance,
+            gender: gender,
+            food: food, 
+            query: shelterQuery
+        }, 
+        function (data) {
+            $("#shelterResults").empty();
+            if (data.length == 0) {
+                $("#shelterResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
                 //this should be in a for loop if there is more data 
                 $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td> " +
                     "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +

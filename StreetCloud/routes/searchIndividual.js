@@ -5,6 +5,8 @@ var dbms = require('./dbms.js');
 
 router.post('/',function(req,res){
     var query = req.body.inquiry;
+    query = query.replace(/'/g,"\\\'");
+
     var querySource = req.body.source;
 
     console.log("Searching for: " + query + " in " + querySource);
