@@ -43,7 +43,7 @@ document.getElementById("homeButton").onclick = function() {
 //Then changes page to the search html page to show results
 $("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
-    localStorage.setItem("query", searchFor);
+    sessionStorage.setItem("query", searchFor);
     location.href = "/../streetcloud_gen_search.html";
 });
 
@@ -67,8 +67,20 @@ $("#searchButtonInd").click(function() {
     pageId = pageId.toLowerCase();
 
     if (pageId === "search results") {
-        localStorage.setItem("query", searchFor);
+        sessionStorage.setItem("query", searchFor);
         querySearch();
+    }
+    else if (pageId === "medical"){
+        sessionStorage.setItem("medicalQuery", searchFor);
+        medicalFunction();
+    }
+    else if (pageId === "food"){
+        sessionStorage.setItem("foodQuery", searchFor);
+        foodFunction();
+    }
+    else if (pageId === "shelter"){
+        sessionStorage.setItem("shelterQuery", searchFor);
+        shelterFunction();
     }
     else {
         $(document).ready(function () {
@@ -91,21 +103,6 @@ $("#searchButtonInd").click(function() {
                             "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
                             "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
                             "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>";
-
-                        if (pageId === "medical") {
-                            toAdd = toAdd + "<tr><td><p>Type: " + data[i].TYPE + "</p></td></tr>" +
-                                "<tr><td><p>Hours: " + data[i].HOURS + "</p></td></tr>" +
-                                "<tr><td><p>Open Allday: " + data[i].ALLDAY + "</p></td></tr>" +
-                                "<tr><td><p>Open Weekends: " + data[i].WEEKENDS + "</p></td></tr>";
-                        }
-                        else if (pageId === "food") {
-                            toAdd = toAdd + "<tr><td><p>Price: " + data[i].PRICE + "</p></td></tr>";
-                        }
-                        else if (pageId === "shelter") {
-                            toAdd = toAdd + "<tr><td><p>Gender:" + data[i].GENDER + "</p></td></tr>" +
-                                "<tr><td><p>NOTES:" + data[i].NOTES + "</p></td></tr>";
-                        }
-
                         toAdd = toAdd + "</table></td></tr></table></td></tr>";
 
                         $(".results").append(toAdd);
@@ -125,7 +122,7 @@ function querySearch() {
     }
     init();
     $(document).ready(function () {
-        searchFor = localStorage.getItem("query");
+        searchFor = sessionStorage.getItem("query");
 
         $(".results").text("");
 
@@ -215,11 +212,17 @@ function medicalFunction() {
     
 
     $(document).ready(function () {
+        var medicalQuery = sessionStorage.getItem("medicalQuery");
+        if (medicalQuery == undefined){
+            medicalQuery = "";
+        }
+
         $.post('/medicalPage',
             {
                 hours: hours,
                 distance: distance,
                 type: type,
+                query: medicalQuery
             },
             function (data) {
                 $("#medicalResults").empty();
@@ -302,11 +305,16 @@ function foodFunction() {
 
 
     $(document).ready(function () {
+        var foodQuery = sessionStorage.getItem("foodQuery");
+        if (foodQuery == undefined){
+            foodQuery = "";
+        }
         $.post('/foodPage',
         {
             distance: distance,
             price: price,
             type: type,
+            query: foodQuery
         },
         function (data) { 
             $("#foodResults").empty();
@@ -363,11 +371,16 @@ function shelterFunction() {
     }
 
     $(document).ready(function () {
+        var shelterQuery = sessionStorage.getItem("shelterQuery");
+        if (shelterQuery == undefined){
+            shelterQuery = "";
+        }
         $.post('/shelterPage',
         {
             distance: distance,
             gender: gender,
             food: food, 
+            query: shelterQuery
         }, 
         function (data) {
             $("#shelterResults").empty();
