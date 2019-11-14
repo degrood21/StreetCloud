@@ -65,10 +65,10 @@
   <div id="cat1Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input type="radio" name="time" value="Fast" checked> Fast </td> </tr>
-        <tr> <td> <input type="radio" name="time" value="Soon"> Soon </td> </tr>
-        <tr> <td> <input type="radio" name="time" value="One hour"> One hour </td> </tr>
-        <tr> <td> <input type="radio" name="time" value="Other"> Other </td> </tr>
+        <tr> <td> <input type="radio" name="time" value="Fast" onclick="foodFunction()" checked> Fast </td> </tr>
+        <tr> <td> <input type="radio" name="time" value="Soon" onclick="foodFunction()"> Soon </td> </tr>
+        <tr> <td> <input type="radio" name="time" value="One hour" onclick="foodFunction()"> One hour </td> </tr>
+        <tr> <td> <input type="radio" name="time" value="Other" onclick="foodFunction()"> Other </td> </tr>
       </table>
     </div>
   </div>
@@ -77,10 +77,10 @@
   <div id="cat2Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m"checked> 2 Miles </td> </tr>
-        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m"> 5 Miles </td> </tr>
-        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m"> 10 Miles </td> </tr>
-        <tr> <td> <input id="far_m" type="radio" class="far" name="distance" value="15m"> 15+ Miles </td> </tr>
+        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" onclick="foodFunction()" checked> 2 Miles </td> </tr>
+        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m" onclick="foodFunction()"> 5 Miles </td> </tr>
+        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m" onclick="foodFunction()"> 10 Miles </td> </tr>
+        <tr> <td> <input id="far_m" type="radio" class="far" name="distance" value="15m" onclick="foodFunction()"> 10+ Miles </td> </tr>
       </table>
     </div>
   </div>
@@ -89,10 +89,10 @@
   <div id="cat3Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input type="radio" name="price" value="Free" checked> Free </td> </tr>
-        <tr> <td> <input type="radio" name="price" value="inexpensive"> $ </td> </tr>
-        <tr> <td> <input type="radio" name="price" value="medium"> $$ </td> </tr>
-        <tr> <td> <input type="radio" name="price" value="expensive"> $$$ </td> </tr>
+        <tr> <td> <input type="radio" name="price" value="Free" onclick="foodFunction()" checked> Free </td> </tr>
+        <tr> <td> <input type="radio" name="price" value="inexpensive" onclick="foodFunction()"> $ </td> </tr>
+        <tr> <td> <input type="radio" name="price" value="medium" onclick="foodFunction()"> $$ </td> </tr>
+        <tr> <td> <input type="radio" name="price" value="expensive" onclick="foodFunction()"> $$$ </td> </tr>
       </table>
     </div>
   </div>
@@ -100,29 +100,29 @@
 <table class="filters">
 <form action="action_page.php">
   <tr>
-    <td class = "job_options_formatting2"><h3>When: </h3></td>
+    <td class = "job_options_formatting2"><h3>Type: </h3></td>
     <td class = "job_options_formatting2"><h3>Distance: </h3></td>
     <td class = "job_options_formatting2"><h3>Price: </h3></td>
   </tr>
   <tr>
-    <td> <input type="radio" name="time" value="Fast" checked> Fast </td>
-    <td> <input type="radio" name="distance" value="2m" checked> 2 Miles </td>
-    <td> <input type="radio" name="price" value="Free" checked> Free </td>
+    <td> <input id="fastFood" type="radio" name="time" value="Fast" onclick="foodFunction()"> Fast Food </td>
+    <td> <input id="2m" type="radio" name="distance" value="2m" onclick="foodFunction()" checked> 2 Miles </td>
+    <td> <input id="free" type="radio" name="price" value="Free" onclick="foodFunction()" checked> Free </td>
   </tr>
   <tr>
-    <td> <input type="radio" name="time" value="soon"> Soon </td>
-    <td> <input type="radio" name="distance" value="5m"> 5 Miles </td>
-    <td> <input type="radio" name="price" value="inexpensive"> $ </td>
+    <td> <input id="pantry" type="radio" name="time" value="soon" onclick="foodFunction()" checked> Pantry </td>
+    <td> <input id="5m" type="radio" name="distance" value="5m" onclick="foodFunction()"> 5 Miles </td>
+    <td> <input id="cheap" type="radio" name="price" value="inexpensive"  onclick="foodFunction()"> $ </td>
   </tr>
   <tr>
-    <td> <input type="radio" name="time" value="one hour"> In one hour </td>
-    <td> <input type="radio" name="distance" value="10m"> 10 Miles </td>
-    <td> <input type="radio" name="price" value="medium"> $$ </td>
+    <td> <input id="restaurant" type="radio" name="time" value="one hour" onclick="foodFunction()"> Restaurant </td>
+    <td> <input id="10m" type="radio" name="distance" value="10m" onclick="foodFunction()"> 10 Miles </td>
+    <td> <input id="medium" type="radio" name="price" value="medium"  onclick="foodFunction()"> $$ </td>
   </tr>
   <tr>
-    <td> <input type="radio" name="time" value="other"> Other </td>
-    <td> <input type="radio" name="distance" value="15m"> 15+ Miles </td>
-    <td> <input type="radio" name="price" value="expensive"> $$$ </td>
+    <td> <input id="other" type="radio" name="time" value="other" onclick="foodFunction()"> Other </td>
+    <td> <input id="10m+" type="radio" name="distance" value="15m" onclick="foodFunction()"> 10+ Miles </td>
+    <td> <input id="expensive" type="radio" name="price" value="expensive" onclick="foodFunction()"> $$$ </td>
   </tr>
 </form>
 </table>
