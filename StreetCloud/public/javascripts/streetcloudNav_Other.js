@@ -34,3 +34,6 @@ document.getElementById("registerForm").onclick = function() {
 document.getElementById("contactUs").onclick = function(){
     location.href = "/../streetcloud_about.html";
 };
+document.getElementById("volunteer").onclick = function() {
+    location.href = "/../streetcloud_register_form.html";
+};
