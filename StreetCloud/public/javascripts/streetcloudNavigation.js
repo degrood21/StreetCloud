@@ -1,8 +1,13 @@
-//Dylan DeGrood
-/*Helps to wait to run functions once the document fully loads*/
+//streetcloudNavigation.js
+//This is the code for the main functionality
+//for navigating through the website and displaying information
+//Created by the StreetCloud software team
 
+/*Helps to wait to run functions once the document fully loads*/
 $(document).ready(function(){
 
+//Onclick methods for the main screen
+//When one is clicked it loads up the correct html
 document.getElementById("headerButton").onclick = function() {
     location.href = "/../streetcloud.html";
 };
@@ -36,150 +41,215 @@ document.getElementById("volunteer").onclick = function() {
 
 });
 
+//Click function for the searchButton on the main page
+//Puts the item that was searched for and loads it into local storage
+//Then changes page to the search html page to show results
 $("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
-    localStorage.setItem("query", searchFor);
+    sessionStorage.setItem("query", searchFor);
     location.href = "/../streetcloud_gen_search.html";
 });
 
+/*
+* Implements the enter button to work for the search bar.
+* event.keyCode can be equal to a range of values that accounts for
+* keyboard keys. The enter key is value 13 and if enter is pressed, it calls
+* the above click method on the selector #searchButton.
+*/
+$("#searchText").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#searchButton").click();
+    }
+});
+
+//listens for the search button click
+//from all other htmls
 $("#searchButtonInd").click(function() {
     var searchFor = $("#searchText").val();
-    var pageId = $("#pageId").html();
+    var pageId = $("#pageId").html();//gets what page is calling
     pageId = pageId.toLowerCase();
 
-    $(document).ready(function(){
-        $.post('/searchIndividualPage',
-        {
-            inquiry: searchFor,
-            source: pageId
-        },
-        function(data){
-                $(".results").text("");
-                for (i = 0; i < data.length; i++){
-                    var toAdd = "<tr><td><img src='"+ data[i].IMAGE + "' height="+100+" width="+100+"></img></td>" +
-                    "<td><table class='searchResult'>" +
-                    "<tr><td><p>Name: "+data[i].NAME+"</p></td></tr>" +
-                    "<tr><td><p>Address: "+data[i].ADDRESS+"</p></td></tr>" +
-                    "<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td></tr>";
-
-                    if (pageId === "medical"){
-                        toAdd = toAdd + "<tr><td><p>Type: "+data[i].TYPE+"</p></td></tr>" +
-                        "<tr><td><p>Hours: "+data[i].HOURS+"</p></td></tr>" + 
-                        "<tr><td><p>Open Allday: "+data[i].ALLDAY+"</p></td></tr>" +
-                        "<tr><td><p>Open Weekends: "+data[i].WEEKENDS+"</p></td></tr>";
+    if (pageId === "search results") {
+        sessionStorage.setItem("query", searchFor);
+        querySearch();
+    }
+    else if (pageId === "medical"){
+        sessionStorage.setItem("medicalQuery", searchFor);
+        medicalFunction();
+    }
+    else if (pageId === "food"){
+        sessionStorage.setItem("foodQuery", searchFor);
+        foodFunction();
+    }
+    else if (pageId === "shelter"){
+        sessionStorage.setItem("shelterQuery", searchFor);
+        shelterFunction();
+    }
+    else {
+        $(document).ready(function () {
+            //sends the post call to retrieve the data form database
+            $.post('/searchIndividualPage',
+                {
+                    inquiry: searchFor,
+                    source: pageId
+                },
+                //creates together the table depending on which page it needs to append the results to
+                function (data) {
+                    $(".results").text("");
+                    if(data.length == 0){
+                        $(".results").append("<p>No Results Found</p>");
                     }
-                    else if (pageId === "food"){
-                        toAdd = toAdd + "<tr><td><p>Price: "+data[i].PRICE+"</p></td></tr>";
-                    }
-                    else if (pageId === "shelter"){
-                        toAdd = toAdd + "<tr><td><p>Type:"+data[i].TYPE+"</p></td>";
-                    }
+                    for (i = 0; i < data.length; i++) {
+                        var toAdd = "<tr><td><table class='searchResult'><tr><td>" +
+                            "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                            "<td><table class='searchInfo'>" +
+                            "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
+                            "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
+                            "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>";
+                        toAdd = toAdd + "</table></td></tr></table></td></tr>";
 
-                    toAdd = toAdd + "</table></td></tr>";
-
-                    $(".results").append(toAdd);
-                }
+                        $(".results").append(toAdd);
+                    }
+                });
         });
-    });
+    }
 
 });
 
-function querySearch(){
-    $(document).ready(function(){
-        searchFor = localStorage.getItem("query");
-        $.post('/searchPage',
-        {
-            inquiry: searchFor
-        },
-        function(data){
-                for (i = 0; i < data.length; i++){
-                    $("#genResults").append( "<tr><td><img src='"+ data[i].Image + "' height="+100+" width="+100+"></img></td>" +
-                    "<td><table class='searchResult'>" +
-                    "<tr><td><p>Name: "+data[i].Name+"</p></td></tr>" +
-                    "<tr><td><p>Address: "+data[i].Address+"</p></td></tr>" +
-                    "<tr><td><p>Distance: "+data[i].Distance+"</p></td></tr>" +
-                    "</table></td></tr>");
-                }
-        });
+//Using the search value from local storage
+//Will send a post request where the database
+//will be searched for a word containing the search val
+function querySearch() {
+    function init() {
+        init.searched = true;
+    }
+    init();
+    $(document).ready(function () {
+        searchFor = sessionStorage.getItem("query");
+
+        $(".results").text("");
+
+        if (searchFor === "") {
+            $("#genResults").append("<p>No Results Found</p>");
+        }
+        else {
+            $.post('/searchPage',
+                {
+                    inquiry: searchFor
+                },
+                function (data) {
+                    if(data.length == 0){
+                        $("#genResults").append("<p>No Results Found</p>");
+                    }
+                    //Loops through the result array of database entries from search results
+                    //creates a new table for each entry and appends it to streetcloud_gen_search.html
+                    for (i = 0; i < data.length; i++) 
+                    {
+                        $("#genResults").append("<tr><td><table class='searchResult'><tr><td>" +
+                            "<img src='" + data[i].Image + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                            "<td><table class='searchInfo'>" +
+                            "<tr><td><p>Name: " + data[i].Name + "</p></td></tr>" +
+                            "<tr><td><p>Address: " + data[i].Address + "</p></td></tr>" +
+                            "<tr><td><p>Distance: " + data[i].Distance + "</p></td></tr>" +
+                            "</table></td></tr></table></td></tr>");
+                    }
+                });
+        }
     });
 }
 
-//these fucntions prints the data from the database 
-function medicalFunction(){
-    var hours,distance,type; 
+
+//This function will send a post asking for data 
+//depending on what filters are checked and append the correct
+//data entries from database to streetcloud_medical.html
+function medicalFunction() {
+    //these variables will hold the string formatted for mySQL
+    //in order to search the database
+    var hours, distance, type;
 
     //seting the SQL querries based on what filter is selected 
     //special hours filters
-    if(document.getElementById("weekends").checked == true || 
-        document.getElementById("weekends_mobile").checked == true){
+    if (document.getElementById("weekends").checked == true ||
+        document.getElementById("weekends_mobile").checked == true) {
         hours = "WEEKENDS = 'Yes'";
     }
-    else if(document.getElementById("24HR").checked == true || 
-        document.getElementById("24HR_mobile").checked == true){
+    else if (document.getElementById("24HR").checked == true ||
+        document.getElementById("24HR_mobile").checked == true) {
         hours = "ALLDAY = 'Yes'";
     }
     else{
-        hours = "ALLDAY = 'Yes' OR ALLDAY = 'No'";
+        hours = "ALLDAY = 'Yes' OR ALLDAY = 'No'";//default search/checked
     }
-    //distance 
+    //distance filters
     if(document.getElementById("5m").checked == true ||
         document.getElementById("5m_mobile").checked == true){
         distance = "BETWEEN 0 AND 5";
     }
-    else if(document.getElementById("10m").checked == true || 
-        document.getElementById("10m_mobile").checked == true){
+    else if (document.getElementById("10m").checked == true ||
+        document.getElementById("10m_mobile").checked == true) {
         distance = "BETWEEN 0 AND 10";
     }
-    else if(document.getElementById("15m+").checked == true ||
-        document.getElementById("15m+_mobile").checked == true){
+    else if (document.getElementById("15m+").checked == true ||
+        document.getElementById("15m+_mobile").checked == true) {
         distance = "BETWEEN 0 AND 20";
     }
     else{
-        distance = "BETWEEN 0 AND 2";
+        distance = "BETWEEN 0 AND 2"; //default search/checked
     }
-    //type
+    //type filters
     if(document.getElementById("dentist").checked == true ||
         document.getElementById("dentist_mobile").checked == true){
         type = "%Dental%";
     }
-    else if(document.getElementById("optometrist").checked == true ||
-        document.getElementById("optometrist_mobile").checked == true){
+    else if (document.getElementById("optometrist").checked == true ||
+        document.getElementById("optometrist_mobile").checked == true) {
         type = "%Optometry%";
     }
-    else if(document.getElementById("therapist").checked == true ||
-        document.getElementById("therapist_mobile").checked == true){
+    else if (document.getElementById("therapist").checked == true ||
+        document.getElementById("therapist_mobile").checked == true) {
         type = "%Therapy%";
     }
-    else{
-        type = "%clinic%' OR TYPE LIKE '%hospital%";  
-    } 
+    else {
+        type = "%clinic%' OR TYPE LIKE '%hospital%";
+    }
+    
 
-    $(document).ready(function(){
+    $(document).ready(function () {
+        var medicalQuery = sessionStorage.getItem("medicalQuery");
+        if (medicalQuery == undefined){
+            medicalQuery = "";
+        }
+
         $.post('/medicalPage',
-        {
-            hours: hours, 
-            distance: distance,
-            type: type, 
-        },
-        function(data){
-            $("#medicalResults").empty();
-            if(data.length == 0){
-                $("#medicalResults").append("<tr><td><h1>No hospital 4 U</h1></td>");
-                $("#medImage").attr("src","https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png");
-            }
-            for(i=0; i < data.length; i++){
-            $("#medicalResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
-            $("#medicalResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
-            $("#medicalResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+" Miles</p></td>");
-            $("#medicalResults").append("<tr><td><p>Type: "+data[i].TYPE+"</p></td>");
-            $("#medicalResults").append("<tr><td><p>Hours: "+data[i].HOURS+"</p></td>");
-            $("#medicalResults").append("<tr><td><p>Open Allday: "+data[i].ALLDAY+"</p></td>");
-            $("#medicalResults").append("<tr><td><p>Open Weekends: "+data[i].WEEKENDS+"</p></td>");
-            $("#medicalResults").append("<br>");
-            }
-        });
+            {
+                hours: hours,
+                distance: distance,
+                type: type,
+                query: medicalQuery
+            },
+            function (data) {
+                $("#medicalResults").empty();
+                if (data.length == 0) {
+                    $("#medicalResults").append("<p>No Results Found</p>");
+                    $("#medImage").attr("src", "https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png");
+                }
+                for (i = 0; i < data.length; i++) 
+                {
+                    $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td>" +
+                        "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                        "<td><table class='searchInfo'>" +
+                        "<tr><td><p>Name: " + data[i].NAME + "</p></td>" +
+                        "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td>" +
+                        "<tr><td><p>Distance: " + data[i].DISTANCE + " Miles</p></td>" +
+                        "<tr><td><p>Type: " + data[i].TYPE + "</p></td>" +
+                        "<tr><td><p>Hours: " + data[i].HOURS + "</p></td>" +
+                        "<tr><td><p>Open Allday: " + data[i].ALLDAY + "</p></td>" +
+                        "<tr><td><p>Open Weekends: " + data[i].WEEKENDS + "</p></td>" +
+                        "</table></td></tr></table></td></tr>");
+                }
+            });
     });
-   
+
 }
 
 /*
@@ -189,67 +259,149 @@ https://stackoverflow.com/questions/4982846/jquery-clear-empty-all-contents-of-t
 Date Accessed: 10/31/19
 */
 
-function foodFunction(){
-    $(document).ready(function(){
-        $.post('/foodPage',function(data){
-            //this should be in a for loop if there is more data 
-            for (i = 1; i < data.length; i++){
-                $("#foodResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
-                $("#foodResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
-                $("#foodResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
-                $("#foodResults").append("<tr><td><p>Price: "+data[i].PRICE+"</p></td> <br>");
+function foodFunction() {
+
+    var distance,price,type; 
+
+    //SQL querries for each filter  
+    //the type filters 
+    if(document.getElementById("fastFood").checked == true){
+        type = "TYPE = 'Fast Food'";
+    }
+    else if(document.getElementById("restaurant").checked == true){
+        type = "TYPE = 'Restaurant'";
+    }
+    else if(document.getElementById("other").checked == true){
+        type = "TYPE = 'Other'";
+    }
+    else{
+        type = "TYPE = 'Food Pantry'";
+    }
+
+    //distance filters 
+    if(document.getElementById("5m").checked == true){
+        distance = "BETWEEN 0 AND 5";
+    }
+    else if(document.getElementById("10m").checked == true){
+        distance = "BETWEEN 0 AND 10";
+    }
+    else if(document.getElementById("10m+").checked == true){
+        distance = "BETWEEN 0 AND 15";
+    }
+    else{
+        distance = "BETWEEN 0 AND 2";
+    }
+
+    //price filters 
+    if(document.getElementById("cheap").checked == true){
+        price = "PRICE = '$'";
+    }
+    else if(document.getElementById("medium").checked == true){
+        price = "PRICE = '$$'";
+    }
+    else if(document.getElementById("expensive").checked == true){
+        price = "PRICE = '$$$'";
+    }
+    else{
+        price = "PRICE = 'Free'";
+    }
+
+
+    $(document).ready(function () {
+        var foodQuery = sessionStorage.getItem("foodQuery");
+        if (foodQuery == undefined){
+            foodQuery = "";
+        }
+        $.post('/foodPage',
+        {
+            distance: distance,
+            price: price,
+            type: type,
+            query: foodQuery
+        },
+        function (data) { 
+            $("#foodResults").empty();
+            if (data.length == 0) {
+               $("#foodResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
+                $("#foodResults").append("<tr><td><table class='searchResult'><tr><td>" +
+                    "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                    "<td><table class='searchInfo'>" +
+                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
+                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
+                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
+                    "<tr><td><p>Price: " + data[i].PRICE + "</p></td></tr>" +
+                    "</table></td></tr></table></td></tr>");
             }
         });
     });
 }
 
-function shelterFunction(){
-    $(document).ready(function(){
-        $.post('/shelterPage',function(data){
-            for (i = 1; i < data.length; i++){
-            //this should be in a for loop if there is more data 
-                $("#shelterResults").append("<tr><td><p>Name: "+data[i].NAME+"</p></td>");
-                $("#shelterResults").append("<tr><td><p>Address: "+data[i].ADDRESS+"</p></td>");
-                $("#shelterResults").append("<tr><td><p>Distance: "+data[i].DISTANCE+"</p></td>");
-                $("#shelterResults").append("<tr><td><p>Type:"+data[i].TYPE+"</p></td>");
+function shelterFunction() {
+
+    var gender, distance, food;
+    console.log('im being called');
+    //SQL querries 
+    //gender filters 
+    if(document.getElementById("maleOnly").checked == true){
+        gender = "GENDER = 'Male'";
+    }
+    else if(document.getElementById("femaleOnly").checked == true){
+        gender = "GENDER = 'Female'";
+    }
+    else{
+        gender = "GENDER = 'All'";
+    }
+
+    //distance filters 
+    if(document.getElementById("5m").checked == true){
+        distance = "BETWEEN 0 AND 5";
+    }
+    else if(document.getElementById("10m+").checked == true){
+        distance = "BETWEEN 0 AND 15";
+    }
+    else{
+        distance = "BETWEEN 0 AND 2";
+    }
+
+    //food filters 
+    if(document.getElementById("notIncluded").checked == true){
+        food = "FOOD = 'No'";
+    }
+    else{
+        food = "FOOD = 'Yes'";
+    }
+
+    $(document).ready(function () {
+        var shelterQuery = sessionStorage.getItem("shelterQuery");
+        if (shelterQuery == undefined){
+            shelterQuery = "";
+        }
+        $.post('/shelterPage',
+        {
+            distance: distance,
+            gender: gender,
+            food: food, 
+            query: shelterQuery
+        }, 
+        function (data) {
+            $("#shelterResults").empty();
+            if (data.length == 0) {
+                $("#shelterResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
+                //this should be in a for loop if there is more data 
+                $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td> " +
+                    "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                    "<td><table class='searchInfo'>" +
+                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
+                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
+                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
+                    "<tr><td><p>Gender:" + data[i].GENDER + "</p></td></tr>" +
+                    "<tr><td><p>NOTES:" + data[i].NOTES + "</p></td></tr>" +
+                    "</table></td></tr></table></td></tr>");
             }
         });
     });
 }
-
-/* Searches for results from database with the same name
-function search(){
-    location.href = "/../streetcloud_gen_search.html";
-}
-
-var searchFor = document.getElementById("searchText").innerHTML;
-console.log("Searching for" + searchFor);
-location.href = "/../streetcloud_gen_search.html";
-
-$(document).ready(function(){
-    $.post('/foodPage',
-    {
-        inquiry: searchFor
-    },
-    function(data){
-    });
-});
-
-$(document).ready(function(){
-    $.post('/medicalPage',
-    {
-        inquiry: searchFor
-    },
-    function(data){
-    });
-});
-
-$(document).ready(function(){
-    $.post('/shelterPage',
-    {
-        inquiry: searchFor
-    },
-    function(data){
-    });
-});
-*/
