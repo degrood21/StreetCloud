@@ -646,5 +646,59 @@ function daycareFunction(){
 }
 
 function publicRestroomFunction(){
+    var distance, times; 
     
+    //SQL querries 
+    //distance filters 
+    if(document.getElementById("r_close").checked == true ||
+        document.getElementById("r_close_m").checked == true){
+        distance = "BETWEEN 0 AND 5";
+    }
+    else if(document.getElementById("r_far").checked == true ||
+        document.getElementById("r_far_m").checked == true){
+        distance = "BETWEEN 0 AND 20";
+    }
+    else{
+        distance = "BETWEEN 0 AND 2";
+    }
+
+    //time filters 
+    if(document.getElementById("setTime").checked == true ||
+        document.getElementById("setTime_m").checked == true){
+        times = "ALLDAY = 'No'";
+    }
+    else{
+        times = "ALLDAY = 'Yes'";
+    }
+
+    $(document).ready(function () {
+        var restroomQuery = sessionStorage.getItem("restroomQuery");
+        if (restroomQuery == undefined){
+            trestroombQuery = "";
+        }
+        $.post('/publicRestroomsPage',
+        {
+            distance: distance,
+            times: times, 
+            query: restroomQuery
+        }, 
+        function (data) {
+            $("#publicRestroomsResults").empty();
+            if (data.length == 0) {
+                $("#publicRestroomsResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
+                //this should be in a for loop if there is more data 
+                $("#publicRestroomsResults").append("<tr><td><table class='searchResult'><tr><td> " +
+                    "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                    "<td><table class='searchInfo'>" +
+                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
+                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
+                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
+                    "<tr><td><p>Open 24 Hours: " + data[i].ALLDAY+ "</p></td></tr>" +
+                    "<tr><td><p>Hours: " + data[i].HOURS + "</p></td></tr>" +
+                    "</table></td></tr></table></td></tr>");
+            }
+        });
+    });  
 }
