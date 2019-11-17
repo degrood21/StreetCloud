@@ -265,13 +265,16 @@ function foodFunction() {
 
     //SQL querries for each filter  
     //the type filters 
-    if(document.getElementById("fastFood").checked == true){
+    if(document.getElementById("fastFood").checked == true ||
+        document.getElementById("fastFood_m").checked == true){
         type = "TYPE = 'Fast Food'";
     }
-    else if(document.getElementById("restaurant").checked == true){
+    else if(document.getElementById("restaurant").checked == true||
+        document.getElementById("restaurant_m").checked == true){
         type = "TYPE = 'Restaurant'";
     }
-    else if(document.getElementById("other").checked == true){
+    else if(document.getElementById("other").checked == true ||
+        document.getElementById("other_m").checked == true){
         type = "TYPE = 'Other'";
     }
     else{
@@ -279,13 +282,16 @@ function foodFunction() {
     }
 
     //distance filters 
-    if(document.getElementById("5m").checked == true){
+    if(document.getElementById("5m").checked == true ||
+        document.getElementById("r_close_m").checked == true){
         distance = "BETWEEN 0 AND 5";
     }
-    else if(document.getElementById("10m").checked == true){
+    else if(document.getElementById("10m").checked == true ||
+        document.getElementById("r_far_m").checked == true){
         distance = "BETWEEN 0 AND 10";
     }
-    else if(document.getElementById("10m+").checked == true){
+    else if(document.getElementById("10m+").checked == true ||
+        document.getElementById("far_m").checked == true){
         distance = "BETWEEN 0 AND 15";
     }
     else{
@@ -293,13 +299,16 @@ function foodFunction() {
     }
 
     //price filters 
-    if(document.getElementById("cheap").checked == true){
+    if(document.getElementById("cheap").checked == true ||
+        document.getElementById("cheap_m").checked == true){
         price = "PRICE = '$'";
     }
-    else if(document.getElementById("medium").checked == true){
+    else if(document.getElementById("medium").checked == true ||
+        document.getElementById("medium_m").checked == true){
         price = "PRICE = '$$'";
     }
-    else if(document.getElementById("expensive").checked == true){
+    else if(document.getElementById("expensive").checked == true ||
+        document.getElementById("expensive_m").checked == true){
         price = "PRICE = '$$$'";
     }
     else{
@@ -380,13 +389,15 @@ function clearFilter(){
 function shelterFunction() {
 
     var gender, distance, food;
-    console.log('im being called');
+    
     //SQL querries 
     //gender filters 
-    if(document.getElementById("maleOnly").checked == true){
+    if(document.getElementById("maleOnly").checked == true ||
+        document.getElementById("maleOnly_m").checked == true){
         gender = "GENDER = 'Male'";
     }
-    else if(document.getElementById("femaleOnly").checked == true){
+    else if(document.getElementById("femaleOnly").checked == true ||
+        document.getElementById("femaleOnly_m").checked == true){
         gender = "GENDER = 'Female'";
     }
     else{
@@ -394,10 +405,12 @@ function shelterFunction() {
     }
 
     //distance filters 
-    if(document.getElementById("5m").checked == true){
+    if(document.getElementById("5m").checked == true ||
+        document.getElementById("close_m").checked == true){
         distance = "BETWEEN 0 AND 5";
     }
-    else if(document.getElementById("10m+").checked == true){
+    else if(document.getElementById("10m+").checked == true ||
+        document.getElementById("r_far_m").checked == true){
         distance = "BETWEEN 0 AND 15";
     }
     else{
@@ -405,7 +418,8 @@ function shelterFunction() {
     }
 
     //food filters 
-    if(document.getElementById("notIncluded").checked == true){
+    if(document.getElementById("notIncluded").checked == true ||
+        document.getElementById("notIncluded_m").checked == true){
         food = "FOOD = 'No'";
     }
     else{
@@ -443,4 +457,287 @@ function shelterFunction() {
             }
         });
     });
+}
+
+function jobsFunction(){
+
+    var education,distance, position; 
+    
+    //SQL querries 
+    //education filters 
+    if(document.getElementById("no_hs").checked == true ||
+        document.getElementById("no_hs_m").checked == true){
+        education = "EDUCATION = 'No High School'";
+    }
+    else if(document.getElementById("s_hs").checked == true ||
+        document.getElementById("s_hs_m").checked == true){
+        education = "EDUCATION = 'Some High School'";
+    }
+    else if(document.getElementById("c_d").checked == true ||
+        document.getElementById("c_d_m").checked == true){
+        education = "EDUCATION = 'College'";
+    }
+
+    else{
+        education = "EDUCATION = 'High School'";
+    }
+
+    //distance filters 
+    if(document.getElementById("r_close").checked == true ||
+        document.getElementById("close_m").checked == true){
+        distance = "BETWEEN 0 AND 5";
+    }
+    else if(document.getElementById("r_far").checked == true ||
+        document.getElementById("r_far_m").checked == true){
+        distance = "BETWEEN 0 AND 10";
+    }
+    else if(document.getElementById("far").checked == true ||
+        document.getElementById("far_m").checked == true){
+        distance = "BETWEEN 0 AND 15";
+    }
+    else{
+        distance = "BETWEEN 0 AND 2";
+    }
+
+    //position filters 
+    if(document.getElementById("f_time").checked == true ||
+        document.getElementById("f_time_m").checked == true){
+        position = "FULL_TIME = 'Yes'";
+    }
+    else{
+        position = "PART_TIME = 'Yes'";
+    }
+
+    $(document).ready(function () {
+        var jobQuery = sessionStorage.getItem("jobQuery");
+        if (jobQuery == undefined){
+            jobQuery = "";
+        }
+        $.post('/jobsPage',
+        {
+            distance: distance,
+            education: education,
+            position: position, 
+            query: jobQuery
+        }, 
+        function (data) {
+            $("#jobResults").empty();
+            if (data.length == 0) {
+                $("#jobResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
+                //this should be in a for loop if there is more data 
+                $("#jobResults").append("<tr><td><table class='searchResult'><tr><td> " +
+                    "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                    "<td><table class='searchInfo'>" +
+                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
+                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
+                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
+                    "<tr><td><p>Education Level Needed: " + data[i].EDUCATION+ "</p></td></tr>" +
+                    "<tr><td><p>Part Time: " + data[i].PART_TIME + "</p></td></tr>" +
+                    "<tr><td><p>Full Time: " + data[i].FULL_TIME + "</p></td></tr>" +
+                    "</table></td></tr></table></td></tr>");
+            }
+        });
+    });
+}
+
+function libraryFunction(){
+    var cost,distance, restroom; 
+    
+    //SQL querries 
+    //cost filters 
+    if(document.getElementById("notFree").checked == true ||
+        document.getElementById("notFree_m").checked == true){
+        cost = "FREE = 'No'";
+    }
+    else{
+        cost = "FREE = 'Yes'";
+    }
+
+    //distance filters 
+    if(document.getElementById("r_close").checked == true ||
+        document.getElementById("close_m").checked == true){
+        distance = "BETWEEN 0 AND 5";
+    }
+    else if(document.getElementById("far").checked == true ||
+        document.getElementById("far_m").checked == true){
+        distance = "BETWEEN 0 AND 15";
+    }
+    else{
+        distance = "BETWEEN 0 AND 2";
+    }
+
+    //restroom filters 
+    if(document.getElementById("noRestroom").checked == true ||
+        document.getElementById("noRestroom_m").checked == true){
+        restroom = "PUBLIC_RESTROOM = 'No'";
+    }
+    else{
+        restroom = "PUBLIC_RESTROOM = 'Yes'";
+    }
+
+    $(document).ready(function () {
+        var libraryQuery = sessionStorage.getItem("libraryQuery");
+        if (libraryQuery == undefined){
+            librarybQuery = "";
+        }
+        $.post('/librariesPage',
+        {
+            distance: distance,
+            cost: cost,
+            restroom: restroom, 
+            query: libraryQuery
+        }, 
+        function (data) {
+            $("#libraryResults").empty();
+            if (data.length == 0) {
+                $("#libraryResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
+                //this should be in a for loop if there is more data 
+                $("#libraryResults").append("<tr><td><table class='searchResult'><tr><td> " +
+                    "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                    "<td><table class='searchInfo'>" +
+                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
+                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
+                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
+                    "<tr><td><p>Hours: " + data[i].HOURS+ "</p></td></tr>" +
+                    "<tr><td><p>Restroom Access: " + data[i].PUBLIC_RESTROOM + "</p></td></tr>" +
+                    "</table></td></tr></table></td></tr>");
+            }
+        });
+    });
+}
+
+function daycareFunction(){
+    var price,distance, times; 
+    
+    //SQL querries 
+    //number of kids filters 
+    if(document.getElementById("$$").checked == true ||
+        document.getElementById("$$_m").checked == true){
+        price = "PRICE = '$$'";
+    }
+    else if(document.getElementById("$$$").checked == true ||
+        document.getElementById("$$$_m").checked == true){
+        price = "PRICE = '$$$'";
+    }
+    else{
+        price = "PRICE = '$'";
+    }
+
+    //distance filters 
+    if(document.getElementById("r_close").checked == true ||
+        document.getElementById("close_m").checked == true){
+        distance = "BETWEEN 0 AND 5";
+    }
+    else if(document.getElementById("far").checked == true ||
+        document.getElementById("far_m").checked == true){
+        distance = "BETWEEN 0 AND 15";
+    }
+    else{
+        distance = "BETWEEN 0 AND 2";
+    }
+
+    //time filters 
+    if(document.getElementById("weekends").checked == true ||
+        document.getElementById("weekends_m").checked == true){
+        times = "WEEKENDS = 'Yes'";
+    }
+    else{
+        times = "WEEKDAYS = 'Yes'";
+    }
+
+    $(document).ready(function () {
+        var daycareQuery = sessionStorage.getItem("daycareQuery");
+        if (daycareQuery == undefined){
+            daycarebQuery = "";
+        }
+        $.post('/daycarePage',
+        {
+            price: price,
+            distance: distance,
+            times: times, 
+            query: daycareQuery
+        }, 
+        function (data) {
+            $("#daycareResults").empty();
+            if (data.length == 0) {
+                $("#daycareResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
+                //this should be in a for loop if there is more data 
+                $("#daycareResults").append("<tr><td><table class='searchResult'><tr><td> " +
+                    "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                    "<td><table class='searchInfo'>" +
+                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
+                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
+                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
+                    "<tr><td><p>Weekdays: " + data[i].WEEKDAYS+ "</p></td></tr>" +
+                    "<tr><td><p>Weekends: " + data[i].WEEKENDS + "</p></td></tr>" +
+                    "<tr><td><p>Price: " + data[i].PRICE + "</p></td></tr>" +
+                    "</table></td></tr></table></td></tr>");
+            }
+        });
+    });
+
+}
+
+function publicRestroomFunction(){
+    var distance, times; 
+    
+    //SQL querries 
+    //distance filters 
+    if(document.getElementById("r_close").checked == true ||
+        document.getElementById("r_close_m").checked == true){
+        distance = "BETWEEN 0 AND 5";
+    }
+    else if(document.getElementById("r_far").checked == true ||
+        document.getElementById("r_far_m").checked == true){
+        distance = "BETWEEN 0 AND 20";
+    }
+    else{
+        distance = "BETWEEN 0 AND 2";
+    }
+
+    //time filters 
+    if(document.getElementById("setTime").checked == true ||
+        document.getElementById("setTime_m").checked == true){
+        times = "ALLDAY = 'No'";
+    }
+    else{
+        times = "ALLDAY = 'Yes'";
+    }
+
+    $(document).ready(function () {
+        var restroomQuery = sessionStorage.getItem("restroomQuery");
+        if (restroomQuery == undefined){
+            trestroombQuery = "";
+        }
+        $.post('/publicRestroomsPage',
+        {
+            distance: distance,
+            times: times, 
+            query: restroomQuery
+        }, 
+        function (data) {
+            $("#publicRestroomsResults").empty();
+            if (data.length == 0) {
+                $("#publicRestroomsResults").append("<p>No Results Found</p>");
+            }
+            for (i = 0; i < data.length; i++) {
+                //this should be in a for loop if there is more data 
+                $("#publicRestroomsResults").append("<tr><td><table class='searchResult'><tr><td> " +
+                    "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                    "<td><table class='searchInfo'>" +
+                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
+                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
+                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
+                    "<tr><td><p>Open 24 Hours: " + data[i].ALLDAY+ "</p></td></tr>" +
+                    "<tr><td><p>Hours: " + data[i].HOURS + "</p></td></tr>" +
+                    "</table></td></tr></table></td></tr>");
+            }
+        });
+    });  
 }

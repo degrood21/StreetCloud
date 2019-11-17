@@ -4,13 +4,13 @@ var dbms = require('./dbms.js');
 
 
 router.post('/',function(req,res){
-    var genderQuerry = req.body.gender;
-    var distanceQuerry = req.body.distance;
-    var foodQuerry = req.body.food; 
+    var genderQuery = req.body.gender;
+    var distanceQuery = req.body.distance;
+    var foodQuery = req.body.food; 
     var query = req.body.query;
 
-    //COMMENTED OUT BECUASE OF DATABASE
-    var inquiry = "SELECT * FROM shelter WHERE DISTANCE "+distanceQuerry+" AND ("+genderQuerry+") AND ("+foodQuerry+")";
+
+    var inquiry = "SELECT * FROM shelter WHERE DISTANCE "+distanceQuery+" AND ("+genderQuery+") AND ("+foodQuery+")";
 
     if (!(query === "")){
         query.replace(/'/g, "\\\'");
