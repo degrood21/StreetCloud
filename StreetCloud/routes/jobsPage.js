@@ -2,15 +2,13 @@ var express = require('express');
 var router = express.Router();
 var dbms = require('./dbms.js');
 
-
 router.post('/', function (req, res) {
-    var distanceQuery = req.body.distance;
-    var priceQuery = req.body.price;
-    var typeQuery = req.body.type;
-    var query = req.body.query;
+    distanceQuery = req.body.distance;
+    educationQuery = req.body.education;
+    positionQuery = req.body.position ;
+    query = req.body.query;
 
-
-    inquiry = "SELECT * FROM food WHERE DISTANCE " + distanceQuery + " AND (" + typeQuery + ") AND (" + priceQuery + ")";
+    inquiry = "SELECT * FROM jobs WHERE DISTANCE " + distanceQuery + " AND (" + educationQuery + ") AND (" + positionQuery + ")";
 
     if (!(query === "")) {
         query.replace(/'/g, "\\\'");
