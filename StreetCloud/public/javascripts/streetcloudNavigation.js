@@ -347,6 +347,45 @@ function foodFunction() {
     });
 }
 
+function clearFilter(){
+    $('input:radio[name=urgency]:checked').prop('checked', false);
+    $('input:radio[name=distance]:checked').prop('checked', false);
+    $('input:radio[name=health]:checked').prop('checked', false);
+    $(document).ready(function () {
+        var allData = "true";
+
+        $.post('/medicalPage',
+            {
+                hours: "",
+                distance: "",
+                type: "",
+                query: "",
+                all: allData
+            },
+            function (data) {
+                $("#medicalResults").empty();
+                if (data.length == 0) {
+                    $("#medicalResults").append("<p>No Results Found</p>");
+                    $("#medImage").attr("src", "https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png");
+                }
+                for (i = 0; i < data.length; i++) 
+                {
+                    $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td>" +
+                        "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                        "<td><table class='searchInfo'>" +
+                        "<tr><td><p>Name: " + data[i].NAME + "</p></td>" +
+                        "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td>" +
+                        "<tr><td><p>Distance: " + data[i].DISTANCE + " Miles</p></td>" +
+                        "<tr><td><p>Type: " + data[i].TYPE + "</p></td>" +
+                        "<tr><td><p>Hours: " + data[i].HOURS + "</p></td>" +
+                        "<tr><td><p>Open Allday: " + data[i].ALLDAY + "</p></td>" +
+                        "<tr><td><p>Open Weekends: " + data[i].WEEKENDS + "</p></td>" +
+                        "</table></td></tr></table></td></tr>");
+                }
+            });
+    });
+}
+
 function shelterFunction() {
 
     var gender, distance, food;
