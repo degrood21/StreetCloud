@@ -126,7 +126,7 @@ td {
 }
 
 /* the buttons on the others page */
-button{
+.Jobs, .Daycare, .Libraries, .PublicRestrooms{
 	background-color:yellow; 
 	border: none;
 	color: black;
@@ -271,6 +271,12 @@ a {
 #cat3Filters{
 	display: none;
 	overflow-y: auto;
+}
+
+#clearFilterButton{
+	margin: 10px 0px 5px 10px;
+	opacity:1;
+	width: auto;
 }
 
 @media screen and (max-width: 374px) and (min-width: 0px){
