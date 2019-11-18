@@ -4,6 +4,8 @@
 <head>
 <meta name="viewport" content="width=device-width", initial-scale=1>
 <link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
+<script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAJQvyANqrylw4vyAkEf_aScXZfusD1b7Y&libraries=geometry&language=en&callback=initMap"></script>
+
 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="javascripts/streetcloud_filters.js"></script>
 </head>
@@ -13,6 +15,7 @@
 <!-- Second Header -->
 <h2 id="pageId">Shelter</h2>
 <!-- Menu -->
+<div id = "map"></div>
 <div class="menu">
   <table>
     <tr>
@@ -36,6 +39,18 @@
 </div>
 
 <h2>What are you looking for?</h2>
+
+
+<script>
+var map;
+function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+  });
+}
+
+</script>
 
 <br>
 <table class="search">

@@ -1,7 +1,6 @@
 
 //var distance = require('google-distance-matrix');
 //import { google } from 'google-distance-matrix';
-src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAJQvyANqrylw4vyAkEf_aScXZfusD1b7Y&libraries=geometry&language=en&callback=initMap"
 //src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
 //src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"
 
@@ -45,7 +44,7 @@ src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAJQvyANqrylw4vyAkEf_aSc
     });
    
 
-  
+    
    
    
    /* Authored by Kelsi Cruz */
