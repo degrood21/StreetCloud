@@ -4,6 +4,18 @@
 //src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
 //src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"
 
+    //const philly = { lat: 39.9526, lng: -75.1652 }
+    //const nyc = { lat: 40.7128, lng: -74.0060 }
+
+
+
+    /*
+    * The DistanceMatrixService.getDistanceMatrix() method 
+    * initiates a request to the Distance Matrix service, passing it a 
+    * DistanceMatrixRequest object literal containing the origins, 
+    * destinations, and travel mode, as well as a callback method to 
+    * execute upon receipt of the response.
+    */
     function calculateDistance(origin, destination) {
       var service = new google.maps.DistanceMatrixService();
       service.getDistanceMatrix(
@@ -492,6 +504,7 @@ function shelterFunction()
     var gender, distance, food;
     var test_dist = calculateDistance(univ_portland,shelter_test);
     console.log('im being called');
+    console.log("Origins: " + JSON.stringify(origins));
     console.log(JSON.stringify(test_dist));
     //SQL querries 
     //gender filters 
