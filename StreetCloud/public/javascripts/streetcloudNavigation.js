@@ -504,7 +504,7 @@ function shelterFunction()
     var gender, distance, food;
     var test_dist = calculateDistance(univ_portland,shelter_test);
     console.log('im being called');
-    console.log("Origins: " + JSON.stringify(origins));
+    //console.log("Origins: " + JSON.stringify(rows));
     console.log(JSON.stringify(test_dist));
     //SQL querries 
     //gender filters 
