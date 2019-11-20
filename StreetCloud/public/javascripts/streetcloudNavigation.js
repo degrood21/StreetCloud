@@ -102,7 +102,7 @@ function getPosition(pos) {
   console.log('Your current position is:');
   console.log(`Latitude : ${crd.latitude}`);
   console.log(`Longitude: ${crd.longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
+  
 }
 
 
@@ -507,22 +507,6 @@ function foodFunction() {
     });
 }
 
-
-function shelterFunction() 
-{
-
-    var univ_portland = new google.maps.LatLng(45.5732, -122.7276);
-    var shelter_test = new google.maps.LatLng(45.522917, -122.688438);
-    var gender, distance, food;
-    test_user_coords = getLocation();
-    console.log("pls work " + test_user_coords);
-    test_dist = calculateDistance(univ_portland,shelter_test);
-    console.log('im being called');
-    //console.log("Origins: " + JSON.stringify(rows));
-    console.log(JSON.stringify(test_dist));
-}
-
-
 function getLocation() {
   if (navigator.geolocation) {
     var usercoords = new google.maps.LatLng(0,0);
@@ -561,6 +545,7 @@ function getPosition(pos) {
   console.log('Your current position is:');
   console.log(`Latitude : ${crd.latitude}`);
   console.log(`Longitude: ${crd.longitude}`);
+  console.log("user coords: " + usercoords);
   console.log(`More or less ${crd.accuracy} meters.`);
 }
 
@@ -590,17 +575,18 @@ function clearFilter(){
                 for (i = 0; i < data.length; i++) 
                 {
                     //var univ_portland = new google.maps.LatLng(45.5732, -122.7276);
-                    getLocation(); //update user coords and assign to source coords
-                    var source_coord = usercoords;
+                    //getLocation(); //update user coords and assign to source coords
+                    var source_coord = getLocation(); //returns source_coords
                     var destination_coord = new google.maps.LatLng(data[i].LAT,data[i].LON);
 
                     distance_result = calculateDistance(source_coord,destination_coord);
+
                     $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td>" +
                         "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                         "<td><table class='searchInfo'>" +
                         "<tr><td><p>Name: " + data[i].NAME + "</p></td>" +
                         "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td>" +
-                        "<tr><td><p>Distance: " + distance_result + " Miles</p></td>" +
+                        "<tr><td><p>Distance: " + JSON.stringify(distance_result) + " Miles</p></td>" +
                         "<tr><td><p>Type: " + data[i].TYPE + "</p></td>" +
                         "<tr><td><p>Hours: " + data[i].HOURS + "</p></td>" +
                         "<tr><td><p>Open Allday: " + data[i].ALLDAY + "</p></td>" +
@@ -612,6 +598,17 @@ function clearFilter(){
 }
 
 function shelterFunction() {
+    var univ_portland = new google.maps.LatLng(45.5732, -122.7276);
+    var shelter_test = new google.maps.LatLng(45.522917, -122.688438);
+    var gender, distance, food;
+    console.log("before getLocation");
+    var test_user_coords = getLocation();
+    console.log("after getLocation");
+    console.log("pls work " + test_user_coords);
+    test_dist = calculateDistance(univ_portland,shelter_test);
+    console.log('im being called');
+    //console.log("Origins: " + JSON.stringify(rows));
+    console.log(JSON.stringify(test_dist));
 
     var gender, distance, food;
     
