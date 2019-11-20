@@ -43,7 +43,8 @@ var result_distance;
           var distance_value = distance.value;
           var distance_text = distance.text;
           var miles = distance_text.substring(0, distance_text.length - 3);
-          $('.results').append("Distance: " + miles + " miles");
+          var distance_append = $('.results').append("Distance: " + miles + " miles");
+          var append_miles = miles; 
         }
       }
     }
@@ -574,19 +575,12 @@ function clearFilter(){
                 }
                 for (i = 0; i < data.length; i++) 
                 {
-                    //var univ_portland = new google.maps.LatLng(45.5732, -122.7276);
-                    //getLocation(); //update user coords and assign to source coords
-                    var source_coord = getLocation(); //returns source_coords
-                    var destination_coord = new google.maps.LatLng(data[i].LAT,data[i].LON);
-
-                    distance_result = calculateDistance(source_coord,destination_coord);
-
                     $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td>" +
                         "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                         "<td><table class='searchInfo'>" +
                         "<tr><td><p>Name: " + data[i].NAME + "</p></td>" +
                         "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td>" +
-                        "<tr><td><p>Distance: " + JSON.stringify(distance_result) + " Miles</p></td>" +
+                        "<tr><td><p>Distance: " + data[i].DISTANCE + " Miles</p></td>" +
                         "<tr><td><p>Type: " + data[i].TYPE + "</p></td>" +
                         "<tr><td><p>Hours: " + data[i].HOURS + "</p></td>" +
                         "<tr><td><p>Open Allday: " + data[i].ALLDAY + "</p></td>" +
@@ -609,6 +603,9 @@ function shelterFunction() {
     console.log('im being called');
     //console.log("Origins: " + JSON.stringify(rows));
     console.log(JSON.stringify(test_dist));
+
+    var  coord_flag = false;
+    
 
     var gender, distance, food;
     
@@ -665,18 +662,30 @@ function shelterFunction() {
             if (data.length == 0) {
                 $("#shelterResults").append("<p>No Results Found</p>");
             }
+            
+            var source_coord = getLocation();
             for (i = 0; i < data.length; i++) {
-                //this should be in a for loop if there is more data 
-                $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td> " +
-                    "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
-                    "<td><table class='searchInfo'>" +
-                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
-                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
-                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
-                    "<tr><td><p>Gender:" + data[i].GENDER + "</p></td></tr>" +
-                    "<tr><td><p>NOTES:" + data[i].NOTES + "</p></td></tr>" +
-                    "</table></td></tr></table></td></tr>");
-            }
+                
+                //var univ_portland = new google.maps.LatLng(45.5732, -122.7276);
+                    //getLocation(); //update user coords and assign to source coords
+                    //var source_coord = getLocation(); //returns source_coords
+                    var destination_coord = new google.maps.LatLng(data[i].LAT,data[i].LON);
+                    
+                    distance_result = calculateDistance(source_coord,destination_coord);
+                //this should be in a for loop if there is more data  
+                
+                    $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td> " +
+                        "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                        "<td><table class='searchInfo'>" +
+                        "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
+                        "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
+                        "<tr><td><p>Distance: " + distance_result + "</p></td></tr>" +
+                        "<tr><td><p>Gender:" + data[i].GENDER + "</p></td></tr>" +
+                        "<tr><td><p>NOTES:" + data[i].NOTES + "</p></td></tr>" +
+                        "</table></td></tr></table></td></tr>");
+                }
+            
+        
         });
     });
 
