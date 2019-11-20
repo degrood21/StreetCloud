@@ -31,19 +31,19 @@
   
     function callback(response, status) {
       if (status != google.maps.DistanceMatrixStatus.OK) {
-        $('#result').html(err);
+        $('.results').append(err);
       } else {
         var origin = response.originAddresses[0];
         var destination = response.destinationAddresses[0];
         if (response.rows[0].elements[0].status === "ZERO_RESULTS") {
-          $('#result').html("Better get on a plane. There are no roads between " 
+          $('.results').append("Better get on a plane. There are no roads between " 
                             + origin + " and " + destination);
         } else {
           var distance = response.rows[0].elements[0].distance;
           var distance_value = distance.value;
           var distance_text = distance.text;
           var miles = distance_text.substring(0, distance_text.length - 3);
-          $('#result').html("It is " + miles + " miles from " + origin + " to " + destination);
+          $('.results').append("It is " + miles + " miles from " + origin + " to " + destination);
         }
       }
     }
@@ -189,8 +189,8 @@ document.getElementById("volunteer").onclick = function() {
 
 const philly = [39.9526, -75.1652]
 const nyc = [40.7128, -74.0060]
-const univ_portland = [45.5732, -122.7276]
-const shelter_test = [45.522917, -122.688438]
+// const univ_portland = [45.5732, -122.7276]
+// const shelter_test = [45.522917, -122.688438]
 
 //Click function for the searchButton on the main page
 //Puts the item that was searched for and loads it into local storage
@@ -501,8 +501,10 @@ function foodFunction() {
 function shelterFunction() 
 {
 
+    var univ_portland = new google.maps.LatLng(45.5732, -122.7276);
+    var shelter_test = new google.maps.LatLng(45.522917, -122.688438);
     var gender, distance, food;
-    var test_dist = calculateDistance(univ_portland,shelter_test);
+    calculateDistance(univ_portland,shelter_test);
     console.log('im being called');
     //console.log("Origins: " + JSON.stringify(rows));
     console.log(JSON.stringify(test_dist));
