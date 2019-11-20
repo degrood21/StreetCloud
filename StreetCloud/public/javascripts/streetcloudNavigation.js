@@ -926,3 +926,5 @@ function publicRestroomFunction(){
         });
     });  
 }
+
+}
