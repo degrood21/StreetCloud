@@ -10,7 +10,7 @@
 <script src="javascripts/streetcloud_filters.js"></script>
 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-<body>
+<body onload="daycareFunction()">
 <!-- Header -->
 <h1 id="headerButton">StreetCloud</h1>
 <!-- Second Header -->
@@ -64,18 +64,16 @@
   </table>
 </div>
 
-  <!-- Mobile Education Filter dropdown -->
+  <!-- Mobile Price Filter dropdown -->
   <div id="cat1Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="no_hs_m" type="radio" class="no_hs" name="education" value="No High School" checked> 
-          No High School </td> </tr>
-        <tr> <td> <input id="s_hs_m" type="radio" class="s_hs" name="education" value="Some High School"> 
-          Some High School </td> </tr>
-        <tr> <td> <input id="hs_d_m" type="radio" class="hs_d" name="education" value="High School Diploma">
-           High School Degree </td> </tr>
-        <tr> <td> <input id="c_d_m" type="radio" class="c_d" name="education" value="College Degree"> 
-          College Degree </td> </tr>
+        <tr> <td> <input id="$_m" type="radio" class="no_hs" name="education" value="No High School" onclick="daycareFunction()" checked> 
+          $ </td> </tr>
+        <tr> <td> <input id="$$_m" type="radio" class="s_hs" name="education" value="Some High School" onclick="daycareFunction()"> 
+          $$ </td> </tr>
+        <tr> <td> <input id="$$$_m" type="radio" class="hs_d" name="education" value="High School Diploma" onclick="daycareFunction()">
+           $$$ </td> </tr>
       </table>
     </div>
   </div>
@@ -84,20 +82,19 @@
   <div id="cat2Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" checked> 2 Miles </td> </tr>
-        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m"> 5 Miles </td> </tr>
-        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m"> 10 Miles </td> </tr>
-        <tr> <td> <input id="far_m" type="radio" class="far" name="distance" value="15m"> 10+ Miles </td> </tr>
+        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" onclick="daycareFunction()" checked> 2 Miles </td> </tr>
+        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m" onclick="daycareFunction()"> 5 Miles </td> </tr>
+        <tr> <td> <input id="far_m" type="radio" class="far" name="distance" value="15m" onclick="daycareFunction()"> 10+ Miles </td> </tr>
       </table>
     </div>
   </div>
 
-  <!-- Mobile Postion Filter dropdown -->
+  <!-- Mobile Care times Filter dropdown -->
   <div id="cat3Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="p_time_m" type="radio" class="p_time" name="position" value="Part Time" checked> Part Time </td> </tr>
-        <tr> <td> <input id="f_time_m" type="radio" class="f_time" name="position" value="Full Time"> Full Time </td> </tr>
+        <tr> <td> <input id="weekdays_m" type="radio" class="p_time" name="position" value="Part Time" onclick="daycareFunction()" checked> Weekdays</td> </tr>
+        <tr> <td> <input id="weekends_m" type="radio" class="f_time" name="position" value="Full Time" onclick="daycareFunction()"> Weekends </td> </tr>
       </table>
     </div>
   </div>
@@ -108,58 +105,31 @@
 <table class = "job_options_formatting">
 <form action="action_page.php">
     <tr  class = "job_options_formatting">
-      <td><h3>Number of Kids: </h3></td>
+      <td><h3>Price: </h3></td>
       <td><h3>Distance: </h3></td>
-      <td><h3>Care Time: </h3></td>
+      <td><h3>Care Times: </h3></td>
     </tr>
     <tr>
-      <td> <input id="1kid" type="radio" class="1kid" name="kidQuantity" value="One Kid"> 1 </td>
-      <td> <input id="close" type="radio" class="close" name="distance" value="2m"> 2 Miles </td>
-      <td> <input id="p_time" type="radio" class="p_time" name="careTime" value="0 to 2 hours"> 0 - 2 Hours </td>
+      <td> <input id="$" type="radio" class="1kid" name="price" value="$" onclick="daycareFunction()" checked> $ </td>
+      <td> <input id="close" type="radio" class="close" name="distance" value="2m" onclick="daycareFunction()" checked> 2 Miles </td>
+      <td> <input id="weekdays" type="radio" class="p_time" name="careTime" value="0 to 2 hours" onclick="daycareFunction()" checked> Weekdays </td>
     </tr>
     <tr>
-      <td> <input id="2kids" type="radio" class="2kids" name="kidQuantity" value="Two Kids"> 2 </td>
-      <td> <input id="r_close" type="radio" class="r_close" name="distance" value="5m"> 5 Miles </td>
-      <td> <input id="f_time" type="radio" class="f_time" name="careTime" value="2 to 4 hours"> 2 - 4 Hours </td>
+      <td> <input id="$$" type="radio" class="2kids" name="price" value="$$" onclick="daycareFunction()"> $$ </td>
+      <td> <input id="r_close" type="radio" class="r_close" name="distance" value="5m" onclick="daycareFunction()"> 5 Miles </td>
+      <td> <input id="weekends" type="radio" class="f_time" name="careTime" value="2 to 4 hours" onclick="daycareFunction()"> Weekends </td>
     </tr>
     <tr>
-      <td> <input id="3kids" type="radio" class="3kids" name="kidQuantity" value="Three Kids"> 3 </td>
-      <td> <input id="r_far" type="radio" class="r_far" name="distance" value="10m"> 10 Miles </td>
-      <td> <input id="f_time" type="radio" class="f_time" name="careTime" value="4 hours or more"> 4 or more Hours </td>
-    </tr>
-    <tr>
-      <td> <input id="4kids" type="radio" class="4kids" name="kidQuantity" value="4 or more kids"> 4 or more </td>
-      <td> <input id="far" type="radio" class="far" name="distance" value="15m"> 15+ Miles </td>
+      <td> <input id="$$$" type="radio" class="3kids" name="price" value="$$$" onclick="daycareFunction()"> $$$ </td>
+      <td> <input id="far" type="radio" class="far" name="distance" value="15m" onclick="daycareFunction()"> 10+ Miles </td>
     </tr>
   </form>
   </table>
 </div>
 <br>
 <br>
-<table>
-  <tr>
-    <td><img src= "https://upload.wikimedia.org/wikipedia/commons/0/07/Augsburg_Josefium_26_April_2003.jpg"
-     alt="data" width="120" height="120"></td>
-    <td><table>
-          <tr>
-            <td><p>Mcdonalds</p></td>
-            <td><p>Cashier</p></td>
-          </tr>
-          <tr>
-            <td><p>Open:</p></td>
-            <td><p>9:00 a.m. - 10:00 p.m.</p></td>
-          </tr>
-          <tr>
-            <td><p>Address:</p></td>
-            <td><p>242 St. Monte Street, Portland, Oregon 97320</p></td>
-          </tr>
-          <tr>
-            <td><p>Openings: </p></td>
-            <td><p>3</p></td>
-          </tr>
-         </table>
-    </td>
-  </tr>
+<table id="daycareResults" class="results">
+<!--daycare function will fill this out-->
 </table>
 </br>
 </br>

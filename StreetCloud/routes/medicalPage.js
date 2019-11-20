@@ -8,10 +8,16 @@ router.post('/',function(req,res){
     var distanceQuerry = req.body.distance;
     var typeQuerry = req.body.type; 
     var query = req.body.query;
+    var all = req.body.all;
 
     console.log("query: " + query);
 
-    var inquiry = "SELECT * FROM medical WHERE DISTANCE "+distanceQuerry+" AND (TYPE LIKE'"+typeQuerry+"') AND ("+hoursQuerry+")";
+    if(all == "true"){
+        var inquiry = "SELECT * from medical"
+    }
+    else{
+        var inquiry = "SELECT * FROM medical WHERE DISTANCE "+distanceQuerry+" AND (TYPE LIKE'"+typeQuerry+"') AND ("+hoursQuerry+")";        
+    }
 
     if (!(query === "")){
         query.replace(/'/g, "\\\'");

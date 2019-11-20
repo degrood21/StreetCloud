@@ -12,7 +12,10 @@ var foodRouter = require('./routes/foodPage');
 var shelterRouter = require('./routes/shelterPage');
 var searchRouter = require('./routes/searchPage');
 var searchIndRouter = require('./routes/searchIndividual');
-
+var jobsRouter = require('./routes/jobsPage');
+var librariesRouter = require('./routes/librariesPage');
+var daycareRouter = require('./routes/daycarePage');
+var publicRestroomsRouter = require('./routes/publicRestroomsPage');
 var app = express();
 
 // view engine setup
@@ -32,6 +35,10 @@ app.use('/foodPage', foodRouter);
 app.use('/shelterPage', shelterRouter);
 app.use('/searchPage', searchRouter);
 app.use('/searchIndividualPage', searchIndRouter);
+app.use('/jobsPage', jobsRouter);
+app.use('/librariesPage', librariesRouter);
+app.use('/daycarePage', daycareRouter);
+app.use('/publicRestroomsPage', publicRestroomsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
