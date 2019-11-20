@@ -6,7 +6,7 @@
 
     //const philly = { lat: 39.9526, lng: -75.1652 }
     //const nyc = { lat: 40.7128, lng: -74.0060 }
-
+var result_distance; 
 
 
     /*
@@ -43,7 +43,7 @@
           var distance_value = distance.value;
           var distance_text = distance.text;
           var miles = distance_text.substring(0, distance_text.length - 3);
-          $('.results').append("It is " + miles + " miles from " + origin + " to " + destination);
+          $('.results').append("Distance: " + miles + " miles");
         }
       }
     }
@@ -508,28 +508,64 @@ function foodFunction() {
 }
 
 
-
-
-function initMap() {
-    {
-     srcLocation = new google.maps.LatLng(39.9526,-75.1652);
-     dstLocation = new google.maps.LatLng(40.7128,-74.0060);
-     var distance = google.maps.geometry.spherical.computeDistanceBetween(srcLocation, dstLocation)
-     //center: {lat: -34.397, lng: 150.644},
-     //zoom: 8
-     console.log("Distance: " + distance);
- }
-
 function shelterFunction() 
 {
 
     var univ_portland = new google.maps.LatLng(45.5732, -122.7276);
     var shelter_test = new google.maps.LatLng(45.522917, -122.688438);
     var gender, distance, food;
-    calculateDistance(univ_portland,shelter_test);
+    test_user_coords = getLocation();
+    console.log("pls work " + test_user_coords);
+    test_dist = calculateDistance(univ_portland,shelter_test);
     console.log('im being called');
     //console.log("Origins: " + JSON.stringify(rows));
     console.log(JSON.stringify(test_dist));
+}
+
+
+function getLocation() {
+  if (navigator.geolocation) {
+    var usercoords = new google.maps.LatLng(0,0);
+    navigator.geolocation.getCurrentPosition(getPosition, showError);
+    return usercoords;
+  } 
+  
+  else {
+    alert("Geolocation is not supported by this browser.");
+    return null;
+  }
+}
+
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      alert("User denied the request for Geolocation.")
+      break;
+    case error.POSITION_UNAVAILABLE:
+      alert("Location information is unavailable.")
+      break;
+    case error.TIMEOUT:
+      alert("The request to get user location timed out.")
+      break;
+    case error.UNKNOWN_ERROR:
+      alert("An unknown error occurred.")
+      break;
+  }
+}
+
+function getPosition(pos) {
+  var crd = pos.coords;
+  
+  usercoords = [crd.latitude, crd.longitude];
+
+  console.log('Your current position is:');
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+}
+
+
+
 function clearFilter(){
     $('input:radio[name=urgency]:checked').prop('checked', false);
     $('input:radio[name=distance]:checked').prop('checked', false);
@@ -553,12 +589,18 @@ function clearFilter(){
                 }
                 for (i = 0; i < data.length; i++) 
                 {
+                    //var univ_portland = new google.maps.LatLng(45.5732, -122.7276);
+                    getLocation(); //update user coords and assign to source coords
+                    var source_coord = usercoords;
+                    var destination_coord = new google.maps.LatLng(data[i].LAT,data[i].LON);
+
+                    distance_result = calculateDistance(source_coord,destination_coord);
                     $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td>" +
                         "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                         "<td><table class='searchInfo'>" +
                         "<tr><td><p>Name: " + data[i].NAME + "</p></td>" +
                         "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td>" +
-                        "<tr><td><p>Distance: " + data[i].DISTANCE + " Miles</p></td>" +
+                        "<tr><td><p>Distance: " + distance_result + " Miles</p></td>" +
                         "<tr><td><p>Type: " + data[i].TYPE + "</p></td>" +
                         "<tr><td><p>Hours: " + data[i].HOURS + "</p></td>" +
                         "<tr><td><p>Open Allday: " + data[i].ALLDAY + "</p></td>" +
@@ -642,7 +684,7 @@ function shelterFunction() {
     });
 
 }
-}
+
 
 function jobsFunction(){
 
@@ -927,4 +969,3 @@ function publicRestroomFunction(){
     });  
 }
 
-}
