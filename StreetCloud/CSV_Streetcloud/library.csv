@@ -1,11 +1,11 @@
-NAME,ADDRESS,FREE,DISTANCE,PUBLIC RESTROOM,HOURS,IMAGE
-Multnomah County Central Library,801 SW 10th Ave Portland OR 97205,Yes,2,Yes,"Mon 10AM-8PM, Tue-Wed 12PM-8PM, Thurs-Sat 10AM-6PM, Sun 10AM-5PM",/images/countyCentral.jpg
-Portland State University Library,1875 SW Park Ave Portland OR 97201,No,5,Yes,"Mon-Thur 7:30AM-12AM, Fri 7:30AM-7PM, Sat 10AM-7PM, Sun 10AM-12AM",/images/psuLib.jpg
-Multnomah County Northwest Library,2300 NW Thurman St Portland OR 97201,Yes,7,Yes,"Mon-Tue 12PM-8PM, Wed-Sat 10AM-6PM, Sun 12PM-5PM",/images/northwest.jpg
-Multnomah County North Portland Library,512 N Killingsworth St Portland OR 97217,Yes,10,Yes,"Mon-Tue 12PM-8PM, Wed-Sat 10PM-6PM, Sun 12PM-5PM",/images/county.jpg
-Portland Library and Learning Commons,White Stag Block 70 NW Couch St Room 172 Portland OR 97209,No,3,Yes,"Mon-Thur 8:30AM-7PM, Fri 8:30AM-5PM, Sun 11:30AM-5PM",/images/uofoLib.jpg
-Multnomah County Hollywood Library,4040 NE Tillamook St Portland OR 97212,Yes,6,Yes,"Mon, Fri-Sat 10AM-6PM, Tue 10AM-8PM, Wed-Thurs 12PM-8PM, Sun 10AM-5PM",/images/hollywood.jpg
-Multnomah County Hillsdale Library,1525 SW Sunset Blvd Portland OR 97239,Yes,15,Yes,"Mon, Fri-Sat 10AM-6PM, Tue 10AM-8PM, Wed-Thurs 12PM-8PM, Sun 10AM-5PM",/images/hillsdale.jpg
-Multnomah County Belmont Library,1038 SE Cesar Estrada Chavez Blvd Portland OR 97214,Yes,0,Yes,"Mon, Fri-Sat 10AM-6PM, Tue 10AM-8PM, Wed-Thurs 12PM-8PM, Sun 10AM-5PM",/images/belmont.jpg
-Multnomah County Albina Library,3605 NE 15th Ave Portland OR 97212,Yes,12,Yes,"Mon, Fri-Sat 10AM-6PM, Tue 10AM-8PM, Wed-Thurs 12PM-8PM, Sun 10AM-5PM",/images/albina.jpg
-Oregon Historical Society,1200 SW Park Ave Portland OR 97205,Yes,20,Yes,"Mon-Sat 10AM-5PM, Sun 12PM-5PM",/images/oregonsociety.jpg
+NAME,ADDRESS,FREE,DISTANCE,PUBLIC RESTROOM,HOURS,IMAGE,LAT ,LON
+Multnomah County Central Library,801 SW 10th Ave Portland OR 97205,Yes,2,Yes,"Mon 10AM-8PM, Tue-Wed 12PM-8PM, Thurs-Sat 10AM-6PM, Sun 10AM-5PM",/images/countyCentral.jpg,45.51932,-122.68287
+Portland State University Library,1875 SW Park Ave Portland OR 97201,No,5,Yes,"Mon-Thur 7:30AM-12AM, Fri 7:30AM-7PM, Sat 10AM-7PM, Sun 10AM-12AM",/images/psuLib.jpg,45.51157,-122.68618
+Multnomah County Northwest Library,2300 NW Thurman St Portland OR 97201,Yes,7,Yes,"Mon-Tue 12PM-8PM, Wed-Sat 10AM-6PM, Sun 12PM-5PM",/images/northwest.jpg,45.53529,-122.69919
+Multnomah County North Portland Library,512 N Killingsworth St Portland OR 97217,Yes,10,Yes,"Mon-Tue 12PM-8PM, Wed-Sat 10PM-6PM, Sun 12PM-5PM",/images/county.jpg,45.56245,-122.67151
+Portland Library and Learning Commons,White Stag Block 70 NW Couch St Room 172 Portland OR 97209,No,3,Yes,"Mon-Thur 8:30AM-7PM, Fri 8:30AM-5PM, Sun 11:30AM-5PM",/images/uofoLib.jpg,45.52392,-122.6705
+Multnomah County Hollywood Library,4040 NE Tillamook St Portland OR 97212,Yes,6,Yes,"Mon, Fri-Sat 10AM-6PM, Tue 10AM-8PM, Wed-Thurs 12PM-8PM, Sun 10AM-5PM",/images/hollywood.jpg,45.53773,-122.62154
+Multnomah County Hillsdale Library,1525 SW Sunset Blvd Portland OR 97239,Yes,15,Yes,"Mon, Fri-Sat 10AM-6PM, Tue 10AM-8PM, Wed-Thurs 12PM-8PM, Sun 10AM-5PM",/images/hillsdale.jpg,45.47985,-122.69401
+Multnomah County Belmont Library,1038 SE Cesar Estrada Chavez Blvd Portland OR 97214,Yes,0,Yes,"Mon, Fri-Sat 10AM-6PM, Tue 10AM-8PM, Wed-Thurs 12PM-8PM, Sun 10AM-5PM",/images/belmont.jpg,45.515228,-122.622658
+Multnomah County Albina Library,3605 NE 15th Ave Portland OR 97212,Yes,12,Yes,"Mon, Fri-Sat 10AM-6PM, Tue 10AM-8PM, Wed-Thurs 12PM-8PM, Sun 10AM-5PM",/images/albina.jpg,45.54925,-122.65034
+Oregon Historical Society,1200 SW Park Ave Portland OR 97205,Yes,20,Yes,"Mon-Sat 10AM-5PM, Sun 12PM-5PM",/images/oregonsociety.jpg,45.51575,-122.68241
