@@ -310,7 +310,7 @@ function querySearch() {
                             "<td><table class='searchInfo'>" +
                             "<tr><td><p>Name: " + data[i].Name + "</p></td></tr>" +
                             "<tr><td><p>Address: " + data[i].Address + "</p></td></tr>" +
-                            "<tr><td><p>Distance: " + data[i].Distance + "</p></td></tr>" +
+                            "<tr><td><p>Distance: " + data[i].haversineDistance(univ_portland, shelter_test) + "</p></td></tr>" +
                             "</table></td></tr></table></td></tr>");
                     }
                 });
@@ -498,11 +498,25 @@ function foodFunction() {
     });
 }
 
+
+
+
+function initMap() {
+    {
+     srcLocation = new google.maps.LatLng(39.9526,-75.1652);
+     dstLocation = new google.maps.LatLng(40.7128,-74.0060);
+     var distance = google.maps.geometry.spherical.computeDistanceBetween(srcLocation, dstLocation)
+     //center: {lat: -34.397, lng: 150.644},
+     //zoom: 8
+     console.log("Distance: " + distance);
+ }
+
 function shelterFunction() 
 {
 
     var gender, distance, food;
-    var test_dist = calculateDistance(univ_portland,shelter_test);
+    var test_dist = haversineDistance(univ_portland,shelter_test);
+    initMap();
     console.log('im being called');
     //console.log("Origins: " + JSON.stringify(rows));
     console.log(JSON.stringify(test_dist));
@@ -570,4 +584,4 @@ function shelterFunction()
     });
 
 }
-
+}
