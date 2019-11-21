@@ -19,7 +19,7 @@ router.post('/',function(req,res){
         var inquiry = "SELECT * FROM medical WHERE DISTANCE "+distanceQuerry+" AND (TYPE LIKE'"+typeQuerry+"') AND ("+hoursQuerry+")";        
     }
 
-    if (!(query === "")){
+    if (!(query === "") && all != "true"){
         query.replace(/'/g, "\\\'");
         inquiry = inquiry + " AND (NAME LIKE '%" + query + "%') "; 
     }

@@ -8,15 +8,22 @@ router.post('/',function(req,res){
     var distanceQuery = req.body.distance;
     var foodQuery = req.body.food; 
     var query = req.body.query;
+    var all = req.body.all;
 
 
-    var inquiry = "SELECT * FROM shelter WHERE DISTANCE "+distanceQuery+" AND ("+genderQuery+") AND ("+foodQuery+")";
+    if(all == "true"){
+        var inquiry = "SELECT * from shelter"
+    }
+    else{
+        var inquiry = "SELECT * FROM shelter WHERE DISTANCE "+distanceQuery+" AND ("+genderQuery+") AND ("+foodQuery+")";
+    }
 
-    if (!(query === "")){
+    if (!(query === "") && all != "true"){
         query.replace(/'/g, "\\\'");
         inquiry = inquiry + " AND (NAME LIKE '%" + query + "%') "; 
     }
 
+    console.log("Query: " + inquiry);
     dbms.dbquery(inquiry, parseData);
 
     function parseData(row,result){
