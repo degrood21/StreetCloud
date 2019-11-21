@@ -488,6 +488,7 @@ function shelterFunction() {
                                     "<tr><td><p>Distance: " + distance + "</p></td></tr>" +
                                     "<tr><td><p>Gender:" + data[j].GENDER + "</p></td></tr>" +
                                     "<tr><td><p>NOTES:" + data[j].NOTES + "</p></td></tr>" +
+                                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
                                     "</table></td></tr></table></td></tr>");
                             }
                         }
