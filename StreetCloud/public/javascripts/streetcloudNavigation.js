@@ -507,7 +507,7 @@ function foodFunction() {
                                     nothingtoShow += 1;
                                 
                                 }
-                                if((j+1 == data.length) && nothingtoShow == 0){
+                                if((j == data.length) && nothingtoShow == 0){
                                     $("#foodResults").append("<p>No Results Found</p>");
                                 }
                             }
