@@ -509,11 +509,13 @@ function foodFunction() {
     });
 }
 
-function getLocation() {
+
+
+function getLocation(callback) {
   if (navigator.geolocation) {
-    var usercoords = new google.maps.LatLng(0,0);
     navigator.geolocation.getCurrentPosition(getPosition, showError);
-    return usercoords;
+    //callback(usercoords);
+    //return usercoords;
   } 
   
   else {
@@ -541,8 +543,9 @@ function showError(error) {
 
 function getPosition(pos) {
   var crd = pos.coords;
+  usercoords = new google.maps.LatLng(crd.latitude, crd.longitude);
   
-  usercoords = [crd.latitude, crd.longitude];
+  //usercoords = [crd.latitude, crd.longitude];
 
   console.log('Your current position is:');
   console.log(`Latitude : ${crd.latitude}`);
@@ -644,6 +647,10 @@ function shelterFunction() {
         food = "FOOD = 'Yes'";
     }
 
+
+
+    // 1. Wait for getLocation(), do this on the first page 
+    // 2. Wait for calculateDistance()
     $(document).ready(function () {
         var shelterQuery = sessionStorage.getItem("shelterQuery");
         if (shelterQuery == undefined){
