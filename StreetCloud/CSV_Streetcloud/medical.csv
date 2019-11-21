@@ -1,30 +1,30 @@
-NAME,ADDRESS,TYPE,DISTANCE,HOURS,ALLDAY,WEEKENDS,IMAGE
-Legacy Emanuel Medical Center,2801 N Gantenbein Ave Portland OR 97227,Hospital,5,Sun-Sat,Yes,Yes,/images/legacyEm.jpg
-Adventist Health Portland,10123 SE Market St Portland OR 97216,Hospital,0,Sun-Sat,Yes,Yes,/images/adventist.jpg
-Southeast Health Center,3653 SE 34th Ave Portland OR 97202-3034,Permanent Clinic,0,Mon-Fri 8AM-5PM,No,No,/images/southeast.jpg
-Blackburn Center,12121 E Burnside Portland OR,Permanent Clinic,0,"Mon,Tue,Thu,Fri 8AM-5PM Wed 9AM-5PM",No,No,/images/blackburn.jpg
-Portland Public Schools,501 N Dixon St Portland OR 97227-1804,Seasonal Clinic,0,Mon-Fri 8AM-5PM,No,No,/images/portlandPub.jpg
-Outside In,1132 SW 13th Ave Portland OR 97205,Permanent Clinic,0,"Mon,Fri 8:30AM-5PM Tue-Thu 8:30AM-7:30PM",No,No,/images/outside.jpg
-Northeast Health Center,5239 NE ML King Blvd Portland OR 97211-3237,Permanent Clinic,0,Mon-Fri 8AM-6PM,No,No,/images/northeast.jpg
-North Portland Health Center,9000 N Lombard St Portland OR 97203-3006,Permanent Clinic,0,Mon-Fri 8AM-6PM,No,No,/images/northPortland.jpg
-Mid-County Health Center,12710 SE Division St Portland OR 97236-3134,Permanent Clinic,0,Mon-Fri 8AM-7PM,No,No,/images/midCounty.jpg
-La Clinica De Buena Salud,6736 NE Killingsworth St Portland OR 97218-3338,Permanent Clinic,0,Mon-Fri 8AM-5PM,No,No,/images/laClinica.jpg
-Hooper Detox Stabilization Center,1535 N Williams Ave Portland OR 97232,Permanent Clinic,0,Mon-Fri 6:45AM-8:30PM,No,No,/images/hooper.jpg
-Multnomah County Health Department,426 SW Stark St Portland OR 97204-2347,Permanent Clinic,0,Mon-Fri 8AM-5PM,No,No,/images/multHealth.jpg
-Chiers Mobile Outreach Van,232 NW 6th Ave Portland OR 97209-3609,Mobile Van Clinic,0,Sun-Sat 1:45PM-11:45PM,No,Yes,/images/mobileOut.jpg
-Cares Nw Center,2800 N Vancouver Ave Ste 201 Portland OR 97227-1648,Permanent Clinic,0,Mon-Fri 8AM-5PM,No,No,/images/caresNW.jpg
-NARA,1776 SW Madison St Portland OR 97205-1715,Permanent Clinic,0,Mon-Fri 9AM-5PM,No,No,/images/naraPor.jpg
-Emergency Dental Care USA,8401 NE Halsey St Ste 102 Portland OR 97220,Dental,0,Fri-Tue 9AM-9PM,No,Yes,/images/emerDental.jpg
-Portsmouth Dental Care,5228 N Lombard St Portland OR 97203,Dental,0,Mon 8AM-3:30PM Tue-Wed 7AM-7PM Thu 8AM-6PM Fri 8AM-3PM Sat 9AM-2PM,No,Yes,/images/portsmouth.jpg
-Portland Children's Dentistry,2323 NW Westover Rd Portland OR 97210,Dental,0,Mon-Thu 8AM-5PM Sat 9AM-1PM,No,Yes,/images/portlandDent.jpg
-City Dental- Portland,511 SW 10th Ave #704 Portland OR 97205,Dental,0,Mon-Fri 8AM-5PM,No,No,/images/cityDent.jpg
-East Portland Dentistry,9 NE 120 Ave Portland OR 97220,Dental,0,"Mon,Fri 8AM-5PM Tue 7AM-5PM Wed 8AM-1PM Thu 8AM-6PM",No,No,/images/eastPortland.jpg
-Myopic Optometry,3978 N Williams Ave Portland OR 97227,Optometry,0,Mon-Fri 9AM-7PM Sat 9AM-5PM Sun 11AM-4PM,No,Yes,/images/myopticPor.jpg
-Portland Eye Care,4133 SE Division St Portland OR 97206,Optometry,0,Mon-Fri 8:30AM-5:30PM Sat 9AM-2:30PM,No,Yes,/images/portlandEye.jpg
-Alberta Eye Care,2021 NE Alberta St Portland OR 97211,Optometry,0,"Mon,Wed,Fri 8AM-5PM Tue,Thu 9AM-6PM Sat 9AM-5PM",No,Yes,/images/albertaEye.jpg
-St. John's Vision Clinic,8523 N Lombard St Portland OR 97203,Optometry,0,Tue-Fri 9AM-5PM,No,No,/images/stJohns.jpg
-Moreland Vision Source,6539 SE Milwaukie Ave Portland OR 97202,Optometry,0,Mon-Fri 8:30AM-5:30PM,No,No,/images/moreland.jpg
-Restore Therapy,1235 SE Morrison St Suite 100 Portland OR 97214,Therapy,0,Sun-Sat 8AM-5PM,No,Yes,/images/restore.jpg
-Portland Therapy Center,510 SW 3rd Ave #200 Portland OR 97204,Therapy,0,Sun-Sat 8AM-9PM,No,Yes,/images/porTherapy.jpg
-Portland Psychotherapy,3700 N Williams Ave Portland OR 97227,Therapy,0,Mon-Thu 8AM-8PM Fri 8AM-6PM,No,No,/images/portlandPsych.jpg
-William Temple House,2023 NW Hoyt St Portland OR 97209,Therapy,0,Mon-Thu 10AM-4PM,No,No,/images/william.jpg
+NAME,ADDRESS,TYPE,DISTANCE,HOURS,ALLDAY,WEEKENDS,IMAGE,LAT,LON
+Legacy Emanuel Medical Center,2801 N Gantenbein Ave Portland OR 97227,Hospital,5,Sun-Sat,Yes,Yes,/images/legacyEm.jpg,45.54405,-122.67104
+Adventist Health Portland,10123 SE Market St Portland OR 97216,Hospital,0,Sun-Sat,Yes,Yes,/images/adventist.jpg,45.51252,-122.55853
+Southeast Health Center,3653 SE 34th Ave Portland OR 97202-3034,Permanent Clinic,0,Mon-Fri 8AM-5PM,No,No,/images/southeast.jpg,45.49604,-122.62976
+Blackburn Center,12121 E Burnside Portland OR,Permanent Clinic,0,"Mon,Tue,Thu,Fri 8AM-5PM Wed 9AM-5PM",No,No,/images/blackburn.jpg,45.52265,-122.53832
+Portland Public Schools,501 N Dixon St Portland OR 97227-1804,Seasonal Clinic,0,Mon-Fri 8AM-5PM,No,No,/images/portlandPub.jpg,45.53474,-122.67128
+Outside In,1132 SW 13th Ave Portland OR 97205,Permanent Clinic,0,"Mon,Fri 8:30AM-5PM Tue-Thu 8:30AM-7:30PM",No,No,/images/outside.jpg,45.51756,-122.68656
+Northeast Health Center,5239 NE ML King Blvd Portland OR 97211-3237,Permanent Clinic,0,Mon-Fri 8AM-6PM,No,No,/images/northeast.jpg,45.55764,-122.66147
+North Portland Health Center,9000 N Lombard St Portland OR 97203-3006,Permanent Clinic,0,Mon-Fri 8AM-6PM,No,No,/images/northPortland.jpg,45.59234,-122.7573
+Mid-County Health Center,12710 SE Division St Portland OR 97236-3134,Permanent Clinic,0,Mon-Fri 8AM-7PM,No,No,/images/midCounty.jpg,45.50412,-122.538933
+La Clinica De Buena Salud,6736 NE Killingsworth St Portland OR 97218-3338,Permanent Clinic,0,Mon-Fri 8AM-5PM,No,No,/images/laClinica.jpg,45.56275,-122.59926
+Hooper Detox Stabilization Center,1535 N Williams Ave Portland OR 97232,Permanent Clinic,0,Mon-Fri 6:45AM-8:30PM,No,No,/images/hooper.jpg,45.53398,-122.66675
+Multnomah County Health Department,426 SW Stark St Portland OR 97204-2347,Permanent Clinic,0,Mon-Fri 8AM-5PM,No,No,/images/multHealth.jpg,45.52077,-122.67623
+Chiers Mobile Outreach Van,232 NW 6th Ave Portland OR 97209-3609,Mobile Van Clinic,0,Sun-Sat 1:45PM-11:45PM,No,Yes,/images/mobileOut.jpg,45.52497,-122.67657
+Cares Nw Center,2800 N Vancouver Ave Ste 201 Portland OR 97227-1648,Permanent Clinic,0,Mon-Fri 8AM-5PM,No,No,/images/caresNW.jpg,45.54168,-122.66813
+NARA,1776 SW Madison St Portland OR 97205-1715,Permanent Clinic,0,Mon-Fri 9AM-5PM,No,No,/images/naraPor.jpg,45.5183,-122.69173
+Emergency Dental Care USA,8401 NE Halsey St Ste 102 Portland OR 97220,Dental,0,Fri-Tue 9AM-9PM,No,Yes,/images/emerDental.jpg,45.53395,-122.57602
+Portsmouth Dental Care,5228 N Lombard St Portland OR 97203,Dental,0,Mon 8AM-3:30PM Tue-Wed 7AM-7PM Thu 8AM-6PM Fri 8AM-3PM Sat 9AM-2PM,No,Yes,/images/portsmouth.jpg,45.58173,-122.72189
+Portland Children's Dentistry,2323 NW Westover Rd Portland OR 97210,Dental,0,Mon-Thu 8AM-5PM Sat 9AM-1PM,No,Yes,/images/portlandDent.jpg,45.52416,-122.69897
+City Dental- Portland,511 SW 10th Ave #704 Portland OR 97205,Dental,0,Mon-Fri 8AM-5PM,No,No,/images/cityDent.jpg,45.52006,-122.68211
+East Portland Dentistry,9 NE 120 Ave Portland OR 97220,Dental,0,"Mon,Fri 8AM-5PM Tue 7AM-5PM Wed 8AM-1PM Thu 8AM-6PM",No,No,/images/eastPortland.jpg,45.52343,-122.54106
+Myopic Optometry,3978 N Williams Ave Portland OR 97227,Optometry,0,Mon-Fri 9AM-7PM Sat 9AM-5PM Sun 11AM-4PM,No,Yes,/images/myopticPor.jpg,45.55191,-122.66647
+Portland Eye Care,4133 SE Division St Portland OR 97206,Optometry,0,Mon-Fri 8:30AM-5:30PM Sat 9AM-2:30PM,No,Yes,/images/portlandEye.jpg,45.50532,-122.61001
+Alberta Eye Care,2021 NE Alberta St Portland OR 97211,Optometry,0,"Mon,Wed,Fri 8AM-5PM Tue,Thu 9AM-6PM Sat 9AM-5PM",No,Yes,/images/albertaEye.jpg,45.55912,-122.64463
+St. John's Vision Clinic,8523 N Lombard St Portland OR 97203,Optometry,0,Tue-Fri 9AM-5PM,No,No,/images/stJohns.jpg,45.59027,-122.75426
+Moreland Vision Source,6539 SE Milwaukie Ave Portland OR 97202,Optometry,0,Mon-Fri 8:30AM-5:30PM,No,No,/images/moreland.jpg,45.47548,-122.64902
+Restore Therapy,1235 SE Morrison St Suite 100 Portland OR 97214,Therapy,0,Sun-Sat 8AM-5PM,No,Yes,/images/restore.jpg,45.51743,-122.65288
+Portland Therapy Center,510 SW 3rd Ave #200 Portland OR 97204,Therapy,0,Sun-Sat 8AM-9PM,No,Yes,/images/porTherapy.jpg,45.51933,-122.67471
+Portland Psychotherapy,3700 N Williams Ave Portland OR 97227,Therapy,0,Mon-Thu 8AM-8PM Fri 8AM-6PM,No,No,/images/portlandPsych.jpg,45.54969,-122.6664
+William Temple House,2023 NW Hoyt St Portland OR 97209,Therapy,0,Mon-Thu 10AM-4PM,No,No,/images/william.jpg,45.52727,-122.69279
