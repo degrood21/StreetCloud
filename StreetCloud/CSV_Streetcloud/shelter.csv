@@ -1,11 +1,11 @@
-NAME,ADDRESS,GENDER,DISTANCE,NOTES,IMAGE,FOOD
-Burnside Shelter,"111 W Burnside St, Portland OR 97209",Male,5,*Allows females in transition to permanent housing,/images/burnside.jpg,Yes
-Willamette Center,"5120 SE Milwaukie Ave, Portland OR 97202",Female,0,*Allows couples,/images/willamette.jpg,No
-Rose Haven Day Shelter for Women and Children,"627 NW 18th Ave, Portland OR 97209",Female,0,*children,/images/roseRaven.jpg,Yes
-TPI Safety Off the Streets (SOS) Shelter,"435 NW Glisan St, Portland OR 97209",Female,0,*adult only,/images/safteyOff.jpg,No
-Salvation Army Female Emergency,"30 SW 2nd Ave, Portland OR 97204",Female,0,*adult only *Only Snacks Provided,/images/salvationArmy.jpg,Yes
-Kenton Women's Village (Argyle Village),"2250-2344 N Columbia Blvd, Portland OR 97217",Female,0,*Small Home Pods,/images/kenton.jpg,No
-River District Navigation Center,"1111 NW Naito, Portland, Oregon 97209",All,0,*adult only,/images/riverNav.jpg,Yes
-Dignity Village,"9401 NE Sunderland Ave, Portland OR 97211",All,0,*winter only (November-March),/images/dignity.jpg,No
-Porch Light & Street Light Youth Centers,"1635 SW Alder St, Portland OR 97205",All,0,*ages 15-23,/images/porchLight.jpg,Yes
-Day Break Shelter,"16015 SE Stark St, Portland OR 97233",All,0,,/images/daybreak.jpg,No
+NAME,ADDRESS,GENDER,DISTANCE,NOTES,IMAGE,FOOD,LAT,LON
+Burnside Shelter,"111 W Burnside St, Portland OR 97209",Male,5,*Allows females in transition to permanent housing,/images/burnside.jpg,Yes,45.52315,-122.6722
+Willamette Center,"5120 SE Milwaukie Ave, Portland OR 97202",Female,0,*Allows couples,/images/willamette.jpg,No,45.48573,-122.64913
+Rose Haven Day Shelter for Women and Children,"627 NW 18th Ave, Portland OR 97209",Female,0,*children,/images/roseRaven.jpg,Yes,45.5276,-122.68971
+TPI Safety Off the Streets (SOS) Shelter,"435 NW Glisan St, Portland OR 97209",Female,0,*adult only,/images/safteyOff.jpg,No,45.52662,-122.67646
+Salvation Army Female Emergency,"30 SW 2nd Ave, Portland OR 97204",Female,0,*adult only *Only Snacks Provided,/images/salvationArmy.jpg,Yes,45.52258,-122.67216
+Kenton Women's Village (Argyle Village),"2250-2344 N Columbia Blvd, Portland OR 97217",Female,0,*Small Home Pods,/images/kenton.jpg,No,45.58749,-122.69277
+River District Navigation Center,"1111 NW Naito, Portland, Oregon 97209",All,0,*adult only,/images/riverNav.jpg,Yes,45.53114,-122.67672
+Dignity Village,"9401 NE Sunderland Ave, Portland OR 97211",All,0,*winter only (November-March),/images/dignity.jpg,No,45.5911,-122.63829
+Porch Light & Street Light Youth Centers,"1635 SW Alder St, Portland OR 97205",All,0,*ages 15-23,/images/porchLight.jpg,Yes,45.52234,-122.68809
+Day Break Shelter,"16015 SE Stark St, Portland OR 97233",All,0,,/images/daybreak.jpg,No,45.5195,-122.49865

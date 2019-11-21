@@ -106,6 +106,7 @@ $("#searchButtonInd").click(function() {
                             "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
                             "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
                             "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>";
+                            "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>"
                         toAdd = toAdd + "</table></td></tr></table></td></tr>";
 
                         $(".results").append(toAdd);
@@ -151,6 +152,7 @@ function querySearch() {
                             "<tr><td><p>Name: " + data[i].Name + "</p></td></tr>" +
                             "<tr><td><p>Address: " + data[i].Address + "</p></td></tr>" +
                             "<tr><td><p>Distance: " + data[i].Distance + "</p></td></tr>" +
+                            "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                             "</table></td></tr></table></td></tr>");
                     }
                 });
@@ -245,6 +247,7 @@ function medicalFunction() {
                         "<tr><td><p>Hours: " + data[i].HOURS + "</p></td>" +
                         "<tr><td><p>Open Allday: " + data[i].ALLDAY + "</p></td>" +
                         "<tr><td><p>Open Weekends: " + data[i].WEEKENDS + "</p></td>" +
+                        "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                         "</table></td></tr></table></td></tr>");
                 }
             });
@@ -341,6 +344,7 @@ function foodFunction() {
                     "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
                     "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
                     "<tr><td><p>Price: " + data[i].PRICE + "</p></td></tr>" +
+                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                     "</table></td></tr></table></td></tr>");
             }
         });
@@ -382,6 +386,7 @@ function clearFilter(){
                         "<tr><td><p>Hours: " + data[i].HOURS + "</p></td>" +
                         "<tr><td><p>Open Allday: " + data[i].ALLDAY + "</p></td>" +
                         "<tr><td><p>Open Weekends: " + data[i].WEEKENDS + "</p></td>" +
+                        "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                         "</table></td></tr></table></td></tr>");
                 }
             });
@@ -488,6 +493,7 @@ function shelterFunction() {
                                     "<tr><td><p>Distance: " + distance + "</p></td></tr>" +
                                     "<tr><td><p>Gender:" + data[j].GENDER + "</p></td></tr>" +
                                     "<tr><td><p>NOTES:" + data[j].NOTES + "</p></td></tr>" +
+                                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
                                     "</table></td></tr></table></td></tr>");
                             }
                         }
@@ -583,6 +589,7 @@ function jobsFunction(){
                     "<tr><td><p>Education Level Needed: " + data[i].EDUCATION+ "</p></td></tr>" +
                     "<tr><td><p>Part Time: " + data[i].PART_TIME + "</p></td></tr>" +
                     "<tr><td><p>Full Time: " + data[i].FULL_TIME + "</p></td></tr>" +
+                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                     "</table></td></tr></table></td></tr>");
             }
         });
@@ -651,6 +658,7 @@ function libraryFunction(){
                     "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
                     "<tr><td><p>Hours: " + data[i].HOURS+ "</p></td></tr>" +
                     "<tr><td><p>Restroom Access: " + data[i].PUBLIC_RESTROOM + "</p></td></tr>" +
+                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                     "</table></td></tr></table></td></tr>");
             }
         });
@@ -724,6 +732,7 @@ function daycareFunction(){
                     "<tr><td><p>Weekdays: " + data[i].WEEKDAYS+ "</p></td></tr>" +
                     "<tr><td><p>Weekends: " + data[i].WEEKENDS + "</p></td></tr>" +
                     "<tr><td><p>Price: " + data[i].PRICE + "</p></td></tr>" +
+                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                     "</table></td></tr></table></td></tr>");
             }
         });
@@ -784,6 +793,7 @@ function publicRestroomFunction(){
                     "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
                     "<tr><td><p>Open 24 Hours: " + data[i].ALLDAY+ "</p></td></tr>" +
                     "<tr><td><p>Hours: " + data[i].HOURS + "</p></td></tr>" +
+                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                     "</table></td></tr></table></td></tr>");
             }
         });
