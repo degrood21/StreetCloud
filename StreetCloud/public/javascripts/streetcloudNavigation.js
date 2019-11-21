@@ -351,6 +351,8 @@ function clearFilter(){
     $('input:radio[name=urgency]:checked').prop('checked', false);
     $('input:radio[name=distance]:checked').prop('checked', false);
     $('input:radio[name=health]:checked').prop('checked', false);
+    $('input:radio[name=time]:checked').prop('checked', false);
+    $('input:radio[name=price]:checked').prop('checked', false);
     $(document).ready(function () {
         var allData = "true";
 
@@ -388,6 +390,10 @@ function clearFilter(){
 
 function shelterFunction() {
 
+//TESTING START
+
+//TESTING END
+
     var gender, distance, food;
     
     //SQL querries 
@@ -401,7 +407,7 @@ function shelterFunction() {
         gender = "GENDER = 'Female'";
     }
     else{
-        gender = "GENDER = 'All'";
+        gender = "GENDER = 'Female' OR GENDER = 'Male'";
     }
 
     //distance filters 
@@ -443,18 +449,59 @@ function shelterFunction() {
             if (data.length == 0) {
                 $("#shelterResults").append("<p>No Results Found</p>");
             }
-            for (i = 0; i < data.length; i++) {
-                //this should be in a for loop if there is more data 
-                $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td> " +
-                    "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
-                    "<td><table class='searchInfo'>" +
-                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
-                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
-                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
-                    "<tr><td><p>Gender:" + data[i].GENDER + "</p></td></tr>" +
-                    "<tr><td><p>NOTES:" + data[i].NOTES + "</p></td></tr>" +
-                    "</table></td></tr></table></td></tr>");
+
+            var currentLat = 0;
+            var currentLon = 0;
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+
+                    currentLat = position.coords.latitude;
+                    currentLon = position.coords.longitude;
+                    console.log("TESTING CURRENT LOCATION: " + currentLat + " " +currentLon);
+                    var origin1 = new google.maps.LatLng(currentLat, currentLon);
+                    var distanceArr = [];
+                    for(i = 0; i < data.length; i++){
+                        distanceArr.push(new google.maps.LatLng(data[i].LAT, data[i].LON));
+                    }
+                    var service = new google.maps.DistanceMatrixService();
+                    service.getDistanceMatrix(
+                    {
+                        origins: [origin1],
+                        destinations: distanceArr,
+                        travelMode: 'WALKING',
+                        unitSystem: google.maps.UnitSystem.IMPERIAL,
+                    }, callback);
+
+                    function callback(response, status) {
+                        if (status == 'OK') {
+                            for(j = 0; j < data.length; j++){
+                                var resultsDist = response.rows[0].elements;
+                                var elementDist = resultsDist[j];
+                                var distance = elementDist.distance.text;
+                                console.log("DISTANCE: " +distance);
+
+                                $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td> " +
+                                    "<img src='" + data[j].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                                    "<td><table class='searchInfo'>" +
+                                    "<tr><td><p>Name: " + data[j].NAME + "</p></td></tr>" +
+                                    "<tr><td><p>Address: " + data[j].ADDRESS + "</p></td></tr>" +
+                                    "<tr><td><p>Distance: " + distance + "</p></td></tr>" +
+                                    "<tr><td><p>Gender:" + data[j].GENDER + "</p></td></tr>" +
+                                    "<tr><td><p>NOTES:" + data[j].NOTES + "</p></td></tr>" +
+                                    "</table></td></tr></table></td></tr>");
+                            }
+                        }
+                    }
+        
+
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                    });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
             }
+
         });
     });
 }
@@ -685,6 +732,7 @@ function daycareFunction(){
 }
 
 function publicRestroomFunction(){
+
     var distance, times; 
     
     //SQL querries 
