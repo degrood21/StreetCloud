@@ -43,9 +43,14 @@ var result_distance;
           var distance_value = distance.value;
           var distance_text = distance.text;
           var miles = distance_text.substring(0, distance_text.length - 3);
-          var distance_append = $('.results').append("Distance: " + miles + " miles");
+          //console.log("distance Value: " + distance_value);
+          //var distance_append = $('#shelterResults').append("Distance: " + miles + " miles");
           var append_miles = miles; 
+          result_distance = miles;
+          console.log("MILES: " + miles);
+          return miles;
         }
+        
       }
     }
       
@@ -508,37 +513,62 @@ function foodFunction() {
     });
 }
 
+// var loaded = function(req, res) {
+
+// async.waterfall([
+//         getLocation(),
+//         calculateDistance(source, destination)
+//     ], function(error, success)
+//     {
+//         if(error) 
+//         {
+//             alert("Not loaded yet"); 
+//         }
+//         return alert('DONE!');
+//     });
+
+// };
+
+// function calculateDistance(source, destination){
+//     return function (callback){
+        
+//     }
+// }
 
 
-function getLocation(callback) {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(getPosition, showError);
-    //callback(usercoords);
-    //return usercoords;
-  } 
+
+    
+
+
+// function getLocation(callback) {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(getPosition, showError);
+//     //callback(usercoords);
+//     return usercoords;
+//   } 
   
-  else {
-    alert("Geolocation is not supported by this browser.");
-    return null;
-  }
-}
+//   else {
+//     alert("Geolocation is not supported by this browser.");
+//     return null;
+//   }
+// }
 
-function showError(error) {
-  switch(error.code) {
-    case error.PERMISSION_DENIED:
-      alert("User denied the request for Geolocation.")
-      break;
-    case error.POSITION_UNAVAILABLE:
-      alert("Location information is unavailable.")
-      break;
-    case error.TIMEOUT:
-      alert("The request to get user location timed out.")
-      break;
-    case error.UNKNOWN_ERROR:
-      alert("An unknown error occurred.")
-      break;
-  }
-}
+// function showError(error) {
+//   switch(error.code) {
+//     case error.PERMISSION_DENIED:
+//       alert("User denied the request for Geolocation.")
+//       break;
+//     case error.POSITION_UNAVAILABLE:
+//       alert("Location information is unavailable.")
+//       break;
+//     case error.TIMEOUT:
+//       alert("The request to get user location timed out.")
+//       break;
+//     case error.UNKNOWN_ERROR:
+//       alert("An unknown error occurred.")
+//       break;
+//   }
+// }
 
 function getPosition(pos) {
   var crd = pos.coords;
@@ -602,7 +632,8 @@ function shelterFunction() {
     var test_user_coords = getLocation();
     console.log("after getLocation");
     console.log("pls work " + test_user_coords);
-    test_dist = calculateDistance(univ_portland,shelter_test);
+    test_dist = calculateDistance(univ_portland, shelter_test);
+    console.log("testdist: " + test_dist);
     console.log('im being called');
     //console.log("Origins: " + JSON.stringify(rows));
     console.log(JSON.stringify(test_dist));
@@ -653,6 +684,9 @@ function shelterFunction() {
     // 1. Wait for getLocation(), do this on the first page 
     // 2. Wait for calculateDistance()
     $(document).ready(function () {
+        var source_coord = getLocation();
+        console.log("Source Cordinates type: " + typeof(source_coord));
+        //source_coord = new google.maps.LatLng()
         var shelterQuery = sessionStorage.getItem("shelterQuery");
         if (shelterQuery == undefined){
             shelterQuery = "";
@@ -670,28 +704,38 @@ function shelterFunction() {
                 $("#shelterResults").append("<p>No Results Found</p>");
             }
             
-            var source_coord = getLocation();
+            
+            
             for (i = 0; i < data.length; i++) {
                 
                 //var univ_portland = new google.maps.LatLng(45.5732, -122.7276);
                     //getLocation(); //update user coords and assign to source coords
                     //var source_coord = getLocation(); //returns source_coords
                     var destination_coord = new google.maps.LatLng(data[i].LAT,data[i].LON);
-                    
-                    distance_result = calculateDistance(source_coord,destination_coord);
-                //this should be in a for loop if there is more data  
                 
+                    test_this_dist = calculateDistance(source_coord,destination_coord);
+                    //havDist = haversineDistance(source_coord,destination_coord);
+                    console.log("Distance Coordinates Type: " + typeof(destination_coord));
+                    console.log("Source Coordinates: " + source_coord);
+                    console.log("Calculated distance: " + calculateDistance(source_coord, destination_coord));
+                //this should be in a for loop if there is more data  
+                    distance_result = result_distance;
                     $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td> " +
                         "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                         "<td><table class='searchInfo'>" +
                         "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
                         "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
-                        "<tr><td><p>Distance: " + distance_result + "</p></td></tr>" +
+                        "<tr><td><p>Distance: " + test_this_dist + "</p></td></tr>" +
+                        //"<tr><td><p>Testing: " + miles + "</p></td></tr>" +
                         "<tr><td><p>Gender:" + data[i].GENDER + "</p></td></tr>" +
                         "<tr><td><p>NOTES:" + data[i].NOTES + "</p></td></tr>" +
+                        "<tr><td><p>Source Coordinates :" + source_coord + "</p></td></tr>" + //added this line for testing
+                        "<tr><td><p>Destination Coordinates:" + destination_coord + "</p></td></tr>" + //added this for testing 
+                        "<tr><td><p>Distance: " + test_dist + "</p></td></tr>" +
                         "</table></td></tr></table></td></tr>");
                 }
             
+                //console.log("MILES: " + miles);
         
         });
     });
