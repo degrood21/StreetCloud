@@ -43,8 +43,9 @@ var result_distance;
           var distance_value = distance.value;
           var distance_text = distance.text;
           var miles = distance_text.substring(0, distance_text.length - 3);
-          var distance_append = $('.results').append("Distance: " + miles + " miles");
+        //   var distance_append = $('.results').append("Distance: " + miles + " miles");
           var append_miles = miles; 
+          result_distance = miles;
         }
       }
     }
@@ -98,7 +99,7 @@ function showError(error) {
 function getPosition(pos) {
   var crd = pos.coords;
   
-  usercoords = [crd.latitude, crd.longitude];
+  usercoords = new google.maps.LatLng(crd.latitude, crd.longitude);
 
   console.log('Your current position is:');
   console.log(`Latitude : ${crd.latitude}`);
@@ -596,10 +597,8 @@ function shelterFunction() {
     var shelter_test = new google.maps.LatLng(45.522917, -122.688438);
     var gender, distance, food;
     console.log("before getLocation");
-    var test_user_coords = getLocation();
     console.log("after getLocation");
     console.log("pls work " + test_user_coords);
-    test_dist = calculateDistance(univ_portland,shelter_test);
     console.log('im being called');
     //console.log("Origins: " + JSON.stringify(rows));
     console.log(JSON.stringify(test_dist));
@@ -671,7 +670,7 @@ function shelterFunction() {
                     //var source_coord = getLocation(); //returns source_coords
                     var destination_coord = new google.maps.LatLng(data[i].LAT,data[i].LON);
                     
-                    distance_result = calculateDistance(source_coord,destination_coord);
+                    distance_result = calculateDistance(usercoords,destination_coord);
                 //this should be in a for loop if there is more data  
                 
                     $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td> " +
@@ -966,7 +965,7 @@ function publicRestroomFunction(){
                     "<td><table class='searchInfo'>" +
                     "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
                     "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
-                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
+                    "<tr><td><p>Distance:"+result_distance+"</p></td></tr>" +
                     "<tr><td><p>Open 24 Hours: " + data[i].ALLDAY+ "</p></td></tr>" +
                     "<tr><td><p>Hours: " + data[i].HOURS + "</p></td></tr>" +
                     "</table></td></tr></table></td></tr>");
