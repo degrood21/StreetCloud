@@ -334,10 +334,11 @@ function medicalFunction() {
                                     "<tr><td><p>Hours: " + data[j].HOURS + "</p></td>" +
                                     "<tr><td><p>Open Allday: " + data[j].ALLDAY + "</p></td>" +
                                     "<tr><td><p>Open Weekends: " + data[j].WEEKENDS + "</p></td>" +
+                                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
                                     "</table></td></tr></table></td></tr>");
                                     nothingtoShow += 1;
                                 }
-                                if((j+1 == data.length) && nothingtoShow == 0){
+                                if((j == data.length) && nothingtoShow == 0){
                                     $("#medicalResults").append("<p>No Results Found</p>");
                                 }
                             }
@@ -503,6 +504,7 @@ function foodFunction() {
                                     "<tr><td><p>Address: " + data[j].ADDRESS + "</p></td></tr>" +
                                     "<tr><td><p>Distance: " + distance + "</p></td></tr>" +
                                     "<tr><td><p>Price: " + data[j].PRICE + "</p></td></tr>" +
+                                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
                                     "</table></td></tr></table></td></tr>");
                                     nothingtoShow += 1;
                                 
@@ -643,6 +645,7 @@ function shelterFunction() {
                                         "<tr><td><p>Distance: " + distance + "</p></td></tr>" +
                                         "<tr><td><p>Gender:" + data[j].GENDER + "</p></td></tr>" +
                                         "<tr><td><p>NOTES:" + data[j].NOTES + "</p></td></tr>" +
+                                        "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
                                         "</table></td></tr></table></td></tr>");
                                         nothingtoShow += 1;
                                 }
