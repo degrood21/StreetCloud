@@ -9,6 +9,7 @@
 <link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="javascripts/streetcloud_filters.js"></script>
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyAJQvyANqrylw4vyAkEf_aScXZfusD1b7Y"></script>
 </head>
 <body onload="medicalFunction()">
 <!-- Header -->
@@ -75,7 +76,7 @@
   </tr>
 </form>
 <td></td>
-<td><button id="clearFilterButton" class="center" onclick="clearFilter()">Clear Filters</button></td>
+<td><button id="clearFilterMedical" class="clearFilterButton" onclick="clearFilter(this.id)">Clear Filters</button></td>
 <td></td>
 </table>
 

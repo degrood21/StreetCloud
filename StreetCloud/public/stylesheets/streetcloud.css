@@ -66,6 +66,11 @@ img{
 	margin-left:auto;
 	margin-right:auto;
 }
+.clearFilterButton{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
 .centergif{
 	display:block;
 	margin-left:auto;
@@ -273,7 +278,7 @@ a {
 	overflow-y: auto;
 }
 
-#clearFilterButton{
+#clearFilterMedical, #clearFilterFood, #clearFilterShelter{
 	margin: 10px 0px 5px 10px;
 	opacity:1;
 	width: auto;

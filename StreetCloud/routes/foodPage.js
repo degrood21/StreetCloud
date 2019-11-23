@@ -8,11 +8,17 @@ router.post('/', function (req, res) {
     var priceQuery = req.body.price;
     var typeQuery = req.body.type;
     var query = req.body.query;
+    var all = req.body.all;
 
 
-    inquiry = "SELECT * FROM food WHERE DISTANCE " + distanceQuery + " AND (" + typeQuery + ") AND (" + priceQuery + ")";
+    if(all == "true"){
+        var inquiry = "SELECT * from food"
+    }
+    else{
+        inquiry = "SELECT * FROM food WHERE DISTANCE " + distanceQuery + " AND (" + typeQuery + ") AND (" + priceQuery + ")";
+    }
 
-    if (!(query === "")) {
+    if (!(query === "") && all != "true") {
         query.replace(/'/g, "\\\'");
         inquiry = inquiry + " AND (NAME LIKE '%" + query + "%') ";
     }
