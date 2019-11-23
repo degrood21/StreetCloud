@@ -28,6 +28,6 @@ document.getElementById("contactUS").onclick = function(){
 document.getElementById("registerForm").onclick = function() {
     location.href = "/../streetcloud_register_form.html";
 };
-document.getElementById("volunteer").onclick = function() {
-    location.href = "/../streetcloud_register_form.html";
+document.getElementById("volunteerButton").onclick = function() {
+    location.href = "/../streetcloud_volunteer_page.html";
 };

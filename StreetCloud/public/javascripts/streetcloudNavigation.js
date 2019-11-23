@@ -186,8 +186,8 @@ document.getElementById("homeFooterButton").onclick = function() {
 document.getElementById("contactUS").onclick = function(){
     location.href = "/../streetcloud_about.html#contactheader";
 };
-document.getElementById("volunteer").onclick = function() {
-    location.href = "/../streetcloud_register_form.html";
+document.getElementById("volunteerButton").onclick = function() {
+    location.href = "/../streetcloud_volunteer_page.html";
 };
 
 });
