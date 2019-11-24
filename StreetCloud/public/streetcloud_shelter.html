@@ -4,15 +4,18 @@
 <head>
 <meta name="viewport" content="width=device-width", initial-scale=1>
 <link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
-<script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="javascripts/streetcloud_filters.js"></script>
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyAJQvyANqrylw4vyAkEf_aScXZfusD1b7Y"></script>
 </head>
 <body onload="shelterFunction()">
 <!-- Header -->
 <h1 id="headerButton">StreetCloud</h1>
 <!-- Second Header -->
 <h2 id="pageId">Shelter</h2>
+
 <!-- Menu -->
+<div id = "map"></div>
 <div class="menu">
   <table>
     <tr>
@@ -36,6 +39,18 @@
 </div>
 
 <h2>What are you looking for?</h2>
+
+
+<script>
+var map;
+function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+  });
+}
+
+</script>
 
 <br>
 <table class="search">
@@ -70,6 +85,9 @@
     </tr>
     
   </form>
+  <td></td>
+  <td><button id="clearFilterShelter" class="clearFilterButton" onclick="clearFilter(this.id)">Clear Filters</button></td>
+  <td></td>
   </table>
 
   <!--Mobile Filters Button-->
@@ -141,7 +159,7 @@
 <p id="homeFooterButton">StreetCloud</p>
 <p id ="aboutUs">About Us</p>
 <p id = "contactUS">Contact Us</p>
-<p id = "volunteer">Volunteer</p>
+<p id = "volunteerButton">Volunteer</p>
 <p id ="registerForm">Partnerships</p>
 </div>
 
