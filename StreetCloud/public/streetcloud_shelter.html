@@ -5,12 +5,9 @@
 <head>
 <meta name="viewport" content="width=device-width", initial-scale=1>
 <link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
-<script async defer 
-src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAJQvyANqrylw4vyAkEf_aScXZfusD1b7Y&libraries=geometry&language=en&callback=initMap">
-</script>
-
-<script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="javascripts/streetcloud_filters.js"></script>
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyAJQvyANqrylw4vyAkEf_aScXZfusD1b7Y"></script>
 </head>
 
 <body onload="shelterFunction()">
@@ -77,6 +74,9 @@ function initMap() {
     </tr>
     
   </form>
+  <td></td>
+  <td><button id="clearFilterShelter" class="clearFilterButton" onclick="clearFilter(this.id)">Clear Filters</button></td>
+  <td></td>
   </table>
 
   <!--Mobile Filters Button-->
@@ -156,29 +156,29 @@ function initMap() {
   </div>
   <br>
 
-  <!-- Search Database" -->
-  <table id="shelterResults" class="results">
-  </table>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  <div class="footer">
-    <p id="homeFooterButton">StreetCloud</p>
-    <p id="aboutUs">About Us</p>
-    <p id="contactUS">Contact Us</p>
-    <p id="volunteer">Volunteer</p>
-    <p id="registerForm">Partnerships</p>
-  </div>
+<!-- Search Database" -->
+<table id="shelterResults" class="results">
+</table>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<div class="footer">
+<p id="homeFooterButton">StreetCloud</p>
+<p id ="aboutUs">About Us</p>
+<p id = "contactUS">Contact Us</p>
+<p id = "volunteerButton">Volunteer</p>
+<p id ="registerForm">Partnerships</p>
+</div>
 
   <script src="javascripts/streetcloudNavigation.js">
   </script>

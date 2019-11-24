@@ -43,10 +43,14 @@ var result_distance;
           var distance_value = distance.value;
           var distance_text = distance.text;
           var miles = distance_text.substring(0, distance_text.length - 3);
-        //   var distance_append = $('.results').append("Distance: " + miles + " miles");
+          //console.log("distance Value: " + distance_value);
+          //var distance_append = $('#shelterResults').append("Distance: " + miles + " miles");
           var append_miles = miles; 
           result_distance = miles;
+          console.log("MILES: " + miles);
+          return miles;
         }
+        
       }
     }
       
@@ -182,17 +186,13 @@ document.getElementById("homeFooterButton").onclick = function() {
 document.getElementById("contactUS").onclick = function(){
     location.href = "/../streetcloud_about.html#contactheader";
 };
-document.getElementById("volunteer").onclick = function() {
-    location.href = "/../streetcloud_register_form.html";
+document.getElementById("volunteerButton").onclick = function() {
+    location.href = "/../streetcloud_volunteer_page.html";
 };
 
 });
 
-
-const philly = [39.9526, -75.1652]
-const nyc = [40.7128, -74.0060]
-// const univ_portland = [45.5732, -122.7276]
-// const shelter_test = [45.522917, -122.688438]
+var allData = "false";//used for clear all filters button
 
 //Click function for the searchButton on the main page
 //Puts the item that was searched for and loads it into local storage
@@ -262,6 +262,7 @@ $("#searchButtonInd").click(function() {
                             "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
                             "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
                             "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>";
+                            "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>"
                         toAdd = toAdd + "</table></td></tr></table></td></tr>";
 
                         $(".results").append(toAdd);
@@ -312,7 +313,8 @@ function querySearch() {
                             "<td><table class='searchInfo'>" +
                             "<tr><td><p>Name: " + data[i].Name + "</p></td></tr>" +
                             "<tr><td><p>Address: " + data[i].Address + "</p></td></tr>" +
-                            "<tr><td><p>Distance: " + data[i].haversineDistance(univ_portland, shelter_test) + "</p></td></tr>" +
+                            "<tr><td><p>Distance: " + data[i].Distance + "</p></td></tr>" +
+                            "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                             "</table></td></tr></table></td></tr>");
                     }
                 });
@@ -320,6 +322,35 @@ function querySearch() {
     });
 }
 
+function clearFilter(id){
+    
+    $(document).ready(function () {
+        if(id == "clearFilterMedical"){
+            allData = "true";
+            $('input:radio[name=urgency]:checked').prop('checked', false);
+            $('input:radio[name=distance]:checked').prop('checked', false);
+            $('input:radio[name=health]:checked').prop('checked', false);
+            sessionStorage.setItem("medicalQuery", "");
+            medicalFunction();
+        }
+        if(id == "clearFilterShelter"){
+            allData = "true";
+            $('input:radio[name=gender_pref]:checked').prop('checked', false);
+            $('input:radio[name=distance]:checked').prop('checked', false);
+            $('input:radio[name=food_included]:checked').prop('checked', false);
+            sessionStorage.setItem("shelterQuery", "");
+            shelterFunction();
+        }
+        if(id == "clearFilterFood"){
+            allData = "true";
+            $('input:radio[name=time]:checked').prop('checked', false);
+            $('input:radio[name=price]:checked').prop('checked', false);
+            $('input:radio[name=distance]:checked').prop('checked', false);
+            sessionStorage.setItem("foodQuery", "")
+            foodFunction();
+        }
+    });
+}
 
 //This function will send a post asking for data 
 //depending on what filters are checked and append the correct
@@ -377,6 +408,7 @@ function medicalFunction() {
     
 
     $(document).ready(function () {
+
         var medicalQuery = sessionStorage.getItem("medicalQuery");
         if (medicalQuery == undefined){
             medicalQuery = "";
@@ -387,7 +419,8 @@ function medicalFunction() {
                 hours: hours,
                 distance: distance,
                 type: type,
-                query: medicalQuery
+                query: medicalQuery,
+                all: allData
             },
             function (data) {
                 $("#medicalResults").empty();
@@ -395,21 +428,96 @@ function medicalFunction() {
                     $("#medicalResults").append("<p>No Results Found</p>");
                     $("#medImage").attr("src", "https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png");
                 }
-                for (i = 0; i < data.length; i++) 
-                {
-                    $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td>" +
-                        "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
-                        "<td><table class='searchInfo'>" +
-                        "<tr><td><p>Name: " + data[i].NAME + "</p></td>" +
-                        "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td>" +
-                        "<tr><td><p>Distance: " + data[i].DISTANCE + " Miles</p></td>" +
-                        "<tr><td><p>Type: " + data[i].TYPE + "</p></td>" +
-                        "<tr><td><p>Hours: " + data[i].HOURS + "</p></td>" +
-                        "<tr><td><p>Open Allday: " + data[i].ALLDAY + "</p></td>" +
-                        "<tr><td><p>Open Weekends: " + data[i].WEEKENDS + "</p></td>" +
-                        "</table></td></tr></table></td></tr>");
-                }
-            });
+                var currentLat = 0;
+                var currentLon = 0;
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+
+                    currentLat = position.coords.latitude;
+                    currentLon = position.coords.longitude;
+                    console.log("TESTING CURRENT LOCATION: " + currentLat + " " +currentLon);
+                    var origin1 = new google.maps.LatLng(currentLat, currentLon);
+                    var distanceArr = [];
+                    if(data.length >= 25){
+                        for(i = 0; i < 25; i++){
+                            distanceArr.push(new google.maps.LatLng(data[i].LAT, data[i].LON));
+                        }
+                    }
+                    else{
+                        for(i = 0; i < data.length; i++){
+                            distanceArr.push(new google.maps.LatLng(data[i].LAT, data[i].LON));
+                        }
+                    }
+                    var service = new google.maps.DistanceMatrixService();
+                    service.getDistanceMatrix(
+                    {
+                        origins: [origin1],
+                        destinations: distanceArr,
+                        travelMode: 'WALKING',
+                        unitSystem: google.maps.UnitSystem.IMPERIAL,
+                    }, callback);
+
+                    function callback(response, status) {
+                        if (status == 'OK') {
+                            for(j = 0; j < response.rows[0].elements.length; j++){
+                                var nothingtoShow = 0;
+                                var resultsDist = response.rows[0].elements;
+                                var elementDist = resultsDist[j];
+                                var distance = elementDist.distance.text;
+                                console.log("DISTANCE: " +distance);
+
+                                var checkedDist = 20;
+                                if(document.getElementById("5m").checked == true ||
+                                    document.getElementById("5m_mobile").checked == true ||
+                                    document.getElementById("2m").checked == true ||
+                                    document.getElementById("2m_mobile").checked == true){
+                                        checkedDist = 5;
+                                }
+                                else if (document.getElementById("10m").checked == true ||
+                                    document.getElementById("10m_mobile").checked == true) {
+                                        checkedDist = 10;
+                                }
+                                else if (document.getElementById("15m+").checked == true ||
+                                    document.getElementById("15m+_mobile").checked == true) {
+                                        checkedDist = 15;
+                                }
+
+                                console.log("CHECKED DIST: " + checkedDist);
+                                if(parseFloat(distance) <= checkedDist){
+                                    $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td>" +
+                                    "<img src='" + data[j].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                                    "<td><table class='searchInfo'>" +
+                                    "<tr><td><p>Name: " + data[j].NAME + "</p></td>" +
+                                    "<tr><td><p>Address: " + data[j].ADDRESS + "</p></td>" +
+                                    "<tr><td><p>Distance: " + distance + " Miles</p></td>" +
+                                    "<tr><td><p>Type: " + data[j].TYPE + "</p></td>" +
+                                    "<tr><td><p>Hours: " + data[j].HOURS + "</p></td>" +
+                                    "<tr><td><p>Open Allday: " + data[j].ALLDAY + "</p></td>" +
+                                    "<tr><td><p>Open Weekends: " + data[j].WEEKENDS + "</p></td>" +
+                                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
+                                    "</table></td></tr></table></td></tr>");
+                                    nothingtoShow += 1;
+                                }
+                                if((j == data.length) && nothingtoShow == 0){
+                                    $("#medicalResults").append("<p>No Results Found</p>");
+                                }
+                            }
+                            if(allData == "true"){
+                                allData = "false";
+                            }
+                        }
+                    }
+        
+
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                    });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        });
+
     });
 
 }
@@ -488,110 +596,99 @@ function foodFunction() {
             distance: distance,
             price: price,
             type: type,
-            query: foodQuery
+            query: foodQuery,
+            all: allData
         },
         function (data) { 
             $("#foodResults").empty();
             if (data.length == 0) {
                $("#foodResults").append("<p>No Results Found</p>");
             }
-            for (i = 0; i < data.length; i++) {
-                $("#foodResults").append("<tr><td><table class='searchResult'><tr><td>" +
-                    "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
-                    "<td><table class='searchInfo'>" +
-                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
-                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
-                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
-                    "<tr><td><p>Price: " + data[i].PRICE + "</p></td></tr>" +
-                    "</table></td></tr></table></td></tr>");
+
+            var currentLat = 0;
+            var currentLon = 0;
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    currentLat = position.coords.latitude;
+                    currentLon = position.coords.longitude;
+                    console.log("TESTING CURRENT LOCATION: " + currentLat + " " +currentLon);
+                    var origin1 = new google.maps.LatLng(currentLat, currentLon);
+                    var distanceArr = [];
+                    if(data.length >= 25){
+                        for(i = 0; i < 25; i++){
+                            distanceArr.push(new google.maps.LatLng(data[i].LAT, data[i].LON));
+                        }
+                    }
+                    else{
+                        for(i = 0; i < data.length; i++){
+                            distanceArr.push(new google.maps.LatLng(data[i].LAT, data[i].LON));
+                        }
+                    }
+                    var service = new google.maps.DistanceMatrixService();
+                    service.getDistanceMatrix(
+                    {
+                        origins: [origin1],
+                        destinations: distanceArr,
+                        travelMode: 'WALKING',
+                        unitSystem: google.maps.UnitSystem.IMPERIAL,
+                    }, callback);
+
+                    function callback(response, status) {
+                        if (status == 'OK') {
+                            for(j = 0; j < response.rows[0].elements.length; j++){
+                                var nothingtoShow = 0;
+                                var resultsDist = response.rows[0].elements;
+                                var elementDist = resultsDist[j];
+                                var distance = elementDist.distance.text;
+                                console.log("DISTANCE: " +distance);
+
+                                var checkedDist = 20;
+                                if(document.getElementById("5m").checked == true ||
+                                    document.getElementById("r_close_m").checked == true){
+                                        checkedDist = 5;
+                                }
+                                else if(document.getElementById("10m+").checked == true ||
+                                    document.getElementById("r_far_m").checked == true){
+                                        checkedDist = 20;
+                                }
+                                else if(document.getElementById("2m").checked == true ||
+                                    document.getElementById("close_m").checked == true){
+                                        checkedDist = 2;
+                                }
+                                console.log("CHECKED DIST: " + checkedDist);
+                                if(parseFloat(distance) <= checkedDist){
+                                    $("#foodResults").append("<tr><td><table class='searchResult'><tr><td>" +
+                                    "<img src='" + data[j].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                                    "<td><table class='searchInfo'>" +
+                                    "<tr><td><p>Name: " + data[j].NAME + "</p></td></tr>" +
+                                    "<tr><td><p>Address: " + data[j].ADDRESS + "</p></td></tr>" +
+                                    "<tr><td><p>Distance: " + distance + "</p></td></tr>" +
+                                    "<tr><td><p>Price: " + data[j].PRICE + "</p></td></tr>" +
+                                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
+                                    "</table></td></tr></table></td></tr>");
+                                    nothingtoShow += 1;
+                                
+                                }
+                                if((j == data.length) && nothingtoShow == 0){
+                                    $("#foodResults").append("<p>No Results Found</p>");
+                                }
+                            }
+                            if(allData == "true"){
+                                allData = "false";
+                            }
+                        }
+                    }
+        
+
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                    });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
             }
         });
-    });
-}
 
-
-
-function getLocation(callback) {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(getPosition, showError);
-    //callback(usercoords);
-    //return usercoords;
-  } 
-  
-  else {
-    alert("Geolocation is not supported by this browser.");
-    return null;
-  }
-}
-
-function showError(error) {
-  switch(error.code) {
-    case error.PERMISSION_DENIED:
-      alert("User denied the request for Geolocation.")
-      break;
-    case error.POSITION_UNAVAILABLE:
-      alert("Location information is unavailable.")
-      break;
-    case error.TIMEOUT:
-      alert("The request to get user location timed out.")
-      break;
-    case error.UNKNOWN_ERROR:
-      alert("An unknown error occurred.")
-      break;
-  }
-}
-
-function getPosition(pos) {
-  var crd = pos.coords;
-  usercoords = new google.maps.LatLng(crd.latitude, crd.longitude);
-  
-  //usercoords = [crd.latitude, crd.longitude];
-
-  console.log('Your current position is:');
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
-  console.log("user coords: " + usercoords);
-  console.log(`More or less ${crd.accuracy} meters.`);
-}
-
-
-
-function clearFilter(){
-    $('input:radio[name=urgency]:checked').prop('checked', false);
-    $('input:radio[name=distance]:checked').prop('checked', false);
-    $('input:radio[name=health]:checked').prop('checked', false);
-    $(document).ready(function () {
-        var allData = "true";
-
-        $.post('/medicalPage',
-            {
-                hours: "",
-                distance: "",
-                type: "",
-                query: "",
-                all: allData
-            },
-            function (data) {
-                $("#medicalResults").empty();
-                if (data.length == 0) {
-                    $("#medicalResults").append("<p>No Results Found</p>");
-                    $("#medImage").attr("src", "https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png");
-                }
-                for (i = 0; i < data.length; i++) 
-                {
-                    $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td>" +
-                        "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
-                        "<td><table class='searchInfo'>" +
-                        "<tr><td><p>Name: " + data[i].NAME + "</p></td>" +
-                        "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td>" +
-                        "<tr><td><p>Distance: " + data[i].DISTANCE + " Miles</p></td>" +
-                        "<tr><td><p>Type: " + data[i].TYPE + "</p></td>" +
-                        "<tr><td><p>Hours: " + data[i].HOURS + "</p></td>" +
-                        "<tr><td><p>Open Allday: " + data[i].ALLDAY + "</p></td>" +
-                        "<tr><td><p>Open Weekends: " + data[i].WEEKENDS + "</p></td>" +
-                        "</table></td></tr></table></td></tr>");
-                }
-            });
     });
 }
 
@@ -602,6 +699,8 @@ function shelterFunction() {
     console.log("before getLocation");
     console.log("after getLocation");
     console.log("pls work " + test_user_coords);
+    test_dist = calculateDistance(univ_portland, shelter_test);
+    console.log("testdist: " + test_dist);
     console.log('im being called');
     //console.log("Origins: " + JSON.stringify(rows));
     console.log(JSON.stringify(test_dist));
@@ -622,12 +721,12 @@ function shelterFunction() {
         gender = "GENDER = 'Female'";
     }
     else{
-        gender = "GENDER = 'All'";
+        gender = "GENDER = 'Female' OR GENDER = 'Male'";
     }
 
     //distance filters 
     if(document.getElementById("5m").checked == true ||
-        document.getElementById("close_m").checked == true){
+        document.getElementById("r_close_m").checked == true){
         distance = "BETWEEN 0 AND 5";
     }
     else if(document.getElementById("10m+").checked == true ||
@@ -652,6 +751,9 @@ function shelterFunction() {
     // 1. Wait for getLocation(), do this on the first page 
     // 2. Wait for calculateDistance()
     $(document).ready(function () {
+        var source_coord = getLocation();
+        console.log("Source Cordinates type: " + typeof(source_coord));
+        //source_coord = new google.maps.LatLng()
         var shelterQuery = sessionStorage.getItem("shelterQuery");
         if (shelterQuery == undefined){
             shelterQuery = "";
@@ -661,37 +763,92 @@ function shelterFunction() {
             distance: distance,
             gender: gender,
             food: food, 
-            query: shelterQuery
+            query: shelterQuery,
+            all: allData
         }, 
         function (data) {
             $("#shelterResults").empty();
             if (data.length == 0) {
                 $("#shelterResults").append("<p>No Results Found</p>");
             }
-            
-            var source_coord = getLocation();
-            for (i = 0; i < data.length; i++) {
-                
-                //var univ_portland = new google.maps.LatLng(45.5732, -122.7276);
-                    //getLocation(); //update user coords and assign to source coords
-                    //var source_coord = getLocation(); //returns source_coords
-                    var destination_coord = new google.maps.LatLng(data[i].LAT,data[i].LON);
-                    
-                    distance_result = calculateDistance(usercoords,destination_coord);
-                //this should be in a for loop if there is more data  
-                
-                    $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td> " +
-                        "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
-                        "<td><table class='searchInfo'>" +
-                        "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
-                        "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
-                        "<tr><td><p>Distance: " + distance_result + "</p></td></tr>" +
-                        "<tr><td><p>Gender:" + data[i].GENDER + "</p></td></tr>" +
-                        "<tr><td><p>NOTES:" + data[i].NOTES + "</p></td></tr>" +
-                        "</table></td></tr></table></td></tr>");
-                }
-            
+
+            var currentLat = 0;
+            var currentLon = 0;
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+
+                    currentLat = position.coords.latitude;
+                    currentLon = position.coords.longitude;
+                    console.log("TESTING CURRENT LOCATION: " + currentLat + " " +currentLon);
+                    var origin1 = new google.maps.LatLng(currentLat, currentLon);
+                    var distanceArr = [];
+                    for(i = 0; i < data.length; i++){
+                        distanceArr.push(new google.maps.LatLng(data[i].LAT, data[i].LON));
+                    }
+                    var service = new google.maps.DistanceMatrixService();
+                    service.getDistanceMatrix(
+                    {
+                        origins: [origin1],
+                        destinations: distanceArr,
+                        travelMode: 'WALKING',
+                        unitSystem: google.maps.UnitSystem.IMPERIAL,
+                    }, callback);
+
+                    function callback(response, status) {
+                        if (status == 'OK') {
+                            for(j = 0; j < data.length; j++){
+                                var nothingtoShow = 0;
+                                var resultsDist = response.rows[0].elements;
+                                var elementDist = resultsDist[j];
+                                var distance = elementDist.distance.text;
+                                console.log("DISTANCE: " +distance);
+                                var checkedDist = 20;
+                                if(document.getElementById("5m").checked == true ||
+                                    document.getElementById("r_close_m").checked == true){
+                                        checkedDist = 5;
+                                }
+                                else if(document.getElementById("10m+").checked == true ||
+                                    document.getElementById("r_far_m").checked == true){
+                                        checkedDist = 20;
+                                }
+                                else if(document.getElementById("2m").checked == true ||
+                                    document.getElementById("close_m").checked == true){
+                                        checkedDist = 2;
+                                }
+                                console.log("CHECKED DIST: " + checkedDist);
+                                if(parseFloat(distance) <= checkedDist){
+
+                                    $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td> " +
+                                        "<img src='" + data[j].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                                        "<td><table class='searchInfo'>" +
+                                        "<tr><td><p>Name: " + data[j].NAME + "</p></td></tr>" +
+                                        "<tr><td><p>Address: " + data[j].ADDRESS + "</p></td></tr>" +
+                                        "<tr><td><p>Distance: " + distance + "</p></td></tr>" +
+                                        "<tr><td><p>Gender:" + data[j].GENDER + "</p></td></tr>" +
+                                        "<tr><td><p>NOTES:" + data[j].NOTES + "</p></td></tr>" +
+                                        "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
+                                        "</table></td></tr></table></td></tr>");
+                                        nothingtoShow += 1;
+                                }
+                                if((j+1 == data.length) && nothingtoShow == 0){
+                                    $("#shelterResults").append("<p>No Results Found</p>");
+                                }
+                            }
+                            if(allData == "true"){
+                                allData = "false";
+                            }
+                        }
+                    }
         
+
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                    });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+
         });
     });
 
@@ -775,6 +932,7 @@ function jobsFunction(){
                     "<tr><td><p>Education Level Needed: " + data[i].EDUCATION+ "</p></td></tr>" +
                     "<tr><td><p>Part Time: " + data[i].PART_TIME + "</p></td></tr>" +
                     "<tr><td><p>Full Time: " + data[i].FULL_TIME + "</p></td></tr>" +
+                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                     "</table></td></tr></table></td></tr>");
             }
         });
@@ -843,6 +1001,7 @@ function libraryFunction(){
                     "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
                     "<tr><td><p>Hours: " + data[i].HOURS+ "</p></td></tr>" +
                     "<tr><td><p>Restroom Access: " + data[i].PUBLIC_RESTROOM + "</p></td></tr>" +
+                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                     "</table></td></tr></table></td></tr>");
             }
         });
@@ -916,6 +1075,7 @@ function daycareFunction(){
                     "<tr><td><p>Weekdays: " + data[i].WEEKDAYS+ "</p></td></tr>" +
                     "<tr><td><p>Weekends: " + data[i].WEEKENDS + "</p></td></tr>" +
                     "<tr><td><p>Price: " + data[i].PRICE + "</p></td></tr>" +
+                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                     "</table></td></tr></table></td></tr>");
             }
         });
@@ -924,6 +1084,7 @@ function daycareFunction(){
 }
 
 function publicRestroomFunction(){
+
     var distance, times; 
     
     //SQL querries 
@@ -975,6 +1136,7 @@ function publicRestroomFunction(){
                     "<tr><td><p>Distance:"+result_distance+"</p></td></tr>" +
                     "<tr><td><p>Open 24 Hours: " + data[i].ALLDAY+ "</p></td></tr>" +
                     "<tr><td><p>Hours: " + data[i].HOURS + "</p></td></tr>" +
+                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                     "</table></td></tr></table></td></tr>");
             }
         });
