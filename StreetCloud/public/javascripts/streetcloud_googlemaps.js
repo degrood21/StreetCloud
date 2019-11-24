@@ -50,13 +50,14 @@ function getPosition(pos) {
 /* Haversine formula and codebase used was obtained from: https://www.movable-type.co.uk/scripts/latlong.html */
 /* Adapted code from user Nathan Lippi on StackOverflow: https://stackoverflow.com/questions/14560999/using-the-haversine-formula-in-javascript */
 
-function haversineDistance(source, destination) {
+function haversineDistance(source, destination) { //source and destination are passed in longitutde/latitude 
     //toRad converts lat and lon coords into radians
+    console.log("SOURCE: " + source)
     function toRad(x) {
       return x * Math.PI / 180;
     }
   
-    var sourceLon = source[0];
+    var sourceLon = source[0]; //set the long and lat values
     var sourceLat = source[1];
   
     var destLon = destination[0];

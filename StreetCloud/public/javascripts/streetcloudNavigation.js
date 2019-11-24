@@ -1,18 +1,169 @@
-//streetcloudNavigation.js
-//This is the code for the main functionality
-//for navigating through the website and displaying information
-//Created by the StreetCloud software team
+
+//var distance = require('google-distance-matrix');
+//import { google } from 'google-distance-matrix';
+//src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
+//src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"
+
+    //const philly = { lat: 39.9526, lng: -75.1652 }
+    //const nyc = { lat: 40.7128, lng: -74.0060 }
+var result_distance; 
+
+
+    /*
+    * The DistanceMatrixService.getDistanceMatrix() method 
+    * initiates a request to the Distance Matrix service, passing it a 
+    * DistanceMatrixRequest object literal containing the origins, 
+    * destinations, and travel mode, as well as a callback method to 
+    * execute upon receipt of the response.
+    */
+    function calculateDistance(origin, destination) {
+      var service = new google.maps.DistanceMatrixService();
+      service.getDistanceMatrix(
+      {
+        origins: [origin],
+        destinations: [destination],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.IMPERIAL,
+        avoidHighways: false,
+        avoidTolls: false
+      }, callback);
+    }
+  
+    function callback(response, status) {
+      if (status != google.maps.DistanceMatrixStatus.OK) {
+        $('.results').append(err);
+      } else {
+        var origin = response.originAddresses[0];
+        var destination = response.destinationAddresses[0];
+        if (response.rows[0].elements[0].status === "ZERO_RESULTS") {
+          $('.results').append("Better get on a plane. There are no roads between " 
+                            + origin + " and " + destination);
+        } else {
+          var distance = response.rows[0].elements[0].distance;
+          var distance_value = distance.value;
+          var distance_text = distance.text;
+          var miles = distance_text.substring(0, distance_text.length - 3);
+          //console.log("distance Value: " + distance_value);
+          //var distance_append = $('#shelterResults').append("Distance: " + miles + " miles");
+          var append_miles = miles; 
+          result_distance = miles;
+          console.log("MILES: " + miles);
+          return miles;
+        }
+        
+      }
+    }
+      
+    $('#distance_form').submit(function(e){
+        event.preventDefault();
+        var origin = $('#origin').val();
+        var destination = $('#destination').val();
+        var distance_text = calculateDistance(origin, destination);
+    });
+   
+
+    
+   
+   
+   /* Authored by Kelsi Cruz */
+
+/* External Citation */
+/* Adapted geolocation code from: https://www.w3schools.com/html/html5_geolocation.asp */
+/* and: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition */
+var usercoords;
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(getPosition, showError);
+    return usercoords;
+  } 
+  
+  else {
+    alert("Geolocation is not supported by this browser.");
+    return null;
+  }
+}
+
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      alert("User denied the request for Geolocation.")
+      break;
+    case error.POSITION_UNAVAILABLE:
+      alert("Location information is unavailable.")
+      break;
+    case error.TIMEOUT:
+      alert("The request to get user location timed out.")
+      break;
+    case error.UNKNOWN_ERROR:
+      alert("An unknown error occurred.")
+      break;
+  }
+}
+
+function getPosition(pos) {
+  var crd = pos.coords;
+  
+  usercoords = [crd.latitude, crd.longitude];
+
+  console.log('Your current position is:');
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  
+}
+
+
+
+/* External Citation */
+/* Haversine formula and codebase used was obtained from: https://www.movable-type.co.uk/scripts/latlong.html */
+/* Adapted code from user Nathan Lippi on StackOverflow: https://stackoverflow.com/questions/14560999/using-the-haversine-formula-in-javascript */
+
+function haversineDistance(source, destination) { //source and destination are passed in longitutde/latitude 
+    //toRad converts lat and lon coords into radians
+    console.log("SOURCE: " + source)
+    function toRad(x) {
+      return x * Math.PI / 180;
+    }
+  
+    var sourceLon = source[0]; //set the long and lat values
+    var sourceLat = source[1];
+  
+    var destLon = destination[0];
+    var destLat = destination[1];
+  
+    var R = 6371; // earth's radius in km 
+  
+    var x1 = destLat - sourceLat;
+    var finalLat = toRad(x1);
+    var x2 = destLon - sourceLon;
+    var finalLon = toRad(x2);
+    var a = Math.sin(finalLat / 2) * Math.sin(finalLat / 2) +
+      Math.cos(toRad(sourceLat)) * Math.cos(toRad(destLat)) *
+      Math.sin(finalLon / 2) * Math.sin(finalLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var distance = R * c;
+  
+    distance /= 1.60934; // convert to miles
+  
+    return distance;
+  }
+
+
+
+
 
 /*Helps to wait to run functions once the document fully loads*/
 $(document).ready(function(){
 
 //Onclick methods for the main screen
 //When one is clicked it loads up the correct html
+
 document.getElementById("headerButton").onclick = function() {
     location.href = "/../streetcloud.html";
 };
 document.getElementById("medicalButton").onclick = function() {
     location.href = "/../streetcloud_medical.html";
+    
+
 };
 document.getElementById("foodButton").onclick = function() {
     location.href = "/../streetcloud_food.html";
@@ -35,8 +186,8 @@ document.getElementById("homeFooterButton").onclick = function() {
 document.getElementById("contactUS").onclick = function(){
     location.href = "/../streetcloud_about.html#contactheader";
 };
-document.getElementById("volunteer").onclick = function() {
-    location.href = "/../streetcloud_register_form.html";
+document.getElementById("volunteerButton").onclick = function() {
+    location.href = "/../streetcloud_volunteer_page.html";
 };
 
 });
@@ -49,6 +200,9 @@ var allData = "false";//used for clear all filters button
 $("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
     sessionStorage.setItem("query", searchFor);
+    var test_dist = haversineDistance(univ_portland,shelter_test);
+    console.log("TEST DISTANCE: " + test_dist);
+    //sessionStorage.setItem("DISTANCE: ", coolDistance);
     location.href = "/../streetcloud_gen_search.html";
 });
 
@@ -123,6 +277,9 @@ $("#searchButtonInd").click(function() {
 //Will send a post request where the database
 //will be searched for a word containing the search val
 function querySearch() {
+    const philly = { lat: 39.9526, lng: -75.1652 }
+    const nyc = { lat: 40.7128, lng: -74.0060 }
+    //console.log("DISTANCE: " + haversineDistance);
     function init() {
         init.searched = true;
     }
@@ -133,7 +290,9 @@ function querySearch() {
         $(".results").text("");
 
         if (searchFor === "") {
+            var coolDistance = haversineDistance(philly, nyc);
             $("#genResults").append("<p>No Results Found</p>");
+            $("#genResults").append(coolDistance);
         }
         else {
             $.post('/searchPage',
@@ -143,6 +302,7 @@ function querySearch() {
                 function (data) {
                     if(data.length == 0){
                         $("#genResults").append("<p>No Results Found</p>");
+                        $("#genResults").append(coolDistance);
                     }
                     //Loops through the result array of database entries from search results
                     //creates a new table for each entry and appends it to streetcloud_gen_search.html
@@ -533,6 +693,21 @@ function foodFunction() {
 }
 
 function shelterFunction() {
+    var univ_portland = new google.maps.LatLng(45.5732, -122.7276);
+    var shelter_test = new google.maps.LatLng(45.522917, -122.688438);
+    var gender, distance, food;
+    console.log("before getLocation");
+    var test_user_coords = getLocation();
+    console.log("after getLocation");
+    console.log("pls work " + test_user_coords);
+    test_dist = calculateDistance(univ_portland, shelter_test);
+    console.log("testdist: " + test_dist);
+    console.log('im being called');
+    //console.log("Origins: " + JSON.stringify(rows));
+    console.log(JSON.stringify(test_dist));
+
+    var  coord_flag = false;
+    
 
     var gender, distance, food;
     
@@ -572,7 +747,14 @@ function shelterFunction() {
         food = "FOOD = 'Yes'";
     }
 
+
+
+    // 1. Wait for getLocation(), do this on the first page 
+    // 2. Wait for calculateDistance()
     $(document).ready(function () {
+        var source_coord = getLocation();
+        console.log("Source Cordinates type: " + typeof(source_coord));
+        //source_coord = new google.maps.LatLng()
         var shelterQuery = sessionStorage.getItem("shelterQuery");
         if (shelterQuery == undefined){
             shelterQuery = "";
@@ -670,7 +852,9 @@ function shelterFunction() {
 
         });
     });
+
 }
+
 
 function jobsFunction(){
 
@@ -959,3 +1143,4 @@ function publicRestroomFunction(){
         });
     });  
 }
+
