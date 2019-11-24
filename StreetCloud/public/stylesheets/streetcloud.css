@@ -222,7 +222,7 @@ a {
 	background-color: transparent;
 }
 
-#aboutUs, #registerForm, #contactUS, #volunteer{
+#aboutUs, #registerForm, #contactUS, #volunteerButton{
 	cursor: pointer;
 }
 
