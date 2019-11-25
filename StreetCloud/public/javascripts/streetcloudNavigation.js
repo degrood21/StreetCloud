@@ -8,7 +8,7 @@
     //const nyc = { lat: 40.7128, lng: -74.0060 }
 var result_distance; 
 
-
+    
     /*
     * The DistanceMatrixService.getDistanceMatrix() method 
     * initiates a request to the Distance Matrix service, passing it a 
@@ -160,7 +160,6 @@ var allData = "false";//used for clear all filters button
 $("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
     sessionStorage.setItem("query", searchFor);
-    //sessionStorage.setItem("DISTANCE: ", coolDistance);
     location.href = "/../streetcloud_gen_search.html";
 });
 
