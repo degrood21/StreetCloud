@@ -8,7 +8,7 @@
     //const nyc = { lat: 40.7128, lng: -74.0060 }
 var result_distance; 
 
-
+    
     /*
     * The DistanceMatrixService.getDistanceMatrix() method 
     * initiates a request to the Distance Matrix service, passing it a 
@@ -201,7 +201,7 @@ $("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
     sessionStorage.setItem("query", searchFor);
     //var test_dist = haversineDistance(univ_portland,shelter_test);
-    console.log("TEST DISTANCE: " + test_dist);
+    //console.log("TEST DISTANCE: " + test_dist);
     //sessionStorage.setItem("DISTANCE: ", coolDistance);
     location.href = "/../streetcloud_gen_search.html";
 });
