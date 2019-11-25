@@ -4,20 +4,21 @@
 */
 
 body{
-	background-color: black;
+	background-image:linear-gradient(to bottom right, rgb(69,69,69), black);
 	text-align:center;
 	border: 10px;
-	border-color: yellow;
+	border-color: grey;
 	border-style: dotted;
+
 	
 }
 h1{
-	background-color: yellow;
+	background-color: rgb(241, 211, 41);
 	color: black;
 	font-family:tahoma;
 }
 h2{
-	color:rgb(245,243,113);
+	color:rgb(241, 211, 41);
 	font-family:courier;
 	font-size:25px;
 }
@@ -29,6 +30,8 @@ h3{
 h6{
 	color: white;
 	font-family: courier;
+	font-size: 15px;
+	text-align: center;
 }
 
 p{
@@ -99,7 +102,7 @@ table {
 }
 
 .searchResult:hover {
-	background-color: rgba(0, 217, 255, 0.308);
+	background-color: black;
 }
 
 
@@ -117,7 +120,7 @@ table {
 }
 
 td {
-	color: yellow;
+	color:rgb(241, 211, 41);
 	margin-left: 10px;
 	padding: 3px;
 }
@@ -132,7 +135,7 @@ td {
 
 /* the buttons on the others page */
 .Jobs, .Daycare, .Libraries, .PublicRestrooms{
-	background-color:yellow; 
+	background-color:rgb(241, 211, 41); 
 	border: none;
 	color: black;
 	padding: 15px 32px;
