@@ -200,7 +200,7 @@ var allData = "false";//used for clear all filters button
 $("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
     sessionStorage.setItem("query", searchFor);
-    var test_dist = haversineDistance(univ_portland,shelter_test);
+    //var test_dist = haversineDistance(univ_portland,shelter_test);
     console.log("TEST DISTANCE: " + test_dist);
     //sessionStorage.setItem("DISTANCE: ", coolDistance);
     location.href = "/../streetcloud_gen_search.html";
@@ -290,7 +290,7 @@ function querySearch() {
         $(".results").text("");
 
         if (searchFor === "") {
-            var coolDistance = haversineDistance(philly, nyc);
+            var coolDistance = calculateDistance(philly, nyc);
             $("#genResults").append("<p>No Results Found</p>");
             $("#genResults").append(coolDistance);
         }
@@ -693,18 +693,18 @@ function foodFunction() {
 }
 
 function shelterFunction() {
-    var univ_portland = new google.maps.LatLng(45.5732, -122.7276);
-    var shelter_test = new google.maps.LatLng(45.522917, -122.688438);
-    var gender, distance, food;
-    console.log("before getLocation");
-    var test_user_coords = getLocation();
-    console.log("after getLocation");
-    console.log("pls work " + test_user_coords);
-    test_dist = calculateDistance(univ_portland, shelter_test);
-    console.log("testdist: " + test_dist);
-    console.log('im being called');
-    //console.log("Origins: " + JSON.stringify(rows));
-    console.log(JSON.stringify(test_dist));
+    // var univ_portland = new google.maps.LatLng(45.5732, -122.7276);
+    // var shelter_test = new google.maps.LatLng(45.522917, -122.688438);
+    // var gender, distance, food;
+    // console.log("before getLocation");
+    // var test_user_coords = getLocation();
+    // console.log("after getLocation");
+    // console.log("pls work " + test_user_coords);
+    // test_dist = calculateDistance(univ_portland, shelter_test);
+    // console.log("testdist: " + test_dist);
+    // console.log('im being called');
+    // //console.log("Origins: " + JSON.stringify(rows));
+    // console.log(JSON.stringify(test_dist));
 
     var  coord_flag = false;
     
