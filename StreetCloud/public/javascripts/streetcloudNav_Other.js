@@ -16,9 +16,9 @@ document.getElementById("shelterButton").onclick = function() {
 document.getElementById("otherButton").onclick = function() {
     location.href = "/../streetcloud_other.html";
 };
-// document.getElementById("homeButton").onclick = function() {
-//     location.href = "/../streetcloud.html";
-// };
+//document.getElementById("homeButton").onclick = function() {
+//    location.href = "/../streetcloud.html";
+//};
 document.getElementById("homeFooterButton").onclick = function() {
     location.href = "/../streetcloud.html";
 };

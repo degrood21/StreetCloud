@@ -1,8 +1,8 @@
-NAME,ADDRESS,MALE,FEMALE,24_HOURS,DISTANCE,HOURS,IMAGE
-Portland Loo,1550 NW 25 Pl Portland OR 97210,Yes,Yes,No,5,Mon-Fri 7AM-3:30PM,/images/portlandLoo.jpg
-Portland Loo,941 NW Overton St Portland OR 97209,Yes,Yes,Yes,7,24 Hours,/images/portlandLoo.jpg
-Portland Loo,1099 NW Johnson St Portland OR 97209,Yes,Yes,Yes,12,24 Hours,/images/portlandLoo.jpg
-Public Restroom,SW Washington Way Portland OR 97205,Yes,Yes,No,0,Mon-Sun 7AM-8PM,/images/portlandLoo.jpg
-Portland Loo,543 NW Glisan St Portland OR 97209,Yes,Yes,Yes,16,24 Hours,/images/portlandLoo.jpg
-Portland Loo,129 NW 8th Ave Portland OR 97209,Yes,Yes,Yes,2,24 Hours,/images/portlandLoo.jpg
-Portland Loo,66 SW Naito Pkwy Portland OR 97204,Yes,Yes,Yes,10,24 Hours,/images/portlandLoo.jpg
+NAME,ADDRESS,MALE,FEMALE,24_HOURS,DISTANCE,HOURS,IMAGE,LAT,LON
+Portland Loo,1550 NW 25 Pl Portland OR 97210,Yes,Yes,No,5,Mon-Fri 7AM-3:30PM,/images/portlandLoo.jpg,45.52544,-122.70035
+Portland Loo,941 NW Overton St Portland OR 97209,Yes,Yes,Yes,7,24 Hours,/images/portlandLoo.jpg,45.5323,-122.68059
+Portland Loo,1099 NW Johnson St Portland OR 97209,Yes,Yes,Yes,12,24 Hours,/images/portlandLoo.jpg,45.52859,-122.68334
+Public Restroom,SW Washington Way Portland OR 97205,Yes,Yes,No,0,Mon-Sun 7AM-8PM,/images/portlandLoo.jpg,45.52272,-122.7037
+Portland Loo,543 NW Glisan St Portland OR 97209,Yes,Yes,Yes,16,24 Hours,/images/portlandLoo.jpg,45.5266,-122.67591
+Portland Loo,129 NW 8th Ave Portland OR 97209,Yes,Yes,Yes,2,24 Hours,/images/portlandLoo.jpg,45.52408,-122.67842
+Portland Loo,66 SW Naito Pkwy Portland OR 97204,Yes,Yes,Yes,10,24 Hours,/images/portlandLoo.jpg,45.52172,-122.67018

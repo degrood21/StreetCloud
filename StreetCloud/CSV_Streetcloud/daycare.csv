@@ -1,9 +1,9 @@
-NAME,ADDRESS,DISTANCE,WEEKENDS,WEEKDAYS,PRICE,SCHOOL,IMAGE,HOURS
-Imagination Station Daycare,"7119 N Portsmouth Ave, Portland, OR 97203",0,No,Yes,$,Preschool,/images/imagination.jpg,Mon-Fri 7AM-6PM
-Rock Paper Scissors Childcare,"5206 N Willis Blvd, Portland, OR 97203",0,No,Yes,$$,Preschool,/images/rockpaper.jpg,Mon-Fri 7:30AM-5:30PM
-WeVillage: Flexible Childcare,"1024 NW Glisan St, Portland, OR 97209",0,Yes,Yes,$$$,Preschool,/images/wevillage.jpg,"Mon-Fri 7:30AM-6:30PM, Sat 10AM-10PM"
-Discovery Gardens Childcare,"8418 N Brandon St, Portland, OR 97217",0,No,Yes,$$,Preschool,/images/discovery.jpg,Mon-Fri 7AM-5:30PM
-Sonbeam Daycare Center,"620 NE Clackamas St, Portland, OR 97232",0,No,Yes,$$$,Preschool,/images/sonbeam.jpg,Mon-Fri 6:30AM-6PM
-Next Generation Kids Childcare Center,"1505 NE 16th Ave, Portland, OR 97232",0,No,Yes,$$$,Preschool,/images/nextGen.jpg,Mon-Fri 7AM-6PM
-Veronica's Daycare,"7014 N Swift St, Portland, OR 97203",0,No,Yes,$,,/images/veronica.jpg,Mon-Fri 7AM-6PM
-Petit a Petit Daycare,"6804 N Campbell Ave, Portland, OR 97217",0,No,Yes,$$$,Preschool,/images/petit.jpg,Mon-Fri 6:30AM-6PM
+NAME,ADDRESS,DISTANCE,WEEKENDS,WEEKDAYS,PRICE,SCHOOL,IMAGE,HOURS,LAT,LON
+Imagination Station Daycare,"7119 N Portsmouth Ave, Portland, OR 97203",0,No,Yes,$,Preschool,/images/imagination.jpg,Mon-Fri 7AM-6PM,45.57937,-122.72682
+Rock Paper Scissors Childcare,"5206 N Willis Blvd, Portland, OR 97203",0,No,Yes,$$,Preschool,/images/rockpaper.jpg,Mon-Fri 7:30AM-5:30PM,45.58386,-122.72075
+WeVillage: Flexible Childcare,"1024 NW Glisan St, Portland, OR 97209",0,Yes,Yes,$$$,Preschool,/images/wevillage.jpg,"Mon-Fri 7:30AM-6:30PM, Sat 10AM-10PM",45.52659,-122.682
+Discovery Gardens Childcare,"8418 N Brandon St, Portland, OR 97217",0,No,Yes,$$,Preschool,/images/discovery.jpg,Mon-Fri 7AM-5:30PM,45.58026,-122.68903
+Sonbeam Daycare Center,"620 NE Clackamas St, Portland, OR 97232",0,No,Yes,$$$,Preschool,/images/sonbeam.jpg,Mon-Fri 6:30AM-6PM,45.53288,-122.65942
+Next Generation Kids Childcare Center,"1505 NE 16th Ave, Portland, OR 97232",0,No,Yes,$$$,Preschool,/images/nextGen.jpg,Mon-Fri 7AM-6PM,45.53428,-122.64941
+Veronica's Daycare,"7014 N Swift St, Portland, OR 97203",0,No,Yes,$,,/images/veronica.jpg,Mon-Fri 7AM-6PM,45.59736,-122.73522
+Petit a Petit Daycare,"6804 N Campbell Ave, Portland, OR 97217",0,No,Yes,$$$,Preschool,/images/petit.jpg,Mon-Fri 6:30AM-6PM,45.57186,-122.68598
