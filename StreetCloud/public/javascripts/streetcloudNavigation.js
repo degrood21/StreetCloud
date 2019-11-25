@@ -247,6 +247,15 @@ $("#searchButtonInd").click(function() {
         sessionStorage.setItem("shelterQuery", searchFor);
         shelterFunction();
     }
+    else if (pageId === "libraries"){
+        sessionStorage.setItem("libraryQuery", searchFor);
+        libraryFunction();
+    }
+    else if (pageId === "Public Restrooms"){
+        sessionStorage.setItem("restroomQuery", searchFor);
+        publicRestroomFunction();
+    }
+
     else {
         $(document).ready(function () {
             //sends the post call to retrieve the data form database
