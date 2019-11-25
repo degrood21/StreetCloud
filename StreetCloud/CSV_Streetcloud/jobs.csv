@@ -1,13 +1,13 @@
-NAME,ADDRESS,DISTANCE,IMAGE,EDUCATION,PART TIME,FULL TIME
-All Star Labor,"906 Lloyd Center #906, Portland, OR 97232",0,/images/allstar.jpg,High School,Yes,Yes
-Central City Concern Employment Access Center,"2 NW 2nd Ave, Portland, OR 97209",0,/images/centralCity.jpg,High School,Yes,Yes
-Employment Department,"241 SW Edgeway Dr, Beaverton, OR 97006",0,/images/employDep.jpg,High School,Yes,Yes
-Express Employment Professionals,"4790 N Lombard St, Portland, OR 97203",0,/images/express.jpg,High School,Yes,Yes
-Express Employment Professionals,"10011 SE Division St #102, Portland, OR 97266",0,/images/express.jpg,High School,Yes,Yes
-LDS Employment Center,"4195 SW 99th Ave, Beaverton, OR 97005",0,/images/ldsEmploy.jpg,High School,Yes,Yes
-Oregon Department Of Human Services,"4744 N Interstate Ave, Portland, OR 97217",0,/images/dhsOr.jpg,High School,Yes,Yes
-Portland Metropolitan Workforce Training Center,"5600 NE 42nd Ave, Portland, OR 97218",0,/images/metroPortland.jpg,High School,Yes,Yes
-Providence Health & Services: Employment Center,"4400 NE Halsey St, Portland, OR 97213",0,/images/providence.jpg,College,Yes,Yes
-SE Works,"7916 SE Foster Rd, Portland, OR 97206",0,/images/seWorks.jpg,High School,Yes,Yes
-WorkSource Portland Metro- Gresham,"19421 SE Stark St, Portland, OR 97233",0,/images/workSource.jpg,High School,Yes,Yes
-WorkSource Portland Metro- North/ Northeast,"30 N Webster St Suite E, Portland, OR 97217",0,/images/workSource.jpg,High School,Yes,Yes
+NAME,ADDRESS,DISTANCE,IMAGE,EDUCATION,PART TIME,FULL TIME,LAT,LON
+All Star Labor,"906 Lloyd Center #906, Portland, OR 97232",0,/images/allstar.jpg,High School,Yes,Yes,45.51804,-122.58724
+Central City Concern Employment Access Center,"2 NW 2nd Ave, Portland, OR 97209",0,/images/centralCity.jpg,High School,Yes,Yes,45.60844,-122.7006
+Employment Department,"241 SW Edgeway Dr, Beaverton, OR 97006",0,/images/employDep.jpg,High School,Yes,Yes,45.51602,-122.68143
+Express Employment Professionals,"4790 N Lombard St, Portland, OR 97203",0,/images/express.jpg,High School,Yes,Yes,45.55042,-122.7282
+Express Employment Professionals,"10011 SE Division St #102, Portland, OR 97266",0,/images/express.jpg,High School,Yes,Yes,45.50465,-122.56133
+LDS Employment Center,"4195 SW 99th Ave, Beaverton, OR 97005",0,/images/ldsEmploy.jpg,High School,Yes,Yes,45.52566,-122.62607
+Oregon Department Of Human Services,"4744 N Interstate Ave, Portland, OR 97217",0,/images/dhsOr.jpg,High School,Yes,Yes,45.55721,-122.68166
+Portland Metropolitan Workforce Training Center,"5600 NE 42nd Ave, Portland, OR 97218",0,/images/metroPortland.jpg,High School,Yes,Yes,45.56331,-122.61939
+Providence Health & Services: Employment Center,"4400 NE Halsey St, Portland, OR 97213",0,/images/providence.jpg,College,Yes,Yes,45.53306,-122.61807
+SE Works,"7916 SE Foster Rd, Portland, OR 97206",0,/images/seWorks.jpg,High School,Yes,Yes,45.48348,-122.58194
+WorkSource Portland Metro- Gresham,"19421 SE Stark St, Portland, OR 97233",0,/images/workSource.jpg,High School,Yes,Yes,45.51943,-122.46196
+WorkSource Portland Metro- North/ Northeast,"30 N Webster St Suite E, Portland, OR 97217",0,/images/workSource.jpg,High School,Yes,Yes,45.560299,-122.668053
