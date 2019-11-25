@@ -218,6 +218,12 @@ $("#searchText").keyup(function(event){
     }
 });
 
+$("#searchText").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#searchButtonInd").click();
+    }
+});
+
 //listens for the search button click
 //from all other htmls
 $("#searchButtonInd").click(function() {
