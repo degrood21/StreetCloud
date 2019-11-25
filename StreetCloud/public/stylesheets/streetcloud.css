@@ -15,21 +15,21 @@ body{
 h1{
 	background-color: rgb(241, 211, 41);
 	color: black;
-	font-family:tahoma;
+	font-family: Geneva,Tahoma,Verdana,sans-serif;
 }
 h2{
-	color:rgb(241, 211, 41);
-	font-family:courier;
+	color:rgb(245,243,113);
+	font-family: Geneva,Tahoma,Verdana,sans-serif;
 	font-size:25px;
 }
 h3{
 	color:white;
-	font-family:courier;
+	font-family: Geneva,Tahoma,Verdana,sans-serif;
 }
 
 h6{
 	color: white;
-	font-family: courier;
+	font-family: Geneva,Tahoma,Verdana,sans-serif;
 	font-size: 15px;
 	text-align: center;
 }
@@ -37,8 +37,14 @@ h6{
 p{
 	color:white;
 	font-size: 20px;
-	font-family:courier;
+	font-family: Geneva,Tahoma,Verdana,sans-serif;
 }
+
+div{
+	background-color: transparent;
+}
+
+
 
 #aboutmessage {
 	color: white;
@@ -83,16 +89,22 @@ img{
 	left:0;
 	bottom:0;
 	width:100%;
-	background-color: rgb(157,161,170);
+	background-color: rgb(162, 162, 162);
 	color:white;
 	text-align:center;
 }
 
 table {
-	background-color: rgb(105, 105, 105);
+	background-color: rgb(162, 162, 162);
 	margin-left: auto;
 	margin-right: auto;
 	text-align: left;
+	font-family: Geneva,Tahoma,Verdana,sans-serif;
+
+}
+
+.results {
+	background-color: transparent;
 }
 
 .searchResult {
@@ -123,6 +135,7 @@ td {
 	color:rgb(241, 211, 41);
 	margin-left: 10px;
 	padding: 3px;
+	font-family: Geneva,Tahoma,Verdana,sans-serif;
 }
 
 .search {
@@ -208,7 +221,7 @@ a {
 }
 
 #homeSearch {
-	background-color: rgb(168, 168, 168); 
+	background-color: rgb(162, 162, 162); 
 	border: none;
 	color: none;
 	padding: 2px 3px;
