@@ -18,7 +18,7 @@ h1{
 	font-family: Geneva,Tahoma,Verdana,sans-serif;
 }
 h2{
-	color:rgb(245,243,113);
+	color:rgb(241, 211, 41);
 	font-family: Geneva,Tahoma,Verdana,sans-serif;
 	font-size:25px;
 }
@@ -111,10 +111,11 @@ table {
 	width: 100%;
 	border-bottom: 3px dashed black;
 	border-top: 3px dashed black;
+	background-color: rgb(113, 113, 113)
 }
 
 .searchResult:hover {
-	background-color: black;
+	background-color: rgb(162, 162, 162);
 }
 
 
