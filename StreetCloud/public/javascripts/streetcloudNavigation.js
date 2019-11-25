@@ -497,21 +497,23 @@ function medicalFunction() {
                                         checkedDist = 15;
                                 }
 
+                                /******** MOST RECENT CSS CHANGE!! MAKE THIS CHANGE TO EVERYTHING ELSE **********/
                                 console.log("CHECKED DIST: " + checkedDist);
                                 if(parseFloat(distance) <= checkedDist){
                                     $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td>" +
                                     "<img src='" + data[j].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                                     "<td><table class='searchInfo'>" +
-                                    "<tr><td><p>Name: " + data[j].NAME + "</p></td>" +
-                                    "<tr><td><p>Address: " + data[j].ADDRESS + "</p></td>" +
-                                    "<tr><td><p>Distance: " + distance + " Miles</p></td>" +
-                                    "<tr><td><p>Type: " + data[j].TYPE + "</p></td>" +
-                                    "<tr><td><p>Hours: " + data[j].HOURS + "</p></td>" +
-                                    "<tr><td><p>Open Allday: " + data[j].ALLDAY + "</p></td>" +
-                                    "<tr><td><p>Open Weekends: " + data[j].WEEKENDS + "</p></td>" +
-                                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
-                                    "</table></td></tr></table></td></tr>");
+                                    "<tr><td><p style=\"font-size:140%\"><b>" + data[j].NAME + "</b></p>" +
+                                    "<p style=\"font-size:95%\">" + data[j].ADDRESS + "</p>" +
+                                    "<p style=\"font-size:95%\">Distance: " + distance + " Miles</p>" +
+                                    "<p style=\"font-size:95%\">Type: " + data[j].TYPE + "</p>" +
+                                    "<p style=\"font-size:95%\">Hours: " + data[j].HOURS + "</p>" +
+                                    "<p style=\"font-size:95%\">Open Allday: " + data[j].ALLDAY + "</p>" +
+                                    "<p style=\"font-size:95%\">Open Weekends: " + data[j].WEEKENDS + "</p>" +
+                                    "<a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
+                                    "</td></tr></table></td></tr></table></td></tr>");
                                     nothingtoShow += 1;
+                                /*********************************************************************************/
                                 }
                                 if((j == data.length) && nothingtoShow == 0){
                                     $("#medicalResults").append("<p>No Results Found</p>");
