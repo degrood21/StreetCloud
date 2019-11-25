@@ -709,7 +709,7 @@ function shelterFunction() {
     // test_dist = calculateDistance(univ_portland, shelter_test);
     // console.log("testdist: " + test_dist);
     // console.log('im being called');
-    // //console.log("Origins: " + JSON.stringify(rows));
+    //console.log("Origins: " + JSON.stringify(rows));
     // console.log(JSON.stringify(test_dist));
 
     var  coord_flag = false;
