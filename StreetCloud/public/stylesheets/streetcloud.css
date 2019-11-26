@@ -1,6 +1,6 @@
 /*Alli Jacobs
   Modified by Paul Patrick Bellosillo, Dylan DeGrood, Dylan Pascua 
-  vers. September 18, 2019
+  vers. November 26, 2019
 */
 
 body{
@@ -14,11 +14,13 @@ body{
 }
 h1{
 	background-color: rgb(241, 211, 41);
+	border-radius: 5px;
 	color: black;
 	font-family:tahoma;
 }
 h2{
 	color:rgb(241, 211, 41);
+	border-radius: 5px;
 	font-family:courier;
 	font-size:25px;
 }
@@ -48,9 +50,23 @@ p{
 	width: 50%;
 	text-align: center;
 }
-
+#message{
+	background-color: grey;
+	border-radius: 5px;
+	color:white;
+}
+#submit{
+	border-radius: 5px;
+	font-size: 16px;
+	background-color: white;
+}
+.submit:hover{
+	background-color: black;
+	border-radius: 5px;
+}
 img{
 	border: 2px solid #ddd;
+	border-radius: 5px;
 	padding: 3px;
 	text-align: left;
 }
@@ -84,12 +100,14 @@ img{
 	bottom:0;
 	width:100%;
 	background-color: rgb(157,161,170);
+	border-radius: 5px;
 	color:white;
 	text-align:center;
 }
 
 table {
 	background-color: rgb(105, 105, 105);
+	border-radius: 5px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: left;
@@ -99,10 +117,12 @@ table {
 	width: 100%;
 	border-bottom: 3px dashed black;
 	border-top: 3px dashed black;
+	border-radius: 5px;
 }
 
 .searchResult:hover {
 	background-color: black;
+	border-radius: 5px;
 }
 
 
@@ -131,11 +151,13 @@ td {
 
 .searchbar{
 	max-width: 250%;
+	border-radius: 5px;
 }
 
 /* the buttons on the others page */
 .Jobs, .Daycare, .Libraries, .PublicRestrooms{
-	background-color:rgb(241, 211, 41); 
+	background-color:rgb(241, 211, 41);
+	border-radius: 5px; 
 	border: none;
 	color: black;
 	padding: 15px 32px;
@@ -187,7 +209,8 @@ a {
 .homeButtons{
 	background-color: transparent;
 	background-repeat: no-repeat;
-    border: none;
+	border: none;
+	border-radius: 5px;
     cursor: pointer;
     overflow: hidden;
 	outline: none;
