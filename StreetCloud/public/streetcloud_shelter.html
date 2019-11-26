@@ -75,17 +75,17 @@ function initMap() {
     </tr>
     <tr>
       <td> <input id="maleOnly" type="radio" name="gender_pref" value="Male" onclick="shelterFunction()"> Male Only </td>
-      <td class = "job_options_formatting2"> <input id="2m" type="radio" name="distance" value="2m" onclick="shelterFunction()" checked> 2 Miles </td>
+      <td class = "job_options_formatting2"> <input id="2m" type="radio" name="distance" value="2m" onclick="shelterFunction()" checked> <= 2 Miles </td>
       <td> <input id="included" type="radio" name="food_included" value="included" onclick="shelterFunction()" checked> Yes </td>
     </tr>
     <tr>
       <td> <input id="femaleOnly" type="radio" name="gender_pref" value="Female" onclick="shelterFunction()"> Female Only </td>
-      <td class = "job_options_formatting2"> <input id="5m" type="radio" name="distance" value="5m" onclick="shelterFunction()"> 5 Miles </td>
+      <td class = "job_options_formatting2"> <input id="5m" type="radio" name="distance" value="5m" onclick="shelterFunction()"> 0 to 5 Miles </td>
       <td> <input id="notIncluded" type="radio" name="food_included" value="not included" onclick="shelterFunction()"> No </td>
     </tr>
     <tr>
       <td> <input id="maleAndFemale" type="radio" name="gender_pref" value="Both" onclick="shelterFunction()" checked> Male and Female </td>
-      <td class = "job_options_formatting2"> <input id="10m+" type="radio" name="distance" value="10m" onclick="shelterFunction()"> 10+ Miles </td>
+      <td class = "job_options_formatting2"> <input id="10m+" type="radio" name="distance" value="10m" onclick="shelterFunction()"> < 10+ Miles </td>
     </tr>
     
   </form>
@@ -125,9 +125,9 @@ function initMap() {
   <div id="cat2Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" onclick="shelterFunction()" checked> 2 Miles </td> </tr>
-        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m" onclick="shelterFunction()"> 5 Miles </td> </tr>
-        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m" onclick="shelterFunction()"> 10+ Miles </td> </tr>
+        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" onclick="shelterFunction()" checked> <= 2 Miles </td> </tr>
+        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m" onclick="shelterFunction()"> <= 5 Miles </td> </tr>
+        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m" onclick="shelterFunction()"> <= 10+ Miles </td> </tr>
       </table>
     </div>
   </div>
