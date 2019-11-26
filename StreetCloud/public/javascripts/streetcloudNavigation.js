@@ -1,76 +1,24 @@
-
-//var distance = require('google-distance-matrix');
-//import { google } from 'google-distance-matrix';
-//src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
-//src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"
-
-    //const philly = { lat: 39.9526, lng: -75.1652 }
-    //const nyc = { lat: 40.7128, lng: -74.0060 }
-var result_distance; 
-
-    
-    /*
-    * The DistanceMatrixService.getDistanceMatrix() method 
-    * initiates a request to the Distance Matrix service, passing it a 
-    * DistanceMatrixRequest object literal containing the origins, 
-    * destinations, and travel mode, as well as a callback method to 
-    * execute upon receipt of the response.
-    */
-    function calculateDistance(origin, destination) {
-      var service = new google.maps.DistanceMatrixService();
-      service.getDistanceMatrix(
-      {
-        origins: [origin],
-        destinations: [destination],
-        travelMode: google.maps.TravelMode.DRIVING,
-        unitSystem: google.maps.UnitSystem.IMPERIAL,
-        avoidHighways: false,
-        avoidTolls: false
-      }, callback);
-    }
-  
-    function callback(response, status) {
-      if (status != google.maps.DistanceMatrixStatus.OK) {
-        $('.results').append(err);
-      } else {
-        var origin = response.originAddresses[0];
-        var destination = response.destinationAddresses[0];
-        if (response.rows[0].elements[0].status === "ZERO_RESULTS") {
-          $('.results').append("Better get on a plane. There are no roads between " 
-                            + origin + " and " + destination);
-        } else {
-          var distance = response.rows[0].elements[0].distance;
-          var distance_value = distance.value;
-          var distance_text = distance.text;
-          var miles = distance_text.substring(0, distance_text.length - 3);
-          //console.log("distance Value: " + distance_value);
-          //var distance_append = $('#shelterResults').append("Distance: " + miles + " miles");
-          var append_miles = miles; 
-          result_distance = miles;
-          console.log("MILES: " + miles);
-          return miles;
-        }
-        
-      }
-    }
-      
-    $('#distance_form').submit(function(e){
-        event.preventDefault();
-        var origin = $('#origin').val();
-        var destination = $('#destination').val();
-        var distance_text = calculateDistance(origin, destination);
-    });
+/**
+ * streetcloudNavigation.js
+ * 
+ * Holds all of our main functionality for the website
+ * -Filters- -Post Methods- -Distance Calulations- -ETC-
+ * 
+ * Authored by The StreetCloud Development Team
+ * 
+ */
    
-
-    
-   
-   
-   /* Authored by Kelsi Cruz */
-
+/* Authored by Kelsi Cruz */
 /* External Citation */
 /* Adapted geolocation code from: https://www.w3schools.com/html/html5_geolocation.asp */
 /* and: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition */
 var usercoords;
+/**
+ * getLocation function
+ * 
+ * Gets the user location from the browser
+ * Throws an error if one of the 4 errors listed occurred
+ */
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(getPosition, showError);
@@ -100,6 +48,14 @@ function showError(error) {
   }
 }
 
+/**
+ * getPosition function
+ * 
+ * Callback function returning user coordinates
+ * from getLocation
+ * 
+ * @param pos Holds the latitude and Longitude of the users location
+ */
 function getPosition(pos) {
   var crd = pos.coords;
   
@@ -110,45 +66,6 @@ function getPosition(pos) {
   console.log(`Longitude: ${crd.longitude}`);
   
 }
-
-
-
-/* External Citation */
-/* Haversine formula and codebase used was obtained from: https://www.movable-type.co.uk/scripts/latlong.html */
-/* Adapted code from user Nathan Lippi on StackOverflow: https://stackoverflow.com/questions/14560999/using-the-haversine-formula-in-javascript */
-
-function haversineDistance(source, destination) { //source and destination are passed in longitutde/latitude 
-    //toRad converts lat and lon coords into radians
-    console.log("SOURCE: " + source)
-    function toRad(x) {
-      return x * Math.PI / 180;
-    }
-  
-    var sourceLon = source[0]; //set the long and lat values
-    var sourceLat = source[1];
-  
-    var destLon = destination[0];
-    var destLat = destination[1];
-  
-    var R = 6371; // earth's radius in km 
-  
-    var x1 = destLat - sourceLat;
-    var finalLat = toRad(x1);
-    var x2 = destLon - sourceLon;
-    var finalLon = toRad(x2);
-    var a = Math.sin(finalLat / 2) * Math.sin(finalLat / 2) +
-      Math.cos(toRad(sourceLat)) * Math.cos(toRad(destLat)) *
-      Math.sin(finalLon / 2) * Math.sin(finalLon / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var distance = R * c;
-  
-    distance /= 1.60934; // convert to miles
-  
-    return distance;
-  }
-
-
-
 
 
 /*Helps to wait to run functions once the document fully loads*/
@@ -194,7 +111,7 @@ document.getElementById("volunteerButton").onclick = function() {
 
 var allData = "false";//used for clear all filters button
 
-//Click function for the searchButton on the main page
+//TClick function for the searchButton on the main page
 //Puts the item that was searched for and loads it into local storage
 //Then changes page to the search html page to show results
 $("#searchButton").click(function() {
@@ -336,18 +253,41 @@ function querySearch() {
         }
     });
 }
-
+/**
+ * clearFilter function
+ * 
+ * Clears the filters on a the page calling
+ * then sends a search query for all data from
+ * database using var @param allData being set to true
+ * 
+ * @param id - This is the id that the button linked
+ * to this function sends in this.id so I can see which
+ * clear filter button called this function
+ */
 function clearFilter(id){
     
     $(document).ready(function () {
+
+        // Checks to see what page clear filter button
+        // was pressed on
         if(id == "clearFilterMedical"){
+
+            // Sets allData to true for query purposes
             allData = "true";
+
+            // Deselects all filter radios on that particular page
             $('input:radio[name=urgency]:checked').prop('checked', false);
             $('input:radio[name=distance]:checked').prop('checked', false);
             $('input:radio[name=health]:checked').prop('checked', false);
+
+            // Resets search string to a blank string to be ignored
             sessionStorage.setItem("medicalQuery", "");
+
+            // Calls medical Function to query for data
             medicalFunction();
         }
+
+        // Comments above are descriptive of all the rest if statements
         if(id == "clearFilterShelter"){
             allData = "true";
             $('input:radio[name=gender_pref]:checked').prop('checked', false);
@@ -366,10 +306,13 @@ function clearFilter(id){
         }
     });
 }
-
-//This function will send a post asking for data 
-//depending on what filters are checked and append the correct
-//data entries from database to streetcloud_medical.html
+/**
+ * medicalFunction
+ * 
+ * This function will send a post asking for data 
+ * depending on what filters are checked and append the correct
+ * data entries from database to streetcloud_medical.html
+ */
 function medicalFunction() {
     //these variables will hold the string formatted for mySQL
     //in order to search the database
@@ -418,17 +361,26 @@ function medicalFunction() {
         type = "%Therapy%";
     }
     else {
-        type = "%clinic%' OR TYPE LIKE '%hospital%";
+        type = "%clinic%' OR TYPE LIKE '%hospital%"; //default search/checked
     }
     
-
+    /**
+     * This is where the query gets called and data returned
+     */
     $(document).ready(function () {
 
+        // if the search button was pressed
+        // this var is getting what was searched for for the query
         var medicalQuery = sessionStorage.getItem("medicalQuery");
+
+        // if button was not pressed then set search query as empty
         if (medicalQuery == undefined){
             medicalQuery = "";
         }
 
+        // Post method that uses the medicalPage router to
+        // send a query request and we handle the data
+        // given back
         $.post('/medicalPage',
             {
                 hours: hours,
@@ -436,25 +388,57 @@ function medicalFunction() {
                 type: type,
                 query: medicalQuery,
                 all: allData
+                // allData determines if clearFilterButton
+                // was pressed so the query can be sent
+                // correctly
             },
+
+            /**
+             * This function is the return callback
+             * for the post method so it will have everything
+             * from the query request
+             * 
+             * @param data is returned JSON object of database rows
+             */
             function (data) {
+                // Clears results table so we can populate it
                 $("#medicalResults").empty();
+
+                // if the query returned with no results then
+                // tell user there was nothing found
                 if (data.length == 0) {
                     $("#medicalResults").append("<p>No Results Found</p>");
-                    $("#medImage").attr("src", "https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png");
                 }
-                var currentLat = 0;
+
+                // Posts this until results are loaded
+                $("#medicalResults").append("<p>Results Are Loading</p>");
+                var currentLat = 0; 
                 var currentLon = 0;
             if (navigator.geolocation) {
+                /**
+                 * Function gets the users current loacation
+                 * Sets up google LatLng objects for it
+                 * and for all locations in JSON object from the post
+                 * 
+                 * @param position object with users current location info
+                 */
                 navigator.geolocation.getCurrentPosition(function(position) {
 
                     currentLat = position.coords.latitude;
                     currentLon = position.coords.longitude;
                     console.log("TESTING CURRENT LOCATION: " + currentLat + " " +currentLon);
+
+                    // Creates google object for users location
                     var origin1 = new google.maps.LatLng(currentLat, currentLon);
+                    // Creates empty array to populate with google LatLng objects
+                    // created from data returned from query
                     var distanceArr = [];
+                    // If data returned has 25 or more results
+                    // Push only the first 25 into array of google objects
+                    // Else then do it for all results returned
                     if(data.length >= 25){
                         for(i = 0; i < 25; i++){
+                            // creates google LatLng Objects and push it into array 
                             distanceArr.push(new google.maps.LatLng(data[i].LAT, data[i].LON));
                         }
                     }
@@ -472,16 +456,39 @@ function medicalFunction() {
                         unitSystem: google.maps.UnitSystem.IMPERIAL,
                     }, callback);
 
+                    /**
+                     * callback function
+                     * 
+                     * This function is the callback for the getDistanceMatrix
+                     * to calculate the distance of the array of locations
+                     * that we send it
+                     * 
+                     * We use the calculated distance to append all locations
+                     * that came back fromt the post method and append the
+                     * calculated distance to it and to the page
+                     * 
+                     * @param response contains the data with all calculated distances
+                     * @param status is OK if distances were calculated properly
+                     */
                     function callback(response, status) {
                         if (status == 'OK') {
+                            // clears result div of "Results Are Loading"
+                            $("#medicalResults").empty();
+
+                            // for loop goes through each calculated distance object
+                            // and gets the distance and appends it along
+                            // with all database info gathered from post above
                             for(j = 0; j < response.rows[0].elements.length; j++){
-                                var nothingtoShow = 0;
-                                var resultsDist = response.rows[0].elements;
-                                var elementDist = resultsDist[j];
-                                var distance = elementDist.distance.text;
+                                var nothingtoShow = 0;// Used to see if something can be appended
+                                var resultsDist = response.rows[0].elements;// array of calculated distances
+                                var elementDist = resultsDist[j];// one calculated distance
+                                var distance = elementDist.distance.text;// text that says distance
                                 console.log("DISTANCE: " +distance);
 
-                                var checkedDist = 20;
+                                var checkedDist = 20;// for clear all filters
+                                // following if statements check to see if
+                                // what filter button is checked to determine
+                                // what to show the user
                                 if(document.getElementById("5m").checked == true ||
                                     document.getElementById("5m_mobile").checked == true ||
                                     document.getElementById("2m").checked == true ||
@@ -498,6 +505,8 @@ function medicalFunction() {
                                 }
 
                                 console.log("CHECKED DIST: " + checkedDist);
+                                // if distance is less than distance filter then append
+                                // it to the page for user to see
                                 if(parseFloat(distance) <= checkedDist){
                                     $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td>" +
                                     "<img src='" + data[j].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
@@ -511,12 +520,16 @@ function medicalFunction() {
                                     "<tr><td><p>Open Weekends: " + data[j].WEEKENDS + "</p></td>" +
                                     "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
                                     "</table></td></tr></table></td></tr>");
-                                    nothingtoShow += 1;
+                                    nothingtoShow += 1;// add one to var to say something was appended
                                 }
+                                // if nothing was appended and we reached end of results then
+                                // show user nothing was found
                                 if((j == data.length) && nothingtoShow == 0){
                                     $("#medicalResults").append("<p>No Results Found</p>");
                                 }
                             }
+                            // if clear all filter was pressed then after appending everything
+                            // reset allData to false so filters can be clicked once again
                             if(allData == "true"){
                                 allData = "false";
                             }
@@ -619,6 +632,7 @@ function foodFunction() {
             if (data.length == 0) {
                $("#foodResults").append("<p>No Results Found</p>");
             }
+            $("#foodResults").append("<p>Results Are Loading</p>");
 
             var currentLat = 0;
             var currentLon = 0;
@@ -650,6 +664,7 @@ function foodFunction() {
 
                     function callback(response, status) {
                         if (status == 'OK') {
+                            $("#foodResults").empty();
                             for(j = 0; j < response.rows[0].elements.length; j++){
                                 var nothingtoShow = 0;
                                 var resultsDist = response.rows[0].elements;
@@ -708,21 +723,7 @@ function foodFunction() {
 }
 
 function shelterFunction() {
-    // var univ_portland = new google.maps.LatLng(45.5732, -122.7276);
-    // var shelter_test = new google.maps.LatLng(45.522917, -122.688438);
-    // var gender, distance, food;
-    // console.log("before getLocation");
-    // var test_user_coords = getLocation();
-    // console.log("after getLocation");
-    // console.log("pls work " + test_user_coords);
-    // test_dist = calculateDistance(univ_portland, shelter_test);
-    // console.log("testdist: " + test_dist);
-    // console.log('im being called');
-    //console.log("Origins: " + JSON.stringify(rows));
-    // console.log(JSON.stringify(test_dist));
-
     var  coord_flag = false;
-    
 
     var gender, distance, food;
     
@@ -762,10 +763,6 @@ function shelterFunction() {
         food = "FOOD = 'Yes'";
     }
 
-
-
-    // 1. Wait for getLocation(), do this on the first page 
-    // 2. Wait for calculateDistance()
     $(document).ready(function () {
         var source_coord = getLocation();
         console.log("Source Cordinates type: " + typeof(source_coord));
@@ -787,6 +784,7 @@ function shelterFunction() {
             if (data.length == 0) {
                 $("#shelterResults").append("<p>No Results Found</p>");
             }
+            $("#shelterResults").append("<p>Results Are Loading</p>");
 
             var currentLat = 0;
             var currentLon = 0;
@@ -812,6 +810,7 @@ function shelterFunction() {
 
                     function callback(response, status) {
                         if (status == 'OK') {
+                            $("#shelterResults").empty();
                             for(j = 0; j < data.length; j++){
                                 var nothingtoShow = 0;
                                 var resultsDist = response.rows[0].elements;
