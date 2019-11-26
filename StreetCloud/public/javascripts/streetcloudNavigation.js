@@ -408,10 +408,12 @@ function medicalFunction() {
                 // tell user there was nothing found
                 if (data.length == 0) {
                     $("#medicalResults").append("<p>No Results Found</p>");
+                }else{
+                    $("#medicalResults").append("<p>Results Are Loading</p>");
                 }
 
                 // Posts this until results are loaded
-                $("#medicalResults").append("<p>Results Are Loading</p>");
+                
                 var currentLat = 0; 
                 var currentLon = 0;
             if (navigator.geolocation) {
@@ -631,8 +633,9 @@ function foodFunction() {
             $("#foodResults").empty();
             if (data.length == 0) {
                $("#foodResults").append("<p>No Results Found</p>");
+            }else{
+                $("#foodResults").append("<p>Results Are Loading</p>");
             }
-            $("#foodResults").append("<p>Results Are Loading</p>");
 
             var currentLat = 0;
             var currentLon = 0;
@@ -783,9 +786,9 @@ function shelterFunction() {
             $("#shelterResults").empty();
             if (data.length == 0) {
                 $("#shelterResults").append("<p>No Results Found</p>");
+            }else{
+                $("#shelterResults").append("<p>Results Are Loading</p>");
             }
-            $("#shelterResults").append("<p>Results Are Loading</p>");
-
             var currentLat = 0;
             var currentLon = 0;
             if (navigator.geolocation) {
