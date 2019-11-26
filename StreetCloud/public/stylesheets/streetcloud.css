@@ -1,6 +1,6 @@
 /*Alli Jacobs
-  Modified by Paul Patrick Bellosillo, Dylan DeGrood, Dylan Pascua 
-  vers. September 18, 2019
+  Modified by Paul Patrick Bellosillo, Dylan DeGrood, Dylan Pascua, Kelsi Cruz
+  vers. November 25, 2019
 */
 
 body{
@@ -42,6 +42,11 @@ p{
 
 div{
 	background-color: transparent;
+}
+
+a{
+	font-family: Geneva,Tahoma,Verdana,sans-serif;
+	font-size:95%;
 }
 
 
@@ -103,6 +108,11 @@ table {
 
 }
 
+#tableimg {
+	display: block;
+	padding: 0px;
+}
+
 .results {
 	background-color: transparent;
 }
@@ -116,6 +126,10 @@ table {
 
 .searchResult:hover {
 	background-color: rgb(162, 162, 162);
+}
+
+.medicalResults {
+	line-height: 50%;
 }
 
 
