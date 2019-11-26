@@ -1158,3 +1158,11 @@ function publicRestroomFunction(){
     });  
 }
 
+$(".icon").click(function() {
+   if (document.getElementById("menuLinks").style.display == "none"){
+       document.getElementById("menuLinks").style.display = "inline-block";
+   } 
+   else{
+        document.getElementById("menuLinks").style.display = "none";
+   }
+});
