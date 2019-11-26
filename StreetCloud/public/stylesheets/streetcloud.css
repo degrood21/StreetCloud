@@ -109,14 +109,14 @@ img{
 	left:0;
 	bottom:0;
 	width:100%;
-	background-color: rgb(157,161,170);
+	background-color: rgb(162,162,162);
 	border-radius: 5px;
 	color:white;
 	text-align:center;
 }
 
 table {
-	background-color: rgb(105, 105, 105);
+	background-color: rgb(113,113,113);
 	border-radius: 5px;
 	margin-left: auto;
 	margin-right: auto;
@@ -136,13 +136,14 @@ table {
 
 .searchResult {
 	width: 100%;
+	background-color: rgb(113,113,113);
 	border-bottom: 3px dashed black;
 	border-top: 3px dashed black;
 	border-radius: 5px;
 }
 
 .searchResult:hover {
-	background-color: black;
+	background-color: rgb(162,162,162);
 	border-radius: 5px;
 }
 
