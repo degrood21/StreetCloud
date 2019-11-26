@@ -7,6 +7,12 @@ function hidefilters(){
     document.getElementById("cat2Button").style.backgroundColor = "#696969"; 
 }
 
+$("#searchText").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#searchButton").click();
+    }
+});
+
 function showCat1Filters(){
     if (document.getElementById("cat1Filters").style.display == "inline-block"){
         hidefilters();
