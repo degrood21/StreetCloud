@@ -7,10 +7,17 @@ router.post('/', function (req, res) {
     educationQuery = req.body.education;
     positionQuery = req.body.position ;
     query = req.body.query;
+    var all = req.body.all;
 
-    inquiry = "SELECT * FROM jobs WHERE DISTANCE " + distanceQuery + " AND (" + educationQuery + ") AND (" + positionQuery + ")";
 
-    if (!(query === "")) {
+    if (all == "true") {
+        var inquiry = "SELECT * from job"
+    }
+    else{
+        inquiry = "SELECT * FROM jobs WHERE DISTANCE " + distanceQuery + " AND (" + educationQuery + ") AND (" + positionQuery + ")";
+    }
+
+    if (!(query === "") && all != "true") {
         query.replace(/'/g, "\\\'");
         inquiry = inquiry + " AND (NAME LIKE '%" + query + "%') ";
     }
