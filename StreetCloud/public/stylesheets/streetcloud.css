@@ -297,6 +297,7 @@ a {
 
 #headerButton{
 	cursor: pointer;
+	max-width: 25%;
 }
 
 .filters {
@@ -331,7 +332,7 @@ a {
 	overflow-y: auto;
 }
 
-#clearFilterMedical, #clearFilterFood, #clearFilterShelter{
+#clearFilterMedical, #clearFilterFood, #clearFilterShelter, #clearFilterJob{
 	margin: 10px 0px 5px 10px;
 	opacity:1;
 	width: auto;
