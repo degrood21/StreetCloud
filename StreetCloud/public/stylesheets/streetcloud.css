@@ -23,17 +23,19 @@ h1{
 	overflow: hidden;
 	background-color: #333;
 	position: relative;
-	width: max-content;
+	align-content: center;
+	display: flex;
+	width: inherit;
+	text-align: center;
   }
 .topnav #menuLinks{
 	background: inherit;
 	display: none;
-	position: relative;
+	position: absolute;
+	overflow: visible;
 }
 .topnav table{
-	text-align: left;
-	background-color: yellow;
-	width: max-content;
+	background-color: gray;
 	position: relative; 
 }
 .topnav a{
@@ -41,6 +43,8 @@ h1{
   	padding: 14px 16px;
 	font-size: 17px;
 	display: block;
+	height: max-content;
+	width: auto;
 }
 .topnav a .icon {
 	background: black;
