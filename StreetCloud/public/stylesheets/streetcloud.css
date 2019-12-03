@@ -296,6 +296,8 @@ a {
 }
 
 #headerButton{
+	position: relative;
+	top: 7px;
 	cursor: pointer;
 	max-width: 25%;
 }

@@ -308,7 +308,7 @@ function clearFilter(id){
         if(id == "clearFilterJob"){
             allData = "true";
             $('input:radio[name=education]:checked').prop('checked', false);
-            $('input:radio[name=price]:checked').prop('checked', false);
+            $('input:radio[name=distance]:checked').prop('checked', false);
             $('input:radio[name=position]:checked').prop('checked', false);
             sessionStorage.setItem("jobQuery", "")
             jobsFunction();
@@ -915,10 +915,6 @@ function jobsFunction(){
     else if(document.getElementById("r_far").checked == true ||
         document.getElementById("r_far_m").checked == true){
         distance = "BETWEEN 0 AND 10";
-    }
-    else if(document.getElementById("far").checked == true ||
-        document.getElementById("far_m").checked == true){
-        distance = "BETWEEN 0 AND 15";
     }
     else{
         distance = "BETWEEN 0 AND 2";
