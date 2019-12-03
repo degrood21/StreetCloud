@@ -67,10 +67,6 @@ function getPosition(pos) {
   
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 /*Helps to wait to run functions once the document fully loads*/
 $(document).ready(function(){
 
@@ -188,13 +184,13 @@ $("#searchButtonInd").click(function() {
                         $(".results").append("<p>No Results Found</p>");
                     }
                     for (i = 0; i < data.length; i++) {
-                        var toAdd = "<tr><td><table class='searchResult'><tr><td>" +
+                        var toAdd = "<tr><td><table class='searchResult'><tr><td id=tableimg>" +
                             "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                             "<td><table class='searchInfo'>" +
-                            "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
-                            "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
-                            "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>";
-                            "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>"
+                            "<tr><td><p style=\"font-size:140%\"><b>" + data[i].NAME + "</b></p>" +
+                            "<p style=\"font-size:95%\">" + data[i].ADDRESS + "</p>" +
+                            "<p style=\"font-size:95%\">Distance: " + data[i].DISTANCE + "</p>";
+                            "<a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>"
                         toAdd = toAdd + "</table></td></tr></table></td></tr>";
 
                         $(".results").append(toAdd);
@@ -219,10 +215,7 @@ function querySearch() {
         $(".results").text("");
 
         if (searchFor === "") {
-<<<<<<< HEAD
-=======
             var coolDistance = calculateDistance(philly, nyc);
->>>>>>> master
             $("#genResults").append("<p>No Results Found</p>");
             $("#genResults").append(coolDistance);
         }
@@ -240,14 +233,15 @@ function querySearch() {
                     //creates a new table for each entry and appends it to streetcloud_gen_search.html
                     for (i = 0; i < data.length; i++) 
                     {
-                        $("#genResults").append("<tr><td><table class='searchResult'><tr><td>" +
+                        $("#genResults").append("<tr><td><table class='searchResult'><tr><td id=tableimg>" +
                             "<img src='" + data[i].Image + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                             "<td><table class='searchInfo'>" +
-                            "<tr><td><p>Name: " + data[i].Name + "</p></td></tr>" +
-                            "<tr><td><p>Address: " + data[i].Address + "</p></td></tr>" +
-                            "<tr><td><p>Distance: " + data[i].Distance + "</p></td></tr>" +
-                            "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
+                            "<tr><td><p style=\"font-size:140%\"><b>" + data[i].Name + "</b></p>" +
+                            "<p style=\"font-size:95%\">" + data[i].Address + "</p>" +
+                            "<p style=\"font-size:95%\">Distance: " + data[i].Distance + "</p>" +
+                            "<a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                             "</table></td></tr></table></td></tr>");
+                            
                     }
                 });
         }
@@ -302,6 +296,14 @@ function clearFilter(id){
             $('input:radio[name=distance]:checked').prop('checked', false);
             sessionStorage.setItem("foodQuery", "")
             foodFunction();
+        }
+        if(id == "clearFilterJob"){
+            allData = "true";
+            $('input:radio[name=education]:checked').prop('checked', false);
+            $('input:radio[name=price]:checked').prop('checked', false);
+            $('input:radio[name=position]:checked').prop('checked', false);
+            sessionStorage.setItem("jobQuery", "")
+            jobsFunction();
         }
     });
 }
@@ -407,10 +409,12 @@ function medicalFunction() {
                 // tell user there was nothing found
                 if (data.length == 0) {
                     $("#medicalResults").append("<p>No Results Found</p>");
+                }else{
+                    $("#medicalResults").append("<p>Results Are Loading</p>");
                 }
 
                 // Posts this until results are loaded
-                $("#medicalResults").append("<p>Results Are Loading</p>");
+                
                 var currentLat = 0; 
                 var currentLon = 0;
             if (navigator.geolocation) {
@@ -503,23 +507,25 @@ function medicalFunction() {
                                         checkedDist = 15;
                                 }
 
+                                /******** MOST RECENT CSS CHANGE!! MAKE THIS CHANGE TO EVERYTHING ELSE **********/
                                 console.log("CHECKED DIST: " + checkedDist);
                                 // if distance is less than distance filter then append
                                 // it to the page for user to see
                                 if(parseFloat(distance) <= checkedDist){
-                                    $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td>" +
+                                    $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td id=tableimg>" +
                                     "<img src='" + data[j].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                                     "<td><table class='searchInfo'>" +
-                                    "<tr><td><p>Name: " + data[j].NAME + "</p></td>" +
-                                    "<tr><td><p>Address: " + data[j].ADDRESS + "</p></td>" +
-                                    "<tr><td><p>Distance: " + distance + " Miles</p></td>" +
-                                    "<tr><td><p>Type: " + data[j].TYPE + "</p></td>" +
-                                    "<tr><td><p>Hours: " + data[j].HOURS + "</p></td>" +
-                                    "<tr><td><p>Open Allday: " + data[j].ALLDAY + "</p></td>" +
-                                    "<tr><td><p>Open Weekends: " + data[j].WEEKENDS + "</p></td>" +
-                                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
-                                    "</table></td></tr></table></td></tr>");
-                                    nothingtoShow += 1;// add one to var to say something was appended
+                                    "<tr><td><p style=\"font-size:140%\"><b>" + data[j].NAME + "</b></p>" +
+                                    "<p style=\"font-size:95%\">" + data[j].ADDRESS + "</p>" +
+                                    "<p style=\"font-size:95%\">Distance: " + distance + " Miles</p>" +
+                                    "<p style=\"font-size:95%\">Type: " + data[j].TYPE + "</p>" +
+                                    "<p style=\"font-size:95%\">Hours: " + data[j].HOURS + "</p>" +
+                                    "<p style=\"font-size:95%\">Open Allday: " + data[j].ALLDAY + "</p>" +
+                                    "<p style=\"font-size:95%\">Open Weekends: " + data[j].WEEKENDS + "</p>" +
+                                    "<a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
+                                    "</td></tr></table></td></tr></table></td></tr>");
+                                    nothingtoShow += 1;
+                                /*********************************************************************************/
                                 }
                                 // if nothing was appended and we reached end of results then
                                 // show user nothing was found
@@ -630,8 +636,9 @@ function foodFunction() {
             $("#foodResults").empty();
             if (data.length == 0) {
                $("#foodResults").append("<p>No Results Found</p>");
+            }else{
+                $("#foodResults").append("<p>Results Are Loading</p>");
             }
-            $("#foodResults").append("<p>Results Are Loading</p>");
 
             var currentLat = 0;
             var currentLon = 0;
@@ -686,14 +693,14 @@ function foodFunction() {
                                 }
                                 console.log("CHECKED DIST: " + checkedDist);
                                 if(parseFloat(distance) <= checkedDist){
-                                    $("#foodResults").append("<tr><td><table class='searchResult'><tr><td>" +
+                                    $("#foodResults").append("<tr><td><table class='searchResult'><tr><td id=tableimg>" +
                                     "<img src='" + data[j].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                                     "<td><table class='searchInfo'>" +
-                                    "<tr><td><p>Name: " + data[j].NAME + "</p></td></tr>" +
-                                    "<tr><td><p>Address: " + data[j].ADDRESS + "</p></td></tr>" +
-                                    "<tr><td><p>Distance: " + distance + "</p></td></tr>" +
-                                    "<tr><td><p>Price: " + data[j].PRICE + "</p></td></tr>" +
-                                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
+                                    "<tr><td><p style=\"font-size:140%\"><b>" + data[j].NAME + "</b></p>" +
+                                    "<p style=\"font-size:95%\">" + data[j].ADDRESS + "</p>" +
+                                    "<p style=\"font-size:95%\">Distance: " + distance + "</p>" +
+                                    "<p style=\"font-size:95%\">Price: " + data[j].PRICE + "</p>" +
+                                    "<a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
                                     "</table></td></tr></table></td></tr>");
                                     nothingtoShow += 1;
                                 
@@ -722,12 +729,7 @@ function foodFunction() {
 }
 
 function shelterFunction() {
-<<<<<<< HEAD
-    var gender, distance, food;
-=======
->>>>>>> master
-    var  coord_flag = false;
-
+    
     var gender, distance, food;
     
     //SQL querries 
@@ -786,9 +788,9 @@ function shelterFunction() {
             $("#shelterResults").empty();
             if (data.length == 0) {
                 $("#shelterResults").append("<p>No Results Found</p>");
+            }else{
+                $("#shelterResults").append("<p>Results Are Loading</p>");
             }
-            $("#shelterResults").append("<p>Results Are Loading</p>");
-
             var currentLat = 0;
             var currentLon = 0;
             if (navigator.geolocation) {
@@ -836,15 +838,15 @@ function shelterFunction() {
                                 console.log("CHECKED DIST: " + checkedDist);
                                 if(parseFloat(distance) <= checkedDist){
 
-                                    $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td> " +
+                                    $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td id=tableimg> " +
                                         "<img src='" + data[j].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                                         "<td><table class='searchInfo'>" +
-                                        "<tr><td><p>Name: " + data[j].NAME + "</p></td></tr>" +
-                                        "<tr><td><p>Address: " + data[j].ADDRESS + "</p></td></tr>" +
-                                        "<tr><td><p>Distance: " + distance + "</p></td></tr>" +
-                                        "<tr><td><p>Gender:" + data[j].GENDER + "</p></td></tr>" +
-                                        "<tr><td><p>NOTES:" + data[j].NOTES + "</p></td></tr>" +
-                                        "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
+                                        "<tr><td><p style=\"font-size:140%\"><b>" + data[j].NAME + "</b></p>" +
+                                        "<p style=\"font-size:95%\">" + data[j].ADDRESS + "</p>" +
+                                        "<p style=\"font-size:95%\">Distance: " + distance + "</p>" +
+                                        "<p style=\"font-size:95%\">Gender:" + data[j].GENDER + "</p>" +
+                                        "<p style=\"font-size:95%\">NOTES:" + data[j].NOTES + "</p>" +
+                                        "<a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
                                         "</table></td></tr></table></td></tr>");
                                         nothingtoShow += 1;
                                 }
@@ -923,6 +925,8 @@ function jobsFunction(){
     }
 
     $(document).ready(function () {
+        var source_coord = getLocation();
+
         var jobQuery = sessionStorage.getItem("jobQuery");
         if (jobQuery == undefined){
             jobQuery = "";
@@ -932,26 +936,93 @@ function jobsFunction(){
             distance: distance,
             education: education,
             position: position, 
-            query: jobQuery
+            query: jobQuery,
+            all: allData
         }, 
         function (data) {
             $("#jobResults").empty();
             if (data.length == 0) {
                 $("#jobResults").append("<p>No Results Found</p>");
+            } else {
+                $("#jobResults").append("<p>Results Are Loading</p>");
             }
-            for (i = 0; i < data.length; i++) {
-                //this should be in a for loop if there is more data 
-                $("#jobResults").append("<tr><td><table class='searchResult'><tr><td> " +
-                    "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
-                    "<td><table class='searchInfo'>" +
-                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
-                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
-                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
-                    "<tr><td><p>Education Level Needed: " + data[i].EDUCATION+ "</p></td></tr>" +
-                    "<tr><td><p>Part Time: " + data[i].PART_TIME + "</p></td></tr>" +
-                    "<tr><td><p>Full Time: " + data[i].FULL_TIME + "</p></td></tr>" +
-                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
-                    "</table></td></tr></table></td></tr>");
+            var currentLat = 0;
+            var currentLon = 0;
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+
+                    currentLat = position.coords.latitude;
+                    currentLon = position.coords.longitude;
+                    console.log("TESTING CURRENT LOCATION: " + currentLat + " " + currentLon);
+                    var origin1 = new google.maps.LatLng(currentLat, currentLon);
+                    var distanceArr = [];
+                    for (i = 0; i < data.length; i++) {
+                        distanceArr.push(new google.maps.LatLng(data[i].LAT, data[i].LON));
+                    }
+                    var service = new google.maps.DistanceMatrixService();
+                    service.getDistanceMatrix(
+                        {
+                            origins: [origin1],
+                            destinations: distanceArr,
+                            travelMode: 'WALKING',
+                            unitSystem: google.maps.UnitSystem.IMPERIAL,
+                        }, callback);
+
+                    function callback(response, status) {
+                        if (status == 'OK') {
+                            $("#jobResults").empty();
+                            for (j = 0; j < data.length; j++) {
+                                var nothingtoShow = 0;
+                                var resultsDist = response.rows[0].elements;
+                                var elementDist = resultsDist[j];
+                                var distance = elementDist.distance.text;
+                                console.log("DISTANCE: " + distance);
+                                var checkedDist = 20;
+                                if (document.getElementById("r_close").checked == true ||
+                                    document.getElementById("r_close_m").checked == true) {
+                                    checkedDist = 5;
+                                }
+                                else if (document.getElementById("r_far").checked == true ||
+                                    document.getElementById("r_far_m").checked == true) {
+                                    checkedDist = 20;
+                                }
+                                else if (document.getElementById("close").checked == true ||
+                                    document.getElementById("close_m").checked == true) {
+                                    checkedDist = 2;
+                                }
+                                console.log("CHECKED DIST: " + checkedDist);
+                                if (parseFloat(distance) <= checkedDist) {
+
+                                    $("#jobResults").append("<tr><td><table class='searchResult'><tr><td id=tableimg> " +
+                                        "<img src='" + data[j].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                                        "<td><table class='searchInfo'>" +
+                                        "<tr><td><p style=\"font-size:140%\"><b>" + data[j].NAME + "</b></p>" +
+                                        "<p style=\"font-size:95%\">" + data[j].ADDRESS + "</p>" +
+                                        "<p style=\"font-size:95%\">Distance: " + distance + "</p>" +
+                                        "<p style=\"font-size:95%\">Education Level Needed: " + data[j].EDUCATION + "</p>" +
+                                        "<p style=\"font-size:95%\">Part Time: " + data[j].PART_TIME + "</p>" +
+                                        "<p style=\"font-size:95%\">Full Time: " + data[j].FULL_TIME + "</p>" +
+                                        "<a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
+                                        "</table></td></tr></table></td></tr>");
+                                    nothingtoShow += 1;
+                                }
+                                if ((j + 1 == data.length) && nothingtoShow == 0) {
+                                    $("#jobResults").append("<p>No Results Found</p>");
+                                }
+                            }
+                            if (allData == "true") {
+                                allData = "false";
+                            }
+                        }
+                    }
+
+
+                }, function () {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
             }
         });
     });
@@ -1011,15 +1082,15 @@ function libraryFunction(){
             }
             for (i = 0; i < data.length; i++) {
                 //this should be in a for loop if there is more data 
-                $("#libraryResults").append("<tr><td><table class='searchResult'><tr><td> " +
-                    "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                $("#libraryResults").append("<tr><td><table class='searchResult'><tr><td id=tableimg> " +
+                    "<img src='" + data[i].IMAGE + "' height=\4\0% width=\4\0%></img></td>" +
                     "<td><table class='searchInfo'>" +
-                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
-                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
-                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
-                    "<tr><td><p>Hours: " + data[i].HOURS+ "</p></td></tr>" +
-                    "<tr><td><p>Restroom Access: " + data[i].PUBLIC_RESTROOM + "</p></td></tr>" +
-                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
+                    "<tr><td><p  style=\"font-size:140%\"><b>" + data[i].NAME + "</b></p>" +
+                    "<p style=\"font-size:95%\">" + data[i].ADDRESS + "</p>" +
+                    "<p style=\"font-size:95%\">Distance: " + data[i].DISTANCE + "</p>" +
+                    "<p style=\"font-size:95%\">Hours: " + data[i].HOURS+ "</p>" +
+                    "<p style=\"font-size:95%\">Restroom Access: " + data[i].PUBLIC_RESTROOM + "</p>" +
+                    "<a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                     "</table></td></tr></table></td></tr>");
             }
         });
@@ -1084,16 +1155,16 @@ function daycareFunction(){
             }
             for (i = 0; i < data.length; i++) {
                 //this should be in a for loop if there is more data 
-                $("#daycareResults").append("<tr><td><table class='searchResult'><tr><td> " +
+                $("#daycareResults").append("<tr><td><table class='searchResult'><tr><td id=tableimg> " +
                     "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                     "<td><table class='searchInfo'>" +
-                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
-                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
-                    "<tr><td><p>Distance: " + data[i].DISTANCE + "</p></td></tr>" +
-                    "<tr><td><p>Weekdays: " + data[i].WEEKDAYS+ "</p></td></tr>" +
-                    "<tr><td><p>Weekends: " + data[i].WEEKENDS + "</p></td></tr>" +
-                    "<tr><td><p>Price: " + data[i].PRICE + "</p></td></tr>" +
-                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
+                    "<tr><td><p style=\"font-size:140%\"><b>" + data[i].NAME + "</b></p>" +
+                    "<p style=\"font-size:95%\">" + data[i].ADDRESS + "</p>" +
+                    "<p style=\"font-size:95%\">Distance: " + data[i].DISTANCE + "</p>" +
+                    "<p style=\"font-size:95%\">Weekdays: " + data[i].WEEKDAYS+ "</p>" +
+                    "<p style=\"font-size:95%\">Weekends: " + data[i].WEEKENDS + "</p>" +
+                    "<p style=\"font-size:95%\">Price: " + data[i].PRICE + "</p>" +
+                    "<a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                     "</table></td></tr></table></td></tr>");
             }
         });
@@ -1145,19 +1216,28 @@ function publicRestroomFunction(){
                 $("#publicRestroomsResults").append("<p>No Results Found</p>");
             }
             for (i = 0; i < data.length; i++) {
-                //this should be in a for loop if there is more data 
-                $("#publicRestroomsResults").append("<tr><td><table class='searchResult'><tr><td> " +
+                $("#publicRestroomsResults").append("<tr><td><table class='searchResult'><tr><td id=tableimg> " +
                     "<img src='" + data[i].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                     "<td><table class='searchInfo'>" +
-                    "<tr><td><p>Name: " + data[i].NAME + "</p></td></tr>" +
-                    "<tr><td><p>Address: " + data[i].ADDRESS + "</p></td></tr>" +
-                    "<tr><td><p>Distance:"+result_distance+"</p></td></tr>" +
-                    "<tr><td><p>Open 24 Hours: " + data[i].ALLDAY+ "</p></td></tr>" +
-                    "<tr><td><p>Hours: " + data[i].HOURS + "</p></td></tr>" +
-                    "<tr><td><a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
+                    "<tr><td><p style=\"font-size:140%\"><b>" + data[i].NAME + "</b></p>" +
+                    "<p style=\"font-size:95%\">" + data[i].ADDRESS + "</p>" +
+                    "<p style=\"font-size:95%\">Distance: " + data[i].DISTANCE + "</p>" +
+                    "<p style=\"font-size:95%\">Open 24 Hours: " + data[i].ALLDAY+ "</p>" +
+                    "<p style=\"font-size:95%\">Hours: " + data[i].HOURS + "</p>" +
+                    "<a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
                     "</table></td></tr></table></td></tr>");
             }
         });
     });  
 }
 
+$(document).ready(function(){
+    $(".icon").click(function() {
+        if (document.getElementById("menuLinks").style.display == "none"){
+            document.getElementById("menuLinks").style.display = "inline";
+        } 
+        else{
+            document.getElementById("menuLinks").style.display = "none";
+        }
+    });
+});

@@ -12,7 +12,7 @@
 </head>
 <body onload="publicRestroomFunction()">
 <!-- Header -->
-<h1 id="headerButton">StreetCloud</h1>
+<img src= "images/SC_5.png" id="headerButton">
 <!-- Second Header -->
 <h2 id="pageId">Public Restrooms</h2>
 
@@ -26,7 +26,7 @@
       <td> <img src= "https://upload.wikimedia.org/wikipedia/commons/5/59/Noun_Project_house_icon_475319_cc.svg" 
         alt="House" class="menu_b" id="shelterButton">
       </td>
-      <td> <img src= "images\caduceus-icon.png" 
+      <td> <img src= "images/caduceus_icon.png" 
         alt="Medical" class="menu_b" id="medicalButton">
       <td> <img src= "https://icon-library.net/images/icon-other/icon-other-26.jpg" 
         alt="Other" class="menu_b" id="otherButton">
@@ -87,9 +87,9 @@
   <div id="cat2Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" onclick="publicRestroomFunction()" checked> 2 Miles </td> </tr>
-        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" onclick="publicRestroomFunction()" value="5m"> 5 Miles </td> </tr>
-        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m" onclick="publicRestroomFunction()"> 10+ Miles </td> </tr>
+        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" onclick="publicRestroomFunction()" checked> 0 to 2 Miles </td> </tr>
+        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" onclick="publicRestroomFunction()" value="5m"> 0 to 5 Miles </td> </tr>
+        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m" onclick="publicRestroomFunction()"> 0 to 10+ Miles </td> </tr>
       </table>
     </div>
   </div>
@@ -114,15 +114,15 @@
       <td><h3>Times Open: </h3></td>
     </tr>
     <tr>
-      <td> <input id="close" type="radio" class="close" name="distance" value="2m" onclick="publicRestroomFunction()" checked> 2 Miles </td>
+      <td> <input id="close" type="radio" class="close" name="distance" value="2m" onclick="publicRestroomFunction()" checked> 0 to 2 Miles </td>
       <td> <input id="24hr" type="radio" class="p_time" name="careTime" value="24HourBathrooms" onclick="publicRestroomFunction()" checked> 24 Hours </td>
     </tr>
     <tr>
-      <td> <input id="r_close" type="radio" class="r_close" name="distance" value="5m" onclick="publicRestroomFunction()"> 5 Miles </td>
+      <td> <input id="r_close" type="radio" class="r_close" name="distance" value="5m" onclick="publicRestroomFunction()"> 0 to 5 Miles </td>
       <td> <input id="setTime" type="radio" class="f_time" name="careTime" value="specificHourBathrooms" onclick="publicRestroomFunction()"> Specific Hours </td>
     </tr>
     <tr>
-      <td> <input id="r_far" type="radio" class="r_far" name="distance" value="10m" onclick="publicRestroomFunction()"> 10+ Miles </td>
+      <td> <input id="r_far" type="radio" class="r_far" name="distance" value="10m" onclick="publicRestroomFunction()"> 0 to 10+ Miles </td>
     </tr>
     
   </form>
