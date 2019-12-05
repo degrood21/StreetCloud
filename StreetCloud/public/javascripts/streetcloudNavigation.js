@@ -1243,7 +1243,7 @@ function publicRestroomFunction(){
 $(document).ready(function(){
     $(".icon").click(function() {
         if (document.getElementById("menuLinks").style.display == "none"){
-            document.getElementById("menuLinks").style.display = "inline";
+            document.getElementById("menuLinks").style.display = "block";
         } 
         else{
             document.getElementById("menuLinks").style.display = "none";
