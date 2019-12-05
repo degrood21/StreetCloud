@@ -209,6 +209,7 @@ $("#searchButtonInd").click(function() {
 //Will send a post request where the database
 //will be searched for a word containing the search val
 function querySearch() {
+
     const philly = { lat: 39.9526, lng: -75.1652 }
     const nyc = { lat: 40.7128, lng: -74.0060 }
     //console.log("DISTANCE: " + haversineDistance);
@@ -254,6 +255,8 @@ function querySearch() {
         }
     });
 }
+
+clearFilterBool = false;
 /**
  * clearFilter function
  * 
@@ -266,7 +269,7 @@ function querySearch() {
  * clear filter button called this function
  */
 function clearFilter(id){
-    
+    clearFilterBool = true;
     $(document).ready(function () {
 
         // Checks to see what page clear filter button
@@ -337,9 +340,11 @@ function medicalFunction() {
         document.getElementById("24HR_mobile").checked == true) {
         hours = "ALLDAY = 'Yes'";
     }
-    else{
-        hours = "ALLDAY = 'Yes' OR ALLDAY = 'No'";//default search/checked
+    else {
+        hours = "ALLDAY = 'Yes' OR WEEKENDS = 'No'";//default search/checked
     }
+    
+
     //distance filters
     if(document.getElementById("5m").checked == true ||
         document.getElementById("5m_mobile").checked == true){
@@ -369,6 +374,11 @@ function medicalFunction() {
         document.getElementById("therapist_mobile").checked == true) {
         type = "%Therapy%";
     }
+    // else if (clearFilterBool == true){
+    //     type = "%clinic%' OR TYPE LIKE '%hospital% OR TYPE LIKE '%Optometry%";
+    //     //distance = "BETWEEN 0 AND 20";
+    //     hours = "ALLDAY = 'Yes' OR ALLDAY = 'No'";
+    // }
     else {
         type = "%clinic%' OR TYPE LIKE '%hospital%"; //default search/checked
     }
@@ -519,7 +529,7 @@ function medicalFunction() {
                                 console.log("CHECKED DIST: " + checkedDist);
                                 // if distance is less than distance filter then append
                                 // it to the page for user to see
-                                if(parseFloat(distance) <= checkedDist){
+                                if((parseFloat(distance) <= checkedDist) || clearFilterBool == true){
                                     $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td id=tableimg>" +
                                     "<img src='" + data[j].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                                     "<td><table class='searchInfo'>" +
