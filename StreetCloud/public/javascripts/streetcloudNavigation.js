@@ -521,7 +521,7 @@ function medicalFunction() {
                                 // it to the page for user to see
                                 if(parseFloat(distance) <= checkedDist){
                                     $("#medicalResults").append("<tr><td><table class='searchResult'><tr><td id=tableimg>" +
-                                    "<img src='" + data[j].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                                    "<img src='" + data[j].IMAGE + "'></img></td>" +
                                     "<td><table class='searchInfo'>" +
                                     "<tr><td><p style=\"font-size:140%\"><b>" + data[j].NAME + "</b></p>" +
                                     "<p style=\"font-size:95%\">" + data[j].ADDRESS + "</p>" +

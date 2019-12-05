@@ -128,6 +128,7 @@ table {
 #tableimg {
 	display: block;
 	padding: 0px;
+	size: 100%;
 }
 
 .results {
