@@ -11,7 +11,7 @@ router.post('/', function (req, res) {
 
 
     if (all == "true") {
-        var inquiry = "SELECT * from job"
+        var inquiry = "SELECT * from jobs"
     }
     else{
         inquiry = "SELECT * FROM jobs WHERE DISTANCE " + distanceQuery + " AND (" + educationQuery + ") AND (" + positionQuery + ")";

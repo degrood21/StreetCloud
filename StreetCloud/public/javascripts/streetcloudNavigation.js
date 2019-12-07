@@ -172,6 +172,10 @@ $("#searchButtonInd").click(function() {
         sessionStorage.setItem("restroomQuery", searchFor);
         publicRestroomFunction();
     }
+    else if (pageId === "jobs"){
+        sessionStorage.setItem("jobQuery", searchFor);
+        jobsFunction();
+    }
 
     else {
         $(document).ready(function () {
@@ -571,7 +575,7 @@ Date Accessed: 10/31/19
 */
 
 function foodFunction() {
-
+    var nothingChecked = false;
     var distance,price,type; 
 
     //SQL querries for each filter  
@@ -626,6 +630,9 @@ function foodFunction() {
         price = "PRICE = 'Free'";
     }
 
+    if ($("input[type=radio]:checked").length == 0) {
+        nothingChecked = true;
+    }
 
     $(document).ready(function () {
         var foodQuery = sessionStorage.getItem("foodQuery");
@@ -638,7 +645,8 @@ function foodFunction() {
             price: price,
             type: type,
             query: foodQuery,
-            all: allData
+            all: allData,
+            nothing: nothingChecked
         },
         function (data) { 
             $("#foodResults").empty();
@@ -719,6 +727,9 @@ function foodFunction() {
                             }
                             if(allData == "true"){
                                 allData = "false";
+                            }
+                            if(nothingChecked == "true"){
+                                nothingChecked == "false"
                             }
                         }
                     }
@@ -825,12 +836,27 @@ function shelterFunction() {
                     function callback(response, status) {
                         if (status == 'OK') {
                             $("#shelterResults").empty();
-                            for(j = 0; j < data.length; j++){
+                            for(i = 0; i < data.length; i++){
                                 var nothingtoShow = 0;
                                 var resultsDist = response.rows[0].elements;
-                                var elementDist = resultsDist[j];
+                                var elementDist = resultsDist[i];
                                 var distance = elementDist.distance.text;
-                                console.log("DISTANCE: " +distance);
+                                data[i].DISTANCE = distance
+                            }
+                            function sortByProperty(property) {
+                                return function (a, b) {
+                                    if (parseFloat(a[property]) > parseFloat(b[property]))
+                                        return 1;
+                                    else if (parseFloat(a[property]) < parseFloat(b[property]))
+                                        return -1;
+
+                                    return 0;
+                                }
+                            }
+                            data.sort(sortByProperty("DISTANCE"));
+                            for(j = 0; j < data.length; j++){
+                                
+                                //console.log("DISTANCE: " +distance);
                                 var checkedDist = 20;
                                 if(document.getElementById("5m").checked == true ||
                                     document.getElementById("r_close_m").checked == true){
@@ -845,14 +871,14 @@ function shelterFunction() {
                                         checkedDist = 2;
                                 }
                                 console.log("CHECKED DIST: " + checkedDist);
-                                if(parseFloat(distance) <= checkedDist){
+                                if(parseFloat(data[j].DISTANCE) <= checkedDist){
 
                                     $("#shelterResults").append("<tr><td><table class='searchResult'><tr><td id=tableimg> " +
                                         "<img src='" + data[j].IMAGE + "' height=" + 100 + " width=" + 100 + "></img></td>" +
                                         "<td><table class='searchInfo'>" +
                                         "<tr><td><p style=\"font-size:140%\"><b>" + data[j].NAME + "</b></p>" +
                                         "<p style=\"font-size:95%\">" + data[j].ADDRESS + "</p>" +
-                                        "<p style=\"font-size:95%\">Distance: " + distance + "</p>" +
+                                        "<p style=\"font-size:95%\">Distance: " + data[j].DISTANCE + "</p>" +
                                         "<p style=\"font-size:95%\">Gender:" + data[j].GENDER + "</p>" +
                                         "<p style=\"font-size:95%\">NOTES:" + data[j].NOTES + "</p>" +
                                         "<a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
