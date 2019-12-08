@@ -1242,11 +1242,11 @@ function publicRestroomFunction(){
 
 $(document).ready(function(){
     $(".icon").click(function() {
-        if (document.getElementById("menuLinks").style.display == "none"){
-            document.getElementById("menuLinks").style.display = "block";
+        if (document.getElementById("menuLinks").style.display == "block"){
+            document.getElementById("menuLinks").style.display = "none";
         } 
         else{
-            document.getElementById("menuLinks").style.display = "none";
+            document.getElementById("menuLinks").style.display = "block";
         }
     });
 });
