@@ -474,7 +474,7 @@ a {
 }
 
 /* landscape width */
-@media screen and (max-width: 4001px) and (min-width: 1921px){
+@media screen and (min-width: 1921px){
 	.menu_b {
 		width: 150px;
 		height: 150px;
