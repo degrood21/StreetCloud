@@ -1237,13 +1237,16 @@ $(document).ready(function(){
         if (document.getElementById("menuLinks").style.display == "none"){
             document.getElementById("menuLinks").style.display = "inline";
             document.getElementById("hamburger").style.backgroundColor = "gray";
-            document.getElementById("hamburger").style.width = "100%";
+            document.getElementById("hamburger").style.height = "100%";
+            document.getElementById("hamburger").style.width = "282px";
             document.getElementById("hamburger").style.opacity = "90%";
+
 
         } 
         else{
             document.getElementById("menuLinks").style.display = "none";
             document.getElementById("hamburger").style.backgroundColor = "transparent";
+            document.getElementById("hamburger").style.height = "max-content";
             document.getElementById("hamburger").style.width = "max-content";
             document.getElementById("hamburger").style.opacity = "100%";
         }
