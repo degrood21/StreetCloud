@@ -20,7 +20,7 @@ router.post('/', function (req, res) {
 
     if (!(query === "") && all != "true") {
         query.replace(/'/g, "\\\'");
-        inquiry = inquiry + " AND (NAME LIKE '%" + query + "%') ";
+        inquiry = inquiry + " AND (NAME LIKE \'%" + query + "%\') ";
     }
 
     console.log(inquiry);
