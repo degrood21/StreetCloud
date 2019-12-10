@@ -26,6 +26,7 @@ h1{
 	align-content: center;
 	display: flex;
 	width: 100%;
+	z-index: 2;
   }
 .topnav #menuLinks{
 	background-color: gray;
@@ -41,7 +42,6 @@ h1{
 	width: 250px;
 	height: 100%;
 	transition: 0.5s;
-	z-index: 1;
 }
 .topnav table .headerTable{
 	background-color: inherit;
@@ -374,8 +374,9 @@ a {
 
 #headerButton{
 	cursor: pointer;
-	max-width: 25%;
+	max-width: 30%;
 	position: relative;
+	z-index: 1;
 }
 
 .filters {
