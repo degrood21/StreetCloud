@@ -1,6 +1,7 @@
 <!-- David Campbell -->
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta name="viewport" content="width=device-width", initial-scale=1>
 <link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
@@ -8,6 +9,7 @@
 <script src="javascripts/streetcloud_filters.js"></script>
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyAJQvyANqrylw4vyAkEf_aScXZfusD1b7Y"></script>
 </head>
+
 <body onload="shelterFunction()">
 <!-- Header -->
 <img src= "images/SC_5.png" id="headerButton">
@@ -95,28 +97,37 @@ function initMap() {
   </table>
 
   <!--Mobile Filters Button-->
-<br>
-<div class="filters_mobile">
-  <table>
-  <tr>
-    <td><p> Filters </p></td>
-    <td><img src= "https://image.flaticon.com/icons/png/512/28/28591.png" 
-      alt="Education" class="filters_b" id="cat1Button" onclick="showCat1Filters()"></td>
-    <td><img src= "https://c7.uihere.com/icons/227/999/759/distance-e865a41ae62cfcfbd99c58f73e321757.png" 
-      alt="Distance" class="filters_b" id="cat2Button" onclick="showCat2Filters()"></td>
-    <td><img src= "https://library.kissclipart.com/20180829/tce/kissclipart-much-money-do-you-save-eating-clipart-eating-dish-d496feeb45f8d9cf.png" 
-      alt="Position" class="filters_b" id="cat3Button" onclick="showCat3Filters()"></td>
-  </tr>
-  </table>
-</div>
+  <br>
+  <div class="filters_mobile">
+    <table>
+      <tr>
+        <td>
+          <p> Filters </p>
+        </td>
+        <td><img src="https://image.flaticon.com/icons/png/512/28/28591.png" alt="Education" class="filters_b"
+            id="cat1Button" onclick="showCat1Filters()"></td>
+        <td><img src="https://c7.uihere.com/icons/227/999/759/distance-e865a41ae62cfcfbd99c58f73e321757.png"
+            alt="Distance" class="filters_b" id="cat2Button" onclick="showCat2Filters()"></td>
+        <td><img
+            src="https://library.kissclipart.com/20180829/tce/kissclipart-much-money-do-you-save-eating-clipart-eating-dish-d496feeb45f8d9cf.png"
+            alt="Position" class="filters_b" id="cat3Button" onclick="showCat3Filters()"></td>
+      </tr>
+    </table>
+  </div>
 
   <!-- Mobile Education Filter dropdown -->
   <div id="cat1Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="maleOnly_m" type="radio" name="gender_pref" value="Male" onclick="shelterFunction()" > Male Only </td> </tr>
-        <tr> <td> <input id="femaleOnly_m" type="radio" name="gender_pref" value="Female" onclick="shelterFunction()"> Female Only </td> </tr>
-        <tr> <td> <input id="maleAndFemale_m" type="radio" name="gender_pref" value="Both" onclick="shelterFunction()" checked> Male and Female </td> </tr>
+        <tr>
+          <td> <input type="radio" name="gender_pref" value="Male" onclick="shelterFunction()" checked> Male Only </td>
+        </tr>
+        <tr>
+          <td> <input type="radio" name="gender_pref" value="Female" onclick="shelterFunction()"> Female Only </td>
+        </tr>
+        <tr>
+          <td> <input type="radio" name="gender_pref" value="Both" onclick="shelterFunction()"> Male and Female </td>
+        </tr>
       </table>
     </div>
   </div>
@@ -136,12 +147,18 @@ function initMap() {
   <div id="cat3Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="included_m" type="radio" name="food_included" value="included" onclick="shelterFunction()" checked> Food Included </td> </tr>
-        <tr> <td> <input id="notIncluded_m" type="radio" name="food_included" value="not included" onclick="shelterFunction()"> Food Not Included </td> </tr>
+        <tr>
+          <td> <input type="radio" name="food_included" value="included" onclick="shelterFunction()" checked> Food
+            Included </td>
+        </tr>
+        <tr>
+          <td> <input type="radio" name="food_included" value="not included" onclick="shelterFunction()"> Food Not
+            Included </td>
+        </tr>
       </table>
     </div>
   </div>
-<br>
+  <br>
 
 <!-- Search Database" -->
 <table id="shelterResults" class="results">
@@ -167,9 +184,9 @@ function initMap() {
 <p id ="registerForm">Partnerships</p>
 </div>
 
-<script
-   src="javascripts/streetcloudNavigation.js">
-</script>
+  <script src="javascripts/streetcloudNavigation.js">
+  </script>
 
 </body>
+
 </html>
