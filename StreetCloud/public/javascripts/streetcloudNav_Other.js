@@ -63,12 +63,12 @@ document.getElementById("aboutUs").onclick = function() {
 document.getElementById("registerForm").onclick = function() {
     location.href = "/../streetcloud_register_form.html";
 };
-document.getElementById("homeFooterButton").onclick = function() {
+document.getElementById("headerButton").onclick = function() {
     location.href = "/../streetcloud.html";
 };
-document.getElementById("contactUS").onclick = function(){
+document.getElementById("contactUs").onclick = function(){
     location.href = "/../streetcloud_about.html#opaqueboxContact";
 };
-document.getElementById("volunteerButton").onclick = function() {
+document.getElementById("volunteer").onclick = function() {
     location.href = "/../streetcloud_volunteer_page.html";
 };

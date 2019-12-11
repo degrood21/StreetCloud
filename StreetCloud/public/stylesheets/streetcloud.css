@@ -22,14 +22,20 @@ h1{
 	width: max-content;
 }
 /* This is for the menu */
+#container{
+	width: auto;
+	height: 20px;
+	position: relative;
+}
 .topnav {
 	overflow: hidden;
 	background-color: transparent;
 	position: absolute;
+	top: 0;
 	align-content: center;
 	display: flex;
 	width: 100%;
-	z-index: 2;
+	z-index: 1;
   }
 .topnav #menuLinks{
 	background-color: gray;
@@ -361,7 +367,7 @@ a {
 	background-color: transparent;
 }
 
-#aboutUs, #registerForm, #contactUS, #volunteerButton{
+#aboutUs, #registerForm, #contactUs, #volunteer{
 	cursor: pointer;
 }
 
@@ -383,11 +389,12 @@ a {
 
 #headerButton{
 	position: relative;
-	top: 7px;
+	top: 20px;
+	margin-left: auto;
+	margin-right: auto;
 	cursor: pointer;
 	max-width: 30%;
-	position: relative;
-	z-index: 1;
+	z-index: 0;
 }
 
 .filters {
