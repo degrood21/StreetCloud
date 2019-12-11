@@ -26,7 +26,7 @@
       <td> <img src= "https://upload.wikimedia.org/wikipedia/commons/5/59/Noun_Project_house_icon_475319_cc.svg" 
         alt="House" class="menu_b" id="shelterButton">
       </td>
-      <td> <img src= "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Medical_Clipboard_-_The_Noun_Project.svg/1000px-Medical_Clipboard_-_The_Noun_Project.svg.png" 
+      <td> <img src= "images/caduceus_icon.png" 
         alt="Medical" class="menu_b" id="medicalButton">
       <td> <img src= "https://icon-library.net/images/icon-other/icon-other-26.jpg" 
         alt="Other" class="menu_b" id="otherButton">
@@ -57,34 +57,16 @@
   <table>
   <tr>
     <td><p> Filters </p></td>
-    <td><img src= "https://image.flaticon.com/icons/png/512/130/130304.png" 
-      alt="Education" class="filters_b" id="cat1Button" onclick="showCat1Filters()"></td>
     <td><img src= "https://c7.uihere.com/icons/227/999/759/distance-e865a41ae62cfcfbd99c58f73e321757.png" 
-      alt="Distance" class="filters_b" id="cat2Button" onclick="showCat2Filters()"></td>
+      alt="Distance" class="filters_b" id="cat1Button" onclick="showCat1Filters()"></td>
     <td><img src= "https://image.flaticon.com/icons/svg/66/66163.svg" 
-      alt="Position" class="filters_b" id="cat3Button" onclick="showCat3Filters()"></td>
+      alt="Position" class="filters_b" id="cat2Button" onclick="showCat2Filters()"></td>
   </tr>
   </table>
 </div>
 
-  <!-- Mobile Education Filter dropdown -->
-  <div id="cat1Filters" class="dropdown">
-    <div class="dropdown-content">
-      <table>
-        <tr> <td> <input id="no_hs_m" type="radio" class="no_hs" name="education" value="No High School" checked> 
-          No High School </td> </tr>
-        <tr> <td> <input id="s_hs_m" type="radio" class="s_hs" name="education" value="Some High School"> 
-          Some High School </td> </tr>
-        <tr> <td> <input id="hs_d_m" type="radio" class="hs_d" name="education" value="High School Diploma">
-           High School Degree </td> </tr>
-        <tr> <td> <input id="c_d_m" type="radio" class="c_d" name="education" value="College Degree"> 
-          College Degree </td> </tr>
-      </table>
-    </div>
-  </div>
-
   <!-- Mobile Distance Filter dropdown -->
-  <div id="cat2Filters" class="dropdown">
+  <div id="cat1Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
         <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" onclick="publicRestroomFunction()" checked> Within 2 Miles </td> </tr>
@@ -95,7 +77,7 @@
   </div>
 
   <!-- Mobile times Filter dropdown -->
-  <div id="cat3Filters" class="dropdown">
+  <div id="cat2Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
         <tr> <td> <input id="24hr_m" type="radio" class="p_time" name="position" value="Part Time" onclick="publicRestroomFunction()" checked> 24 Hpurs </td> </tr>

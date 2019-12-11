@@ -1,10 +1,13 @@
 function hidefilters(){
     document.getElementById("cat1Filters").style.display= "none";
     document.getElementById("cat2Filters").style.display= "none";
-    document.getElementById("cat3Filters").style.display= "none";
     document.getElementById("cat1Button").style.backgroundColor = "#696969"; 
-    document.getElementById("cat3Button").style.backgroundColor = "#696969"; 
     document.getElementById("cat2Button").style.backgroundColor = "#696969"; 
+
+    if (document.getElementById("cat3Filters") != null){ 
+        document.getElementById("cat3Filters").style.display= "none";
+        document.getElementById("cat3Button").style.backgroundColor = "#696969"; 
+    }
 }
 
 $("#searchText").keyup(function(event){
@@ -36,6 +39,10 @@ function showCat2Filters(){
 }
 
 function showCat3Filters(){
+    if(document.getElementById("cat3Filters") == null){
+        return;
+    }
+
     if (document.getElementById("cat3Filters").style.display == "inline-block"){
         hidefilters();
     }
