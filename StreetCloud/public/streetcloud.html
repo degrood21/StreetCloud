@@ -5,9 +5,33 @@
 <meta name="viewport" content="width=device-width", initial-scale=1>
 <link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
-<!-- Header -->
+<body id="main">
+<!-- Header + Menu -->
+<div class="topnav">
+  <table class="headerTable">
+    <tr>
+      <td>
+        <div id="hamburger">
+        <a class="icon">
+          <i class="fa fa-bars"></i>
+        </a>
+        </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="menuLinks">
+        <a id="aboutUs">About Us</a>
+        <a id="contactUs">Contact Us</a>
+        <a id="volunteer">Volunteer</a>
+        <a id="registerForm">Partnerships</a>
+      </div>
+    </td>
+  </tr>
+  </table>
+</div>
 <img src= "images/SC_5.png" id="headerButton">
 <!-- Second Header -->
 <h2>What are you looking for?</h2>
@@ -41,7 +65,7 @@
     <td> 
       <!-- Medical-->
       <button type="submit" class="homeButtons" id="medicalButton">
-        <img class="homeImages" src= "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Medical_Clipboard_-_The_Noun_Project.svg/1000px-Medical_Clipboard_-_The_Noun_Project.svg.png" 
+        <img class="homeImages" src= "images/caduceus_icon.png" 
         alt="Medical">
       </button>
       <p id="centerText">Medical</p>
@@ -74,12 +98,6 @@
 </br>
 </br>
 </br>
-<div class="footer">
-  <p id="homeFooterButton">StreetCloud</p>
-  <p id ="aboutUs">About Us</p>
-  <p id ="contactUS">Contact Us</p>
-  <p id = "volunteerButton">Volunteer</p>
-  <p id ="registerForm">Partnerships</p></div>
 
 <script
    src="javascripts/streetcloudNavigation.js">

@@ -59,7 +59,7 @@ function showError(error) {
 function getPosition(pos) {
   var crd = pos.coords;
   
-  usercoords = [crd.latitude, crd.longitude];
+  usercoords = new google.maps.LatLng(crd.latitude, crd.longitude);
 
   console.log('Your current position is:');
   console.log(`Latitude : ${crd.latitude}`);
@@ -129,9 +129,6 @@ var allData = "false";//used for clear all filters button
 $("#searchButton").click(function() {
     var searchFor = $("#searchText").val();
     sessionStorage.setItem("query", searchFor);
-    //var test_dist = haversineDistance(univ_portland,shelter_test);
-    //console.log("TEST DISTANCE: " + test_dist);
-    //sessionStorage.setItem("DISTANCE: ", coolDistance);
     location.href = "/../streetcloud_gen_search.html";
 });
 
@@ -229,9 +226,6 @@ $("#searchButtonInd").click(function() {
 //Will send a post request where the database
 //will be searched for a word containing the search val
 function querySearch() {
-    const philly = { lat: 39.9526, lng: -75.1652 }
-    const nyc = { lat: 40.7128, lng: -74.0060 }
-    //console.log("DISTANCE: " + haversineDistance);
     function init() {
         init.searched = true;
     }
@@ -345,7 +339,6 @@ function querySearch() {
  * clear filter button called this function
  */
 function clearFilter(id){
-    
     $(document).ready(function () {
 
         // Checks to see what page clear filter button
@@ -1735,3 +1728,22 @@ function publicRestroomFunction(){
     });  
 }
 
+//This is for the hamburger menu 
+$(document).ready(function(){
+    $('.icon').click(function() {
+        if (document.getElementById("menuLinks").style.display == "inline"){
+            document.getElementById("menuLinks").style.display = "none";
+            document.getElementById("hamburger").style.backgroundColor = "transparent";
+            document.getElementById("hamburger").style.height = "max-content";
+            document.getElementById("hamburger").style.width = "max-content";
+            document.getElementById("hamburger").style.opacity = "100%";
+        }
+        else{
+            document.getElementById("menuLinks").style.display = "inline";
+            document.getElementById("hamburger").style.backgroundColor = "gray";
+            document.getElementById("hamburger").style.height = "100%";
+            document.getElementById("hamburger").style.width = "282px";
+            document.getElementById("hamburger").style.opacity = "90%";
+        } 
+    });
+});
