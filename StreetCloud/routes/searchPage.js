@@ -28,7 +28,7 @@ router.post('/',function(req,res){
         if (index != 0){
             statement = statement + "UNION ";
         }
-        statement = statement + "SELECT Name, Address, Distance, Image FROM " + searchCategories[index] + " WHERE Name " +
+        statement = statement + "SELECT Name, Address, Distance, Image, LAT, LON FROM " + searchCategories[index] + " WHERE Name " +
             "LIKE '%" + query + "%' ";
             //LIKE %word% searches for the substring of word
     }

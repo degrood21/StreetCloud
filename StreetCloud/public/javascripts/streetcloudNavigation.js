@@ -242,9 +242,9 @@ function querySearch() {
         $(".results").text("");
 
         if (searchFor === "") {
-            var coolDistance = calculateDistance(philly, nyc);
+            //var coolDistance = calculateDistance(philly, nyc);
             $("#genResults").append("<p>No Results Found</p>");
-            $("#genResults").append(coolDistance);
+            //$("#genResults").append(coolDistance);
         }
         else {
             $.post('/searchPage',
@@ -252,23 +252,82 @@ function querySearch() {
                     inquiry: searchFor
                 },
                 function (data) {
-                    if(data.length == 0){
+                    $("#genResults").empty();
+                    if (data.length == 0) {
                         $("#genResults").append("<p>No Results Found</p>");
-                        $("#genResults").append(coolDistance);
+                    } else {
+                        $("#genResults").append("<p>Results Are Loading</p>");
                     }
-                    //Loops through the result array of database entries from search results
-                    //creates a new table for each entry and appends it to streetcloud_gen_search.html
-                    for (i = 0; i < data.length; i++) 
-                    {
-                        $("#genResults").append("<tr><td><table class='searchResult'><tr><td id=tableimg>" +
-                            "<img src='" + data[i].Image + "' height=" + 100 + " width=" + 100 + "></img></td>" +
-                            "<td><table class='searchInfo'>" +
-                            "<tr><td><p style=\"font-size:140%\"><b>" + data[i].Name + "</b></p>" +
-                            "<p style=\"font-size:95%\">" + data[i].Address + "</p>" +
-                            "<p style=\"font-size:95%\">Distance: " + data[i].Distance + "</p>" +
-                            "<a href=https://www.google.com/maps/search/?api=1&query=" + data[i].LAT + "," + data[i].LON + ">Get Directions</a>" +
-                            "</table></td></tr></table></td></tr>");
-                            
+
+                    var currentLat = 0;
+                    var currentLon = 0;
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            currentLat = position.coords.latitude;
+                            currentLon = position.coords.longitude;
+                            console.log("TESTING CURRENT LOCATION: " + currentLat + " " + currentLon);
+                            var origin1 = new google.maps.LatLng(currentLat, currentLon);
+                            var distanceArr = [];
+                            if (data.length >= 25) {
+                                for (i = 0; i < 25; i++) {
+                                    distanceArr.push(new google.maps.LatLng(data[i].LAT, data[i].LON));
+                                }
+                            }
+                            else {
+                                for (i = 0; i < data.length; i++) {
+                                    distanceArr.push(new google.maps.LatLng(data[i].LAT, data[i].LON));
+                                }
+                            }
+                            var service = new google.maps.DistanceMatrixService();
+                            service.getDistanceMatrix(
+                                {
+                                    origins: [origin1],
+                                    destinations: distanceArr,
+                                    travelMode: 'WALKING',
+                                    unitSystem: google.maps.UnitSystem.IMPERIAL,
+                                }, callback);
+
+                            function callback(response, status) {
+                                if (status == 'OK') {
+                                    $("#genResults").empty();
+                                    data = data.slice(0, 25)
+                                    console.log(data);
+                                    console.log(response.rows[0].elements)
+                                    console.log(response.rows[0].elements.length + "BREAK" + data.length);
+                                    for (i = 0; i < response.rows[0].elements.length; i++) {
+                                        var nothingtoShow = 0;
+                                        var resultsDist = response.rows[0].elements;
+                                        var elementDist = resultsDist[i];
+                                        var distance = elementDist.distance.text;
+                                        data[i].Distance = distance
+                                        console.log(distance+"DISTAJFH");
+                                    }
+                                    data.sort(sortByProperty("Distance"));
+                                    var nothingtoShow = 0;
+                                    for (j = 0; j < response.rows[0].elements.length; j++) {
+                                        $("#genResults").append("<tr><td><table class='searchResult'><tr><td id=tableimg>" +
+                                            "<img src='" + data[j].Image + "' height=" + 100 + " width=" + 100 + "></img></td>" +
+                                            "<td><table class='searchInfo'>" +
+                                            "<tr><td><p style=\"font-size:140%\"><b>" + data[j].Name + "</b></p>" +
+                                            "<p style=\"font-size:95%\">" + data[j].Address + "</p>" +
+                                            "<p style=\"font-size:95%\">Distance: " + data[j].Distance + "</p>" +
+                                            "<a href=https://www.google.com/maps/search/?api=1&query=" + data[j].LAT + "," + data[j].LON + ">Get Directions</a>" +
+                                            "</table></td></tr></table></td></tr>");
+                                        nothingtoShow += 1;
+                                    }
+                                    if (nothingtoShow == 0) {
+                                        $("#foodResults").append("<p>No Results Found</p>");
+                                    }
+                                }
+                            }
+
+
+                        }, function () {
+                            handleLocationError(true, infoWindow, map.getCenter());
+                        });
+                    } else {
+                        // Browser doesn't support Geolocation
+                        handleLocationError(false, infoWindow, map.getCenter());
                     }
                 });
         }
