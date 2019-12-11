@@ -78,8 +78,6 @@ document.getElementById("headerButton").onclick = function() {
 };
 document.getElementById("medicalButton").onclick = function() {
     location.href = "/../streetcloud_medical.html";
-    
-
 };
 document.getElementById("foodButton").onclick = function() {
     location.href = "/../streetcloud_food.html";
@@ -109,6 +107,26 @@ document.getElementById("volunteerButton").onclick = function() {
 });
 
 var allData = "false";//used for clear all filters button
+
+//This is for the hamburger menu 
+$(document).ready(function(){
+    $('.icon').click(function() {
+        if (document.getElementById("menuLinks").style.display == "inline"){
+            document.getElementById("menuLinks").style.display = "none";
+            document.getElementById("hamburger").style.backgroundColor = "transparent";
+            document.getElementById("hamburger").style.height = "max-content";
+            document.getElementById("hamburger").style.width = "max-content";
+            document.getElementById("hamburger").style.opacity = "100%";
+        }
+        else{
+            document.getElementById("menuLinks").style.display = "inline";
+            document.getElementById("hamburger").style.backgroundColor = "gray";
+            document.getElementById("hamburger").style.height = "100%";
+            document.getElementById("hamburger").style.width = "282px";
+            document.getElementById("hamburger").style.opacity = "90%";
+        } 
+    });
+});
 
 //TClick function for the searchButton on the main page
 //Puts the item that was searched for and loads it into local storage
@@ -1227,22 +1245,3 @@ function publicRestroomFunction(){
     });  
 }
 
-//This is for the hamburger menu 
-$(document).ready(function(){
-    $('.icon').click(function() {
-        if (document.getElementById("menuLinks").style.display == "inline"){
-            document.getElementById("menuLinks").style.display = "none";
-            document.getElementById("hamburger").style.backgroundColor = "transparent";
-            document.getElementById("hamburger").style.height = "max-content";
-            document.getElementById("hamburger").style.width = "max-content";
-            document.getElementById("hamburger").style.opacity = "100%";
-        }
-        else{
-            document.getElementById("menuLinks").style.display = "inline";
-            document.getElementById("hamburger").style.backgroundColor = "gray";
-            document.getElementById("hamburger").style.height = "100%";
-            document.getElementById("hamburger").style.width = "282px";
-            document.getElementById("hamburger").style.opacity = "90%";
-        } 
-    });
-});
