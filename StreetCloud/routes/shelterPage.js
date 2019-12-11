@@ -9,18 +9,25 @@ router.post('/',function(req,res){
     var foodQuery = req.body.food; 
     var query = req.body.query;
     var all = req.body.all;
+    var nothingChecked = req.body.nothing;
 
 
     if(all == "true"){
-        var inquiry = "SELECT * from shelter"
+        inquiry = "SELECT * from shelter"
+    }
+    else if (nothingChecked = "false"){
+        inquiry = "SELECT * FROM shelter WHERE "+distanceQuery+" AND ("+genderQuery+") AND ("+foodQuery+")";
     }
     else{
-        var inquiry = "SELECT * FROM shelter WHERE DISTANCE "+distanceQuery+" AND ("+genderQuery+") AND ("+foodQuery+")";
+        inquiry = "SELECT * from shelter";
     }
 
-    if (!(query === "") && all != "true"){
-        query.replace(/'/g, "\\\'");
+    if (!(query === "") && all == "false" && nothingChecked == "false"){
+        //query.replace(/'/g, "\\\'");
         inquiry = inquiry + " AND (NAME LIKE '%" + query + "%') "; 
+    }
+    else if (!(query === "") && nothingChecked == "true"){
+        inquiry = inquiry + " WHERE (NAME LIKE \"%" + query + "%\") ";
     }
 
     console.log("Query: " + inquiry);

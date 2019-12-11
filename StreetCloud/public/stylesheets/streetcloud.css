@@ -26,7 +26,7 @@ h2{
 	font-size:25px;
 
 }
-#opaquebox{
+#opaquebox, #opaqueboxContact{
 	margin: auto;
 	background-color: #ffffff;
 	border-radius: 5px;
@@ -343,7 +343,8 @@ a {
 	overflow-y: auto;
 }
 
-#clearFilterMedical, #clearFilterFood, #clearFilterShelter, #clearFilterJob{
+#clearFilterMedical, #clearFilterFood, #clearFilterShelter, 
+#clearFilterJob, #clearFilterLibrary, #clearFilterDaycare, #clearFilterPublic{
 	margin: 10px 0px 5px 10px;
 	opacity:1;
 	width: auto;

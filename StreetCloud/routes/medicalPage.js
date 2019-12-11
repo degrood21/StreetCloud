@@ -6,22 +6,29 @@ var dbms = require('./dbms.js');
 router.post('/',function(req,res){
     var hoursQuerry = req.body.hours; 
     var distanceQuerry = req.body.distance;
-    var typeQuerry = req.body.type; 
+    var type = req.body.type; 
     var query = req.body.query;
     var all = req.body.all;
+    var nothingChecked = req.body.all;
 
     console.log("query: " + query);
 
     if(all == "true"){
         var inquiry = "SELECT * from medical"
     }
+    else if(nothingChecked == "false"){
+        var inquiry = "SELECT * FROM medical WHERE "+distanceQuerry+" AND ("+type+") AND ("+hoursQuerry+")";        
+    }
     else{
-        var inquiry = "SELECT * FROM medical WHERE DISTANCE "+distanceQuerry+" AND (TYPE LIKE'"+typeQuerry+"') AND ("+hoursQuerry+")";        
+        inquiry = "SELECT * from medical";
     }
 
-    if (!(query === "") && all != "true"){
-        query.replace(/'/g, "\\\'");
+    if (!(query === "") && all == "false" && nothingChecked == "false"){
+        //query.replace(/'/g, "\\\'");
         inquiry = inquiry + " AND (NAME LIKE '%" + query + "%') "; 
+    }
+    else if (!(query === "") && nothingChecked == "true"){
+        inquiry = inquiry + " WHERE (NAME LIKE \"%" + query + "%\") ";
     }
 
     console.log("inquiry " + inquiry);

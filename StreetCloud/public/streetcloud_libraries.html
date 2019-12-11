@@ -6,6 +6,7 @@
 <link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="javascripts/streetcloud_filters.js"></script>
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyAJQvyANqrylw4vyAkEf_aScXZfusD1b7Y"></script>
 </head>
 <body onload="libraryFunction()">
 <!-- Header -->
@@ -69,11 +70,13 @@
       <td> <input id="noRestroom" type="radio" name="restroom_included" value="not included" onclick="libraryFunction()"> No </td>
     </tr>
     <tr>
-      <td>
-      <td id="far" class = "job_options_formatting2"> <input type="radio" name="distance" value="10m+" onclick="libraryFunction()"> 5+ Miles </td>
+      <td></td>
+      <td class = "job_options_formatting2"> <input id="far" type="radio" name="distance" value="10m+" onclick="libraryFunction()"> 10+ Miles </td>
     </tr>
-    
   </form>
+  <td></td>
+  <td><button id="clearFilterLibrary" class="clearFilterButton" onclick="clearFilter(this.id)">Clear Filters</button></td>
+  <td></td>
   </table>
 
   <!--Mobile Filters Button-->

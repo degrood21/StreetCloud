@@ -18,7 +18,7 @@ router.post('/',function(req,res){
     
     //currently the search categories to search through
     //the database
-    var searchCategories = ["food", "shelter", "medical"];
+    var searchCategories = ["food", "shelter", "medical", "bathroom", "daycare","library","jobs"];
     var statement = "";//dbms query string
 
     //for loop will cycle through the amount of tables
