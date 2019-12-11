@@ -120,13 +120,13 @@ function initMap() {
     <div class="dropdown-content">
       <table>
         <tr>
-          <td> <input type="radio" name="gender_pref" value="Male" onclick="shelterFunction()" checked> Male Only </td>
+          <td> <input id="maleOnly_m" type="radio" name="gender_pref" value="Male" onclick="shelterFunction()"> Male Only </td>
         </tr>
         <tr>
-          <td> <input type="radio" name="gender_pref" value="Female" onclick="shelterFunction()"> Female Only </td>
+          <td> <input id="femaleOnly_m" type="radio" name="gender_pref" value="Female" onclick="shelterFunction()"> Female Only </td>
         </tr>
         <tr>
-          <td> <input type="radio" name="gender_pref" value="Both" onclick="shelterFunction()"> Male and Female </td>
+          <td> <input id="bothFANDM" type="radio" name="gender_pref" value="Both" onclick="shelterFunction()" checked> Male and Female </td>
         </tr>
       </table>
     </div>
@@ -148,11 +148,11 @@ function initMap() {
     <div class="dropdown-content">
       <table>
         <tr>
-          <td> <input type="radio" name="food_included" value="included" onclick="shelterFunction()" checked> Food
+          <td> <input id="included_m" type="radio" name="food_included" value="included" onclick="shelterFunction()" checked> Food
             Included </td>
         </tr>
         <tr>
-          <td> <input type="radio" name="food_included" value="not included" onclick="shelterFunction()"> Food Not
+          <td> <input id="notIncluded_m" type="radio" name="food_included" value="not included" onclick="shelterFunction()"> Food Not
             Included </td>
         </tr>
       </table>

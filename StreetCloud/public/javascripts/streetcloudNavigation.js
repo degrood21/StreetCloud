@@ -883,6 +883,10 @@ function shelterFunction() {
         document.getElementById("femaleOnly_m").checked == true){
         gender = "GENDER = 'Female'";
     }
+    else if (document.getElementById("maleAndFemale").checked == true ||
+        document.getElementById("bothFANDM").checked == true){
+        gender = "1=1";
+    }
     else{
         gender = "1=1";
     }
