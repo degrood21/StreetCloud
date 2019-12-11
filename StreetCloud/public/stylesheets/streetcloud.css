@@ -22,14 +22,20 @@ h1{
 	width: max-content;
 }
 /* This is for the menu */
+#container{
+	width: auto;
+	height: 20px;
+	position: relative;
+}
 .topnav {
 	overflow: hidden;
 	background-color: transparent;
 	position: absolute;
+	top: 0;
 	align-content: center;
 	display: flex;
 	width: 100%;
-	z-index: 2;
+	z-index: 1;
   }
 .topnav #menuLinks{
 	background-color: gray;
@@ -103,7 +109,7 @@ h2{
 	font-size:25px;
 
 }
-#opaquebox{
+#opaquebox, #opaqueboxContact{
 	margin: auto;
 	background-color: #ffffff;
 	border-radius: 5px;
@@ -361,7 +367,7 @@ a {
 	background-color: transparent;
 }
 
-#aboutUs, #registerForm, #contactUS, #volunteerButton{
+#aboutUs, #registerForm, #contactUs, #volunteer{
 	cursor: pointer;
 }
 
@@ -383,11 +389,12 @@ a {
 
 #headerButton{
 	position: relative;
-	top: 7px;
+	top: 20px;
+	margin-left: auto;
+	margin-right: auto;
 	cursor: pointer;
 	max-width: 30%;
-	position: relative;
-	z-index: 1;
+	z-index: 0;
 }
 
 .filters {
@@ -422,7 +429,8 @@ a {
 	overflow-y: auto;
 }
 
-#clearFilterMedical, #clearFilterFood, #clearFilterShelter, #clearFilterJob{
+#clearFilterMedical, #clearFilterFood, #clearFilterShelter, 
+#clearFilterJob, #clearFilterLibrary, #clearFilterDaycare, #clearFilterPublic{
 	margin: 10px 0px 5px 10px;
 	opacity:1;
 	width: auto;

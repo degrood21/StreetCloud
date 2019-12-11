@@ -7,11 +7,24 @@ router.post('/', function (req, res) {
     priceQuery = req.body.price;
     timesQuery = req.body.times;
     query = req.body.query;
-    inquiry = "SELECT * FROM daycare WHERE DISTANCE " + distanceQuery + " AND (" + priceQuery + ") AND (" + timesQuery + ")";
+    all = req.body.all;
+    nothingChecked = req.body.nothing;
 
-    if (!(query === "")) {
-        query.replace(/'/g, "\\\'");
+    if(all == "true"){
+        inquiry = "SELECT * from daycare";
+    }
+    else if(nothingChecked == "false"){
+        inquiry = "SELECT * FROM daycare WHERE " + distanceQuery + " AND (" + priceQuery + ") AND (" + timesQuery + ")";
+    }
+    else{
+        inquiry = "SELECT * from daycare";
+    }
+    if (!(query === "") && all == "false" && nothingChecked == "false") {
+        //query.replace(/'/g, "\\\'");
         inquiry = inquiry + " AND (NAME LIKE '%" + query + "%') ";
+    }
+    else if (!(query === "") && nothingChecked == "true"){
+        inquiry = inquiry + " WHERE (NAME LIKE \"%" + query + "%\") ";
     }
 
     console.log(inquiry);

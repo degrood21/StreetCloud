@@ -7,14 +7,14 @@ router.post('/', function (req, res) {
     educationQuery = req.body.education;
     positionQuery = req.body.position ;
     query = req.body.query;
-    var all = req.body.all;
+    all = req.body.all;
 
 
     if (all == "true") {
-        var inquiry = "SELECT * from job"
+        var inquiry = "SELECT * from jobs"
     }
     else{
-        inquiry = "SELECT * FROM jobs WHERE DISTANCE " + distanceQuery + " AND (" + educationQuery + ") AND (" + positionQuery + ")";
+        inquiry = "SELECT * FROM jobs WHERE " + distanceQuery + " AND (" + educationQuery + ") AND (" + positionQuery + ")";
     }
 
     if (!(query === "") && all != "true") {
