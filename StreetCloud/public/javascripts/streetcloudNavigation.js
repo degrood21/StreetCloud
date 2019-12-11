@@ -1250,3 +1250,11 @@ $(document).ready(function(){
         } 
     });
 });
+
+$(document).ready(function(){
+    $(".searchInfo").click(function() {
+        console.log("click");
+        var newLocation = $(this).find("a").attr("href");
+        window.location = newLocation;
+    });
+});
