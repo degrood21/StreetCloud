@@ -1,4 +1,10 @@
 
+/*
+* This links every button to its respective page with 
+* everything that was previously in the footer 
+* menu which is now in the hamburger menu.
+*/
+
 document.getElementById("headerButton").onclick = function() {
     location.href = "/../streetcloud.html";
 };

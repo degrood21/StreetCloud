@@ -1,3 +1,4 @@
+
 document.getElementById("headerButton").onclick = function() {
     location.href = "/../streetcloud.html";
 };
