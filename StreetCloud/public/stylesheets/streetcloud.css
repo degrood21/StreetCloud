@@ -34,7 +34,6 @@ h1{
 	top: 0;
 	align-content: center;
 	display: flex;
-	width: 100%;
 	z-index: 1;
   }
 .topnav #menuLinks{
