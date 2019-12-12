@@ -10,9 +10,33 @@
 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="javascripts/streetcloud_filters.js"></script>
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyAJQvyANqrylw4vyAkEf_aScXZfusD1b7Y"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body onload="jobsFunction()">
-<!-- Header -->
+<!-- Header + Menu -->
+<div class="topnav">
+  <table class="headerTable">
+    <tr>
+      <td>
+        <div id="hamburger">
+        <a class="icon">
+          <i class="fa fa-bars"></i>
+        </a>
+        </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="menuLinks">
+        <a id="aboutUs">About Us</a>
+        <a id="contactUs">Contact Us</a>
+        <a id="volunteer">Volunteer</a>
+        <a id="registerForm">Partnerships</a>
+      </div>
+    </td>
+  </tr>
+  </table>
+</div>
 <img src= "images/SC_5.png" id="headerButton">
 <!-- Second Header -->
 <h2 id="pageId">Jobs</h2>
@@ -89,10 +113,10 @@
   <div id="cat2Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" onclick="jobsFunction()" checked> 0 to 2 Miles </td> </tr>
-        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m" onclick="jobsFunction()"> 0 to 5 Miles </td> </tr>
-        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m" onclick="jobsFunction()"> 0 to 10 Miles </td> </tr>
-        <tr> <td> <input id="far_m" type="radio" class="far" name="distance" value="15m" onclick="jobsFunction()"> 0 to 10+ Miles </td> </tr>
+        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" onclick="jobsFunction()" checked> Within 2 Miles </td> </tr>
+        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m" onclick="jobsFunction()"> Within 5 Miles </td> </tr>
+        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m" onclick="jobsFunction()"> Within 10 Miles </td> </tr>
+        <tr> <td> <input id="far_m" type="radio" class="far" name="distance" value="15m" onclick="jobsFunction()"> 10+ Miles </td> </tr>
       </table>
     </div>
   </div>
@@ -119,17 +143,17 @@
     </tr>
     <tr>
       <td> <input id="no_hs" type="radio" class="no_hs" name="education" value="No High School" onclick="jobsFunction()"> No High School </td>
-      <td> <input id="close" type="radio" class="close" name="distance" value="2m" onclick="jobsFunction()" checked> 0 to 2 Miles </td>
+      <td> <input id="close" type="radio" class="close" name="distance" value="2m" onclick="jobsFunction()" checked> Within 2 Miles </td>
       <td> <input id="p_time" type="radio" class="p_time" name="position" value="part time" onclick="jobsFunction()" checked> Part Time </td>
     </tr>
     <tr>
       <td> <input id="s_hs" type="radio" class="s_hs" name="education" value="Some High School" onclick="jobsFunction()"> Some High School </td>
-      <td> <input id="r_close" type="radio" class="r_close" name="distance" value="5m" onclick="jobsFunction()"> 0 to 5 Miles </td>
+      <td> <input id="r_close" type="radio" class="r_close" name="distance" value="5m" onclick="jobsFunction()"> Within 5 Miles </td>
       <td> <input id="f_time" type="radio" class="f_time" name="position" value="Full Time" onclick="jobsFunction()"> Full Time </td>
     </tr>
     <tr>
       <td> <input id="hs_d" type="radio" class="hs_d" name="education" value="High School Diploma" onclick="jobsFunction()" checked> High School Degree </td>
-      <td> <input id="r_far" type="radio" class="r_far" name="distance" value="10m" onclick="jobsFunction()"> 0 to 10 Miles </td>
+      <td> <input id="r_far" type="radio" class="r_far" name="distance" value="10m" onclick="jobsFunction()"> 10+ Miles </td>
     </tr>
     <tr>
       <td> <input id="c_d" type="radio" class="c_d" name="education" value="College Degree" onclick="jobsFunction()"> College Degree </td>
@@ -159,13 +183,6 @@
 </br>
 </br>
 </br>
-<div class="footer">
-<p id="homeFooterButton">StreetCloud</p>
-<p id ="aboutUs">About Us</p>
-<p id = "contactUS">Contact Us</p>
-<p id = "volunteerButton">Volunteer</p>
-<p id ="registerForm">Partnerships</p>
-</div>
 
 <script
    src="javascripts/streetcloudNavigation.js">

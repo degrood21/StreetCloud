@@ -5,10 +5,35 @@
 <meta name="viewport" content="width=device-width", initial-scale=1>
 <link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<!-- Header -->
+<!-- Header + Menu -->
+<div class="topnav">
+  <table class="headerTable">
+    <tr>
+      <td>
+        <div id="hamburger">
+        <a class="icon">
+          <i class="fa fa-bars"></i>
+        </a>
+        </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="menuLinks">
+        <a id="aboutUs">About Us</a>
+        <a id="contactUs">Contact Us</a>
+        <a id="volunteer">Volunteer</a>
+        <a id="registerForm">Partnerships</a>
+      </div>
+    </td>
+  </tr>
+  </table>
+</div>
 <img src= "images/SC_5.png" id="headerButton">
+<br></br>
 
 <!-- Menu -->
 <table>
@@ -34,18 +59,20 @@
     </tr>
 
   </table>
-
+<br>
 
 <!-- Second Header -->
-<h2>About Us</h2>
-<img src="https://image.shutterstock.com/image-photo/volunteers-sharing-food-poor-people-260nw-691762759.jpg" alt="Group of volunteers helping the homeless." width=25% height=20%>
+<h2 id="opaquebox">About Us</h2>
+<br>
+<img src="images/streetcloud_team.jpg" width=25% height=20%>
 
 <h3>Our Mission</h3>
 <p id="aboutmessage">StreetCloud is a platform dedicated to connecting those experiencing houselessness with resources that make their lives easier.
 We are a not-for-profit organization based out of Portland, Oregon established in September of 2019.</p>
-<img src="images/SC_2.png" id="logo">
-
-<h2 id="contactheader">Contact Us</h2>
+<img src="images/SC_1.png" id="logo">
+<br>
+<br>
+<h2 id="opaqueboxContact">Contact Us</h2>
 <form id="contactform">
   <p>*Name:</p> <input type="text" name="FirstName" placeholder="e.g., John Smith"><br>
   <p>Email:</p> <input type="text" name="Email" placeholder="e.g., smith@email.com"><br>
@@ -74,13 +101,6 @@ We are a not-for-profit organization based out of Portland, Oregon established i
 </br>
 </br>
 </br>
-<div class="footer">
-<p id="homeFooterButton">StreetCloud</p>
-<p id ="aboutUs">About Us</p>
-<p id = "contactUS">Contact Us</p>
-<p id = "volunteerButton">Volunteer</p>
-<p id ="registerForm">Partnerships</p>
-</div>
 
 <script
    src="javascripts/streetcloudNav_About.js">

@@ -8,10 +8,33 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="javascripts/streetcloud_filters.js"></script>
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyAJQvyANqrylw4vyAkEf_aScXZfusD1b7Y"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-
 <body onload="shelterFunction()">
-<!-- Header -->
+<!-- Header + Menu -->
+<div class="topnav">
+  <table class="headerTable">
+    <tr>
+      <td>
+        <div id="hamburger">
+        <a class="icon">
+          <i class="fa fa-bars"></i>
+        </a>
+        </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="menuLinks">
+        <a id="aboutUs">About Us</a>
+        <a id="contactUs">Contact Us</a>
+        <a id="volunteer">Volunteer</a>
+        <a id="registerForm">Partnerships</a>
+      </div>
+    </td>
+  </tr>
+  </table>
+</div>
 <img src= "images/SC_5.png" id="headerButton">
 <!-- Second Header -->
 <h2 id="pageId">Shelter</h2>
@@ -77,17 +100,17 @@ function initMap() {
     </tr>
     <tr>
       <td> <input id="maleOnly" type="radio" name="gender_pref" value="Male" onclick="shelterFunction()"> Male Only </td>
-      <td class = "job_options_formatting2"> <input id="2m" type="radio" name="distance" value="2m" onclick="shelterFunction()" checked> 0 to 2 Miles </td>
+      <td class = "job_options_formatting2"> <input id="2m" type="radio" name="distance" value="2m" onclick="shelterFunction()" checked> Within 2 Miles </td>
       <td> <input id="included" type="radio" name="food_included" value="included" onclick="shelterFunction()" checked> Yes </td>
     </tr>
     <tr>
       <td> <input id="femaleOnly" type="radio" name="gender_pref" value="Female" onclick="shelterFunction()"> Female Only </td>
-      <td class = "job_options_formatting2"> <input id="5m" type="radio" name="distance" value="5m" onclick="shelterFunction()"> 0 to 5 Miles </td>
+      <td class = "job_options_formatting2"> <input id="5m" type="radio" name="distance" value="5m" onclick="shelterFunction()"> Within 5 Miles </td>
       <td> <input id="notIncluded" type="radio" name="food_included" value="not included" onclick="shelterFunction()"> No </td>
     </tr>
     <tr>
       <td> <input id="maleAndFemale" type="radio" name="gender_pref" value="Both" onclick="shelterFunction()" checked> Male and Female </td>
-      <td class = "job_options_formatting2"> <input id="10m+" type="radio" name="distance" value="10m" onclick="shelterFunction()"> 0 to 10+ Miles </td>
+      <td class = "job_options_formatting2"> <input id="10m+" type="radio" name="distance" value="10m" onclick="shelterFunction()"> 10+ Miles </td>
     </tr>
     
   </form>
@@ -120,13 +143,13 @@ function initMap() {
     <div class="dropdown-content">
       <table>
         <tr>
-          <td> <input type="radio" name="gender_pref" value="Male" onclick="shelterFunction()" checked> Male Only </td>
+          <td> <input id="maleOnly_m" type="radio" name="gender_pref" value="Male" onclick="shelterFunction()"> Male Only </td>
         </tr>
         <tr>
-          <td> <input type="radio" name="gender_pref" value="Female" onclick="shelterFunction()"> Female Only </td>
+          <td> <input id="femaleOnly_m" type="radio" name="gender_pref" value="Female" onclick="shelterFunction()"> Female Only </td>
         </tr>
         <tr>
-          <td> <input type="radio" name="gender_pref" value="Both" onclick="shelterFunction()"> Male and Female </td>
+          <td> <input id="bothFANDM" type="radio" name="gender_pref" value="Both" onclick="shelterFunction()" checked> Male and Female </td>
         </tr>
       </table>
     </div>
@@ -136,9 +159,9 @@ function initMap() {
   <div id="cat2Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" onclick="shelterFunction()" checked> 0 to 2 Miles </td> </tr>
-        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m" onclick="shelterFunction()"> 0 to 5 Miles </td> </tr>
-        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m" onclick="shelterFunction()"> 0 to 10+ Miles </td> </tr>
+        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" onclick="shelterFunction()" checked> Within 2 Miles </td> </tr>
+        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" value="5m" onclick="shelterFunction()"> Within 5 Miles </td> </tr>
+        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m" onclick="shelterFunction()"> 10+ Miles </td> </tr>
       </table>
     </div>
   </div>
@@ -148,11 +171,11 @@ function initMap() {
     <div class="dropdown-content">
       <table>
         <tr>
-          <td> <input type="radio" name="food_included" value="included" onclick="shelterFunction()" checked> Food
+          <td> <input id="included_m" type="radio" name="food_included" value="included" onclick="shelterFunction()" checked> Food
             Included </td>
         </tr>
         <tr>
-          <td> <input type="radio" name="food_included" value="not included" onclick="shelterFunction()"> Food Not
+          <td> <input id="notIncluded_m" type="radio" name="food_included" value="not included" onclick="shelterFunction()"> Food Not
             Included </td>
         </tr>
       </table>
@@ -176,14 +199,6 @@ function initMap() {
 </br>
 </br>
 </br>
-<div class="footer">
-<p id="homeFooterButton">StreetCloud</p>
-<p id ="aboutUs">About Us</p>
-<p id = "contactUS">Contact Us</p>
-<p id = "volunteerButton">Volunteer</p>
-<p id ="registerForm">Partnerships</p>
-</div>
-
   <script src="javascripts/streetcloudNavigation.js">
   </script>
 

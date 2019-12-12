@@ -9,9 +9,34 @@
 <link href="stylesheets/streetcloud.css" rel="stylesheet" type="text/css">
 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="javascripts/streetcloud_filters.js"></script>
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyAJQvyANqrylw4vyAkEf_aScXZfusD1b7Y"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body onload="publicRestroomFunction()">
-<!-- Header -->
+<!-- Header + Menu -->
+<div class="topnav">
+  <table class="headerTable">
+    <tr>
+      <td>
+        <div id="hamburger">
+        <a class="icon">
+          <i class="fa fa-bars"></i>
+        </a>
+        </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="menuLinks">
+        <a id="aboutUs">About Us</a>
+        <a id="contactUs">Contact Us</a>
+        <a id="volunteer">Volunteer</a>
+        <a id="registerForm">Partnerships</a>
+      </div>
+    </td>
+  </tr>
+  </table>
+</div>
 <img src= "images/SC_5.png" id="headerButton">
 <!-- Second Header -->
 <h2 id="pageId">Public Restrooms</h2>
@@ -69,9 +94,9 @@
   <div id="cat1Filters" class="dropdown">
     <div class="dropdown-content">
       <table>
-        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" onclick="publicRestroomFunction()" checked> 0 to 2 Miles </td> </tr>
-        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" onclick="publicRestroomFunction()" value="5m"> 0 to 5 Miles </td> </tr>
-        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m" onclick="publicRestroomFunction()"> 0 to 10+ Miles </td> </tr>
+        <tr> <td> <input id="close_m" type="radio" class="close" name="distance" value="2m" onclick="publicRestroomFunction()" checked> Within 2 Miles </td> </tr>
+        <tr> <td> <input id="r_close_m" type="radio" class="r_close" name="distance" onclick="publicRestroomFunction()" value="5m"> Within 5 Miles </td> </tr>
+        <tr> <td> <input id="r_far_m" type="radio" class="r_far" name="distance" value="10m" onclick="publicRestroomFunction()"> 5+ Miles </td> </tr>
       </table>
     </div>
   </div>
@@ -96,18 +121,21 @@
       <td><h3>Times Open: </h3></td>
     </tr>
     <tr>
-      <td> <input id="close" type="radio" class="close" name="distance" value="2m" onclick="publicRestroomFunction()" checked> 0 to 2 Miles </td>
+      <td> <input id="close" type="radio" class="close" name="distance" value="2m" onclick="publicRestroomFunction()" checked> Within 2 Miles </td>
       <td> <input id="24hr" type="radio" class="p_time" name="careTime" value="24HourBathrooms" onclick="publicRestroomFunction()" checked> 24 Hours </td>
     </tr>
     <tr>
-      <td> <input id="r_close" type="radio" class="r_close" name="distance" value="5m" onclick="publicRestroomFunction()"> 0 to 5 Miles </td>
+      <td> <input id="r_close" type="radio" class="r_close" name="distance" value="5m" onclick="publicRestroomFunction()"> Within 5 Miles </td>
       <td> <input id="setTime" type="radio" class="f_time" name="careTime" value="specificHourBathrooms" onclick="publicRestroomFunction()"> Specific Hours </td>
     </tr>
     <tr>
-      <td> <input id="r_far" type="radio" class="r_far" name="distance" value="10m" onclick="publicRestroomFunction()"> 0 to 10+ Miles </td>
+      <td> <input id="r_far" type="radio" class="r_far" name="distance" value="10m" onclick="publicRestroomFunction()"> 5+ Miles </td>
     </tr>
     
   </form>
+  <td></td>
+  <td><button id="clearFilterPublic" class="clearFilterButton" onclick="clearFilter(this.id)">Clear Filters</button></td>
+  <td></td>
   </table>
 </div>
 <br>
@@ -128,14 +156,6 @@
 </br>
 </br>
 </br>
-<div class="footer">
-<p id="homeFooterButton">StreetCloud</p>
-<p id ="aboutUs">About Us</p>
-<p id = "contactUS">Contact Us</p>
-<p id = "volunteerButton">Volunteer</p>
-<p id ="registerForm">Partnerships</p>
-</div>
-
 <script
    src="javascripts/streetcloudNavigation.js">
 </script>
