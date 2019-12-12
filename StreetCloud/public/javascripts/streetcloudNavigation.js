@@ -842,6 +842,20 @@ function foodFunction() {
                                 unitSystem: google.maps.UnitSystem.IMPERIAL,
                             }, callback);
 
+                        /**
+                         * callback function
+                         * 
+                         * This function is the callback for the getDistanceMatrix
+                         * to calculate the distance of the array of locations
+                         * that we send it
+                         * 
+                         * We use the calculated distance to append all locations
+                         * that came back fromt the post method and append the
+                         * calculated distance to it and to the page
+                         * 
+                         * @param response contains the data with all calculated distances
+                         * @param status is OK if distances were calculated properly
+                         */
                         function callback(response, status) {
                             if (status == 'OK') {
                                 $("#foodResults").empty();
@@ -992,12 +1006,12 @@ function shelterFunction() {
                 nothing: nothingChecked
             },
             /**
-                 * This function is the return callback
-                 * for the post method so it will have everything
-                 * from the query request
-                 * 
-                 * @param data is returned JSON object of database rows
-                 */
+             * This function is the return callback
+             * for the post method so it will have everything
+             * from the query request
+             * 
+             * @param data is returned JSON object of database rows
+             */
             function (data) {
                 $("#shelterResults").empty();
                 if (data.length == 0) {
@@ -1034,6 +1048,20 @@ function shelterFunction() {
                                 unitSystem: google.maps.UnitSystem.IMPERIAL,
                             }, callback);
 
+                        /**
+                         * callback function
+                         * 
+                         * This function is the callback for the getDistanceMatrix
+                         * to calculate the distance of the array of locations
+                         * that we send it
+                         * 
+                         * We use the calculated distance to append all locations
+                         * that came back fromt the post method and append the
+                         * calculated distance to it and to the page
+                         * 
+                         * @param response contains the data with all calculated distances
+                         * @param status is OK if distances were calculated properly
+                         */
                         function callback(response, status) {
                             if (status == 'OK') {
                                 $("#shelterResults").empty();
@@ -1230,6 +1258,20 @@ function jobsFunction() {
                                 unitSystem: google.maps.UnitSystem.IMPERIAL,
                             }, callback);
 
+                        /**
+                         * callback function
+                         * 
+                         * This function is the callback for the getDistanceMatrix
+                         * to calculate the distance of the array of locations
+                         * that we send it
+                         * 
+                         * We use the calculated distance to append all locations
+                         * that came back fromt the post method and append the
+                         * calculated distance to it and to the page
+                         * 
+                         * @param response contains the data with all calculated distances
+                         * @param status is OK if distances were calculated properly
+                         */
                         function callback(response, status) {
                             if (status == 'OK') {
                                 $("#jobResults").empty();
@@ -1373,12 +1415,12 @@ function libraryFunction() {
                 nothing: nothingChecked
             },
             /**
-                 * This function is the return callback
-                 * for the post method so it will have everything
-                 * from the query request
-                 * 
-                 * @param data is returned JSON object of database rows
-                 */
+             * This function is the return callback
+             * for the post method so it will have everything
+             * from the query request
+             * 
+             * @param data is returned JSON object of database rows
+             */
             function (data) {
                 $("#libraryResults").empty();
                 if (data.length == 0) {
@@ -1415,6 +1457,20 @@ function libraryFunction() {
                                 unitSystem: google.maps.UnitSystem.IMPERIAL,
                             }, callback);
 
+                        /**
+                         * callback function
+                         * 
+                         * This function is the callback for the getDistanceMatrix
+                         * to calculate the distance of the array of locations
+                         * that we send it
+                         * 
+                         * We use the calculated distance to append all locations
+                         * that came back fromt the post method and append the
+                         * calculated distance to it and to the page
+                         * 
+                         * @param response contains the data with all calculated distances
+                         * @param status is OK if distances were calculated properly
+                         */
                         function callback(response, status) {
                             if (status == 'OK') {
                                 $("#libraryResults").empty();
@@ -1603,6 +1659,20 @@ function daycareFunction() {
                                 unitSystem: google.maps.UnitSystem.IMPERIAL,
                             }, callback);
 
+                        /**
+                         * callback function
+                         * 
+                         * This function is the callback for the getDistanceMatrix
+                         * to calculate the distance of the array of locations
+                         * that we send it
+                         * 
+                         * We use the calculated distance to append all locations
+                         * that came back fromt the post method and append the
+                         * calculated distance to it and to the page
+                         * 
+                         * @param response contains the data with all calculated distances
+                         * @param status is OK if distances were calculated properly
+                         */
                         function callback(response, status) {
                             if (status == 'OK') {
                                 $("#daycareResults").empty();
@@ -1774,7 +1844,21 @@ function publicRestroomFunction() {
                                 travelMode: 'WALKING',
                                 unitSystem: google.maps.UnitSystem.IMPERIAL,
                             }, callback);
-
+                        
+                        /**
+                         * callback function
+                         * 
+                         * This function is the callback for the getDistanceMatrix
+                         * to calculate the distance of the array of locations
+                         * that we send it
+                         * 
+                         * We use the calculated distance to append all locations
+                         * that came back fromt the post method and append the
+                         * calculated distance to it and to the page
+                         * 
+                         * @param response contains the data with all calculated distances
+                         * @param status is OK if distances were calculated properly
+                         */
                         function callback(response, status) {
                             if (status == 'OK') {
                                 $("#publicRestroomsResults").empty();
